@@ -1,0 +1,32 @@
+@import url('https://fonts.googleapis.com/css2?family=Lexend+Giga:wght@100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+
+
+/* Botão 5stars */
+.navbar-brand{
+    color: white;
+    transition: all 0.5s;
+    font-family: "Montserrat";
+}
+.navbar-brand:hover{
+    color: goldenrod;
+}
+
+.divisoria{
+    width: 5px;
+    height: 45px;
+    background-color: darkgoldenrod;
+    justify-content: center;
+    margin: 0px 10px;
+    border-radius: 50px;
+}
+
+/* Links navbar */
+.nav-link {
+    font-family: "Lexend Giga", sans-serif;
+    font-size: large;
+    transition: all 0.5s;
+    color: white;
+}
+.nav-item .nav-link:hover{
+    color: goldenrod;
+}
