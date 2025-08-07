@@ -43,9 +43,13 @@
     </nav>
 
 
-    <footer>
+    <footer class="footer fixed-bottom">
+    <a href="https://github.com/AitomD/Banco-de-dados">
+      <img src="img/github.png" alt="Repositório" style="width: 65px; padding: 5px">
+    </a>
+    <p>Desenvolvio por Aitom Donatoni e Fernando Consolin</p>
+</footer>
 
-    </footer>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q"
         crossorigin="anonymous"></script>

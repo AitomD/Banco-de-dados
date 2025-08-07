@@ -3,7 +3,6 @@
     --bs-dark: #000000b2;
 }
 
-
 *{
     box-sizing: border-box;
     margin: 0;
@@ -22,11 +21,11 @@
     color: var(--bs-dark);
     font-weight: bold;
     font-size: 20px;
-    transition: 0.5s all;
+    transition: 0.4s all;
  }
  .nav-item .nav-link:hover{
     color: var(--blue-light);
-    transform: scale(1.2);
+    transform: scale(1.1);
  }
 /*------BTN-------*/
 .btnblue{
@@ -35,4 +34,14 @@
     font-size: 15px;
     transition: 0.3s all;
     border-radius: 20px;
+}
+
+/* Footer */
+.footer{
+    justify-content: center;
+    text-align: center;
+    color: white;
+    font-family: "Montserrat";
+    padding: 2px;
+    background-color: #1E2125;
 }
