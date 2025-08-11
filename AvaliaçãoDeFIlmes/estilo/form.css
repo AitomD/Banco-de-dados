@@ -1,0 +1,106 @@
+@import url('https://fonts.googleapis.com/css2?family=Lexend+Giga:wght@100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+
+
+* {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Montserrat';
+    }
+
+    body {
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: url(../img/fundlogin.jpg);
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+    }
+
+    .container {
+        display: flex;
+        width: 900px;
+        height: 500px;
+        border-radius: 20px;
+        overflow: hidden;
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.692);
+        backdrop-filter: blur(10px);
+
+    }
+
+    .left, .right {
+        flex: 1;
+        padding: 40px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        color: #fdfdfd;
+        position: relative;
+    }
+
+    .left {
+      background-color: transparent;
+    }
+    .right {
+      background-color: transparent;
+    }
+
+    .glass {
+        background: rgba(85, 85, 85, 0.253);
+        padding: 30px;
+        border-radius: 20px;
+        backdrop-filter: blur(10px);
+        width: 100%;
+        max-width: 300px;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+    }
+
+    h2 {
+        margin-bottom: 20px;
+        font-size: 1.8rem;
+        text-align: center;
+    }
+
+    .input-box {
+        position: relative;
+        margin-bottom: 20px;
+    }
+
+    .input-box input {
+        width: 100%;
+        padding: 10px 40px;
+        border-radius: 30px;
+        border: none;
+        outline: none;
+        font-size: 1rem;
+    }
+
+    .input-box i {
+        position: absolute;
+        left: 15px;
+        top: 50%;
+        transform: translateY(-50%);
+        color: #555;
+    }
+
+    button {
+        width: 100%;
+        padding: 10px;
+        border: none;
+        border-radius: 30px;
+        background: #02d6e8;
+        color: #fff;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: 0.3s;
+        box-shadow: 0px 0px 12px 3px #02d6e8;
+    }
+
+    button:hover {
+        color: #02d6e8;
+        background-color: white;
+        box-shadow: 0px 0px 12px 3px white;
+    }

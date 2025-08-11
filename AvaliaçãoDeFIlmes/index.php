@@ -14,7 +14,7 @@
 <body>
     <nav class="navbar navbar-expand-lg bg-light">
         <div class="container-fluid mx-5">
-            <a class="navbar-brand " href="#"><img src="img/bluestarlogo.png" alt="logo" class="me-4"></a>
+            <a class="navbar-brand " href="pages/home.php"><img src="img/bluestarlogo.png" alt="logo" class="me-4"></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
                 aria-label="Toggle navigation">
@@ -36,8 +36,16 @@
                     <input class="form-control me-2 w-100" type="search" placeholder="Search" aria-label="Search" />
                     <button class="btn btn-outline-primary" type="submit">Search</button>
                 </form>
-                <button type="button" class=" btn btn-primary mx-2 text-end">CADASTRAR</button>
-                <button type="button" class=" btn btn-primary mx-2 text-end">LOGAR</button>
+
+
+                <!-- Teste de botoes com links para paginas de cadastro e login-->
+
+                <a href="pages/cadastro.php">
+                    <button type="button" class=" btn btn-primary mx-2 text-end">CADASTRAR</button>
+                </a>
+                <a href="pages/login.php">
+                    <button type="button" class=" btn btn-primary mx-2 text-end">LOGAR</button>
+                </a>
             </div>
         </div>
     </nav>
