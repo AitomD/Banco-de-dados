@@ -1,14 +1,29 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap');
+
 :root{
-    --blue-light:#2762AC;
-    --bs-dark: #000000b2;
+    --bluemain:#021526;
+    --bluesec:#37c6ff;
+    --white:white;
 }
 
 *{
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: "DM Sans", sans-serif;
 }
+
+/*-----Navbar-----*/
+.navbar{
+    background-color:#021526ef ;
+    padding: 10px;
+    position: fixed;
+    width: 100%;
+    z-index: 1000;
+    height: 70px;
+}
+
+
 /*-----Navbar-brand-logo--------*/
 .navbar-brand img {
     width: 110px;
@@ -17,30 +32,55 @@
 }
  /*---- Nav-link-nav------*/
  .nav-item .nav-link {
-    color: var(--bs-dark);
+    color: var(--white);
     font-weight: bold;
-    font-size: 20px;
+    font-size: 15px;
     transition: 0.4s all;
  }
  .nav-item .nav-link:hover{
-    color: var(--blue-light);
+    color: var(--bluesec);
     transform: scale(1.1);
  }
 /*------BTN-------*/
-.btnblue{
-    background-color: var(--blue-light);
+.neon-btn {
+    background: #37c6ff;           /* Cor base do botão */
     color: white;
-    font-size: 15px;
-    transition: 0.3s all;
-    border-radius: 20px;
-}
+    border: none;
+    padding: 8px 10px;
+    font-size: 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: bold;
+    /* Efeito neon inicial */
+    box-shadow:
+      0 0 5px #37c6ff,
+      0 0 5px #37c6ff,
+      0 0 5px #37c6ff,
+      0 0 10px #37c6ff;
+    transition: all 0.3s ease;
+  }
+.neon-btn:hover {
+    /* Efeito neon ao passar o mouse */
+    box-shadow:
+      0 0 5px #37c6ff,
+      0 0 10px #37c6ff,
+      0 0 20px #37c6ff,
+      0 0 30px #37c6ff;
+    transform: scale(0.9);
+  }
+
+
 
 /* Footer */
 .footer{
     justify-content: center;
     text-align: center;
-    color: white;
+    color: var(--white);
     font-family: "Montserrat";
+    font-weight: 800;
     padding: 2px;
-    background-color: #1E2125;
+    background-color: var(--bluemain);
+    height: 70px;
 }

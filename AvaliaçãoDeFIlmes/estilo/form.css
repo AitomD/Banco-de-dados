@@ -85,22 +85,3 @@
         transform: translateY(-50%);
         color: #555;
     }
-
-    button {
-        width: 100%;
-        padding: 10px;
-        border: none;
-        border-radius: 30px;
-        background: #02d6e8;
-        color: #fff;
-        font-size: 1rem;
-        cursor: pointer;
-        transition: 0.3s;
-        box-shadow: 0px 0px 12px 3px #02d6e8;
-    }
-
-    button:hover {
-        color: #02d6e8;
-        background-color: white;
-        box-shadow: 0px 0px 12px 3px white;
-    }
