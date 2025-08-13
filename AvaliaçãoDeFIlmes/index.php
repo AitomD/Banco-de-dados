@@ -40,48 +40,115 @@
         <div class="container-fluid mx-5">
             <a class="navbar-brand " href="pages/home.php"><img src="img/logo2.png" alt="logo" class="me-4"></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" al
                 aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item  mx-2">
-                        <a class="nav-link" aria-current="page" href="#">HOME</a>
+            <div class="collapse navbar-collapse justify-content-center" id="navbarSupportedContent">
+                <ul class="navbar-nav d-flex align-items-center gap-2">
+                    <li class="nav-item mx-2">
+                        <a href="#"><button class="neon-btn">HOME</button></a>
                     </li>
-                    <li class="nav-item  mx-2">
-                        <a class="nav-link" aria-current="page" href="#">SÉRIES</a>
+                    <li class="nav-item mx-2">
+                        <a href="#"><button class="neon-btn">SUPORTE</button></a>
                     </li>
-                    <li class="nav-item  mx-2">
-                        <a class="nav-link" aria-current="page" href="#">FILMES</a>
+
+                    <!-- Dropdown SÉRIES -->
+                    <li class="nav-item dropdown mx-2">
+                        <button class="neon-btn dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            SÉRIES
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-dark">
+                            <li><a class="dropdown-item active" href="#">Ação</a></li>
+                            <li><a class="dropdown-item" href="#">Comédia</a></li>
+                            <li><a class="dropdown-item" href="#">Drama</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item" href="#">Mais</a></li>
+                        </ul>
+                    </li>
+
+                    <!-- Dropdown FILMES -->
+                    <li class="nav-item dropdown mx-2   ">
+                        <button class="neon-btn dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            FILMES
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-dark">
+                            <li><a class="dropdown-item active" href="#">Ação</a></li>
+                            <li><a class="dropdown-item" href="#">Comédia</a></li>
+                            <li><a class="dropdown-item" href="#">Drama</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item" href="#">Mais</a></li>
+                        </ul>
+                    </li>
+
+                    <!-- Search -->
+                    <li class="nav-item mx-5">
+                        <div class="input-box d-flex align-items-center">
+                            <input class="form-control-sm " type="search" placeholder="Pesquisar..." aria-label="Search"
+                                style="height: 40px; width: 500px; border-radius: 8px" />
+                            <i class="fa-solid fa-magnifying-glass me-1 "></i>
+                        </div>
                     </li>
                 </ul>
-                <div class="input-box">
-                    <input class="form-control me-2 w-100" type="search" placeholder="Search" aria-label="Search" />
-                    <a href=""><i class="fa-solid fa-magnifying-glass"></i></a>
-                </div>
-
-
-
-                <!-- Teste de botoes com links para paginas de cadastro e login-->
-
-                <a href="pages/cadastro.php" target="_blank">
-                    <button type="button" class=" neon-btn mx-4 text-end">CADASTRAR</button>
-                </a>
-                <a href="pages/login.php" target="_blank">
-                    <button type="button" class=" neon-btn mx-4 text-end">LOGAR</button>
-                </a>
             </div>
+
+
+            <!-- Teste de botoes com links para paginas de cadastro e login-->
+
+            <a href="pages/cadastro.php" target="_blank">
+                <button type="button" class=" neon-btn mx-4 text-end">CADASTRAR</button>
+            </a>
+            <a href="pages/login.php" target="_blank">
+                <button type="button" class=" neon-btn mx-4 text-end">LOGAR</button>
+            </a>
+        </div>
         </div>
     </nav>
 
 
-    <footer class="footer fixed-bottom">
-        <a href="https://github.com/AitomD/Banco-de-dados">
-            <img src="img/github.png" alt="Repositório" style="width: 40px; padding: 5px">
-        </a>
-        <p>Desenvolvido por Aitom Donatoni e Fernando Consolin</p>
+    <footer class="footer py-4 fixed-bottom">
+        <div class="container">
+            <div class="d-flex flex-column flex-md-row justify-content-between">
+
+                <!-- Coluna 1 -->
+                <div class="mb-3 mb-md-0">
+                    <h5>Sobre Nós</h5>
+                    <div class="row">
+                        <div class="d-inline-flex align-items-center">
+                            <p class="mb-1 me-3">Aitom Henrique Donatoni </p>
+                            <a href="#" class="text-light fs-5 me-3"><i class="fab fa-instagram" data-bs-toggle="tooltip" title="Instagram"></i></i></a>
+                            <a href="#" class="text-light fs-5 me-3"><i class="fab fa-github"></i></a>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="d-inline-flex align-items-center">
+                            <p class="mb-1 me-3">Fernando Consolin Rosa</p>
+                            <a href="#" class="text-light fs-5 me-3"><i class="fab fa-instagram"></i></i></a>
+                            <a href="#" class="text-light fs-5 me-3"><i class="fab fa-github"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Coluna 2 -->
+                <div>
+                    <h5>Contato</h5>
+                    <ul class="list-unstyled mb-0">
+                        <li>Email: contato@exemplo.com</li>
+                        <li>Telefone: (11) 1234-5678</li>
+                        <li>Endereço: Rua Exemplo, 123</li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
     </footer>
+
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q"
