@@ -4,84 +4,52 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
+    <title>Logar</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link rel="stylesheet" href="../estilo/form.css">
+    <link rel="stylesheet" href="../estilo/style.css">
   </head>
 
 <body>
-<div class="centro">
-  
-<form>
-  <div class="row mb-3">
-    <label for="inputEmail3" class="col-sm-2 col-form-label">E-mail</label>
-    <div class="col-sm-10">
-      <input type="email" class="form-control" id="inputEmail3">
+
+<div class="container">
+    <div class="right">
+        <div class="glass">
+            <h2>Faça Login</h2>
+            <div class="input-box">
+                <i class="fa-solid fa-envelope"></i>
+                <input type="text" placeholder="E-mail">
+            </div>
+            <div class="input-box">
+                    <i class="fa fa-lock"></i>
+                    <input type="password" placeholder="Senha" id="password">
+                    <span class="toggle-password fa-solid fa-eye-slash"></span>
+                </div>
+            <div class="d-flex justify-content-center">
+                <button class="neon-btn fw-bold ">Entrar</button>
+            </div>
+        </div>
     </div>
-  </div>
-  <div class="row mb-3">
-    <label for="inputPassword3" class="col-sm-2 col-form-label">Senha</label>
-    <div class="col-sm-10">
-      <input type="password" class="form-control" id="inputPassword3">
-    </div>
-  </div>
-  <fieldset class="row mb-3">
-    <legend class="col-form-label col-sm-2 pt-0">Radios</legend>
-    <div class="col-sm-10">
-      <div class="form-check">
-        <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1" value="option1" checked>
-        <label class="form-check-label" for="gridRadios1">
-          First radio
-        </label>
-      </div>
-      <div class="form-check">
-        <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios2" value="option2">
-        <label class="form-check-label" for="gridRadios2">
-          Second radio
-        </label>
-      </div>
-      <div class="form-check disabled">
-        <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios3" value="option3" disabled>
-        <label class="form-check-label" for="gridRadios3">
-          Third disabled radio
-        </label>
-      </div>
-    </div>
-  </fieldset>
-  <div class="row mb-3">
-    <div class="col-sm-10 offset-sm-2">
-      <div class="form-check">
-        <input class="form-check-input" type="checkbox" id="gridCheck1">
-        <label class="form-check-label" for="gridCheck1">
-          Example checkbox
-        </label>
-      </div>
-    </div>
-  </div>
-  <button type="submit" class="btn btn-primary">Sign in</button>
-</form>
 </div>
 
 <script>
-(() => {
-  'use strict'
+        document.addEventListener('DOMContentLoaded', function() {
+            const togglePassword = document.querySelector('.toggle-password');
+            const password = document.querySelector('#password');
 
-  // Fetch all the forms we want to apply custom Bootstrap validation styles to
-  const forms = document.querySelectorAll('.needs-validation')
+            togglePassword.addEventListener('click', function() {
+                // Alterna o tipo do input entre 'password' e 'text'
+                const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
+                password.setAttribute('type', type);
 
-  // Loop over them and prevent submission
-  Array.from(forms).forEach(form => {
-    form.addEventListener('submit', event => {
-      if (!form.checkValidity()) {
-        event.preventDefault()
-        event.stopPropagation()
-      }
-
-      form.classList.add('was-validated')
-    }, false)
-  })
-})()
-</script>
+                // Alterna a classe do ícone para mudar entre olho aberto e fechado
+                this.classList.toggle('fa-eye');
+                this.classList.toggle('fa-eye-slash');
+            });
+        });
+    </script>
+    
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js" integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q" crossorigin="anonymous"></script>
 </body>
 
