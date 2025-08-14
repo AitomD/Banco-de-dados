@@ -17,17 +17,6 @@ body {
     background-position: center;
     background-repeat: no-repeat;
 }
-/*
-.container {
-    display: flex;
-    width: 900px;
-    height: 500px;
-    border-radius: 20px;
-    overflow: hidden;
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.692);
-    backdrop-filter: blur(10px);
-}
-*/
 .left, .right {
     flex: 1;
     padding: 40px;
@@ -63,6 +52,7 @@ h2 {
     text-align: center;
 }
 
+/* Caixas de formulario */
 .input-box {
     position: relative;
     margin-bottom: 20px;
