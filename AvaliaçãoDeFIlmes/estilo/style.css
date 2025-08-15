@@ -54,7 +54,7 @@
     text-transform: uppercase;
     letter-spacing: 2px;
     font-weight: bold;
-    
+    text-decoration: none;
     /* Efeito neon inicial */
     box-shadow:
       0 0 5px #37c6ff,
@@ -125,6 +125,6 @@
 
 /* Corpo dos cards */
 .card{
-  background-color: rgba(0, 0, 0, 0.288);
+  background-color: var(--bluemain);
   color: white;
 }

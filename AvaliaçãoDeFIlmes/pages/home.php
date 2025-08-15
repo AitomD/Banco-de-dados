@@ -14,6 +14,7 @@
   <div class="banner">
     <div class="central-card">
       <div class="container text-center">
+        <p class="fw-bold fs-3 mb-3">Lançamentos que dão o que falar</p>
         <div class="row">
           <div class="col">
             <div class="card" style="width: 18rem;">
@@ -21,7 +22,7 @@
               <div class="card-body">
                 <h5 class="card-title">Batman</h5>
                 <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card’s content.</p>
-                <a href="#" class="btn btn-primary">Avaliar</a>
+                <a href="#" class="neon-btn">Avaliar</a>
               </div>
             </div>
           </div>
@@ -31,7 +32,7 @@
               <div class="card-body">
                 <h5 class="card-title">Coringa</h5>
                 <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card’s content.</p>
-                <a href="#" class="btn btn-primary">Avaliar</a>
+                <a href="#" class="neon-btn">Avaliar</a>
               </div>
             </div>
           </div>
@@ -41,7 +42,7 @@
               <div class="card-body">
                 <h5 class="card-title">Superman</h5>
                 <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card’s content.</p>
-                <a href="#" class="btn btn-primary">Avaliar</a>
+                <a href="#" class="neon-btn">Avaliar</a>
               </div>
             </div>
           </div>
