@@ -4,18 +4,16 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Montserrat';
+    font-family: "DM Sans", sans-serif; 
 }
 
 body {
     height: 100vh;
-    display: flex;
-    justify-content: center;
     align-items: center;
     background: url(../img/banner1.jpeg);
+    background: linear-gradient(rgb(0,0,0,0.5),rgb(0,0,0,0.5)), url(../img/banner1.jpeg);
     background-size: cover;
     background-position: center;
-    background-repeat: no-repeat;
 }
 .left, .right {
     flex: 1;
@@ -37,14 +35,17 @@ body {
 }
 
 .glass {
-    background: rgba(85, 85, 85, 0.253);
+    background: rgba(7, 7, 7, 0.788);
     padding: 30px;
-    border-radius: 20px;
-    backdrop-filter: blur(10px);
+    border-radius: 10px;
+    backdrop-filter: blur(3px);
     width: 100%;
     max-width: 500px;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+    box-shadow: 0 0px  20px rgba(3, 3, 3, 0.322);
 }
+
+
+
 
 h2 {
     margin-bottom: 20px;
