@@ -11,7 +11,7 @@ body {
     height: 100vh;
     align-items: center;
     background: url(../img/banner1.jpeg);
-    background: linear-gradient(rgb(0,0,0,0.5),rgb(0,0,0,0.5)), url(../img/banner1.jpeg);
+    background: linear-gradient(rgba(0, 0, 0, 0.829),rgb(0,0,0,0.829)), url(../img/banner1.jpeg);
     background-size: cover;
     background-position: center;
 }

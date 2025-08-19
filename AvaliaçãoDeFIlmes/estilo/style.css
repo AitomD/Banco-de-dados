@@ -3,6 +3,7 @@
 /* Paleta de cores */
 :root{
     --bluemain:#021526;
+    --darkbg:#030303;
     --bluesec:#37c6ff;
     --white:white;
 }
@@ -12,6 +13,15 @@
     margin: 0;
     padding: 0;
     font-family: "DM Sans", sans-serif;
+   
+}
+
+.body-bg{
+  background-color: var(--darkbg);
+}
+
+.font-lightblue{
+  color: var(--bluesec);
 }
 
 /* -----Navbar ----- */
@@ -95,7 +105,7 @@
   width: 100%;
   height: 1200px; /* altura do banner */
   color: white;
-  background-image: url(../img/banner.png);
+  background-image: url(../img/banne);
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat; 
@@ -111,7 +121,6 @@
   align-items: center;
   text-align: center;
   backdrop-filter: blur(4px);
-  box-shadow: -7px -5px 20px white;
   border-radius: 40px;
   background-color: rgba(255, 255, 255, 0.082);
 }
@@ -124,7 +133,8 @@
 }
 
 /* Corpo dos cards */
-.card{
+.bg-main{
   background-color: var(--bluemain);
-  color: white;
+  color: var(--white);
+  padding: 20px;
 }
