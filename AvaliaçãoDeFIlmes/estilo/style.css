@@ -132,7 +132,7 @@
 /* Carrosel com rolagem */
 
 .carrossel-wrapper {
-    width: 1200px;          /* largura fixa da “caixa” central */
+    width: 1200px;
     max-width: 90%;         /* limita para telas menores */
     margin: 0 auto;         /* centraliza a div na tela */
     padding: 16px;
@@ -141,7 +141,7 @@
 
 .carrossel-container {
     display: flex;
-    gap: 8px;
+    gap: 6px;
     overflow-x: auto;
     scroll-behavior: smooth;
     -webkit-overflow-scrolling: touch;
