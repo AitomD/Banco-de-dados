@@ -6,9 +6,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Home</title>
   <link rel="stylesheet" href="../estilo/style.css">
+  <link rel="stylesheet" href="../estilo/form.css">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="../estilo/style.css">
+  <link rel="stylesheet" href="../estilo/form.css">
 </head>
 <style>
   .input-box {
@@ -25,15 +28,14 @@
     color: #888;
   }
 
-  .input-box input {
-    width: 100%;
-    padding: 10px 10px 10px 35px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-  }
-</style>
-
-<body class="body-bg">
+        .input-box input {
+            width: 100%;
+            padding: 10px 10px 10px 35px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+    </style>
+<body>
 
   <!-- Apagar depois de fazer o index -->
 
@@ -111,21 +113,19 @@
   <!-- Apagar depois de fazer o index -->
 
   <!-- Conteudo do HOME -->
-  <main class="my-5">
-    <div class="container">
-      <div class="row">
-        <!-- Carrossel: ocupa 70% da largura -->
-        <div class="col-md-8">
-          <div id="carouselExampleFade" class="carousel slide carousel-fade">
-            <div class="carousel-inner">
-              <div class="carousel-item active">
-                <img src="../img/banner.png" class="d-block w-100" alt="...">
-              </div>
-              <div class="carousel-item">
-                <img src="..." class="d-block w-100" alt="...">
-              </div>
-              <div class="carousel-item">
-                <img src="..." class="d-block w-100" alt="...">
+
+  <div class="banner">
+    <div class="central-card">
+      <div class="container text-center">
+        <p class="fw-bold fs-3 mb-3">Lançamentos que dão o que falar</p>
+        <div class="row">
+          <div class="col">
+            <div class="card" style="width: 18rem;">
+              <img src="../img/batman.jpg" class="card-img-top" alt="...">
+              <div class="card-body">
+                <h5 class="card-title">Batman</h5>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card’s content.</p>
+                <a href="#" class="neon-btn">Avaliar</a>
               </div>
             </div>
             <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade"
