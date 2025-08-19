@@ -5,8 +5,6 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Home</title>
-  <link rel="stylesheet" href="../estilo/style.css">
-  <link rel="stylesheet" href="../estilo/form.css">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
@@ -114,6 +112,60 @@
 
   <!-- Conteudo do HOME -->
 
+  <div class="alto" style="height: 100px;"></div>
+
+  <!-- Carrosel de fotos e notas -->
+  <div class="carrossel-wrapper">
+    <div class="carrossel-container">
+      <div class="carrossel-item">
+        <img src="../img/batman.jpg" alt="">
+        <i class="fa-solid fa-star icone-sobre-imagem"></i>
+        <h4 class="nota-item">4.5</h4>
+      </div>
+      <div class="carrossel-item">
+        <img src="../img/coringa.jpg" alt="">
+        <i class="fa-solid fa-star icone-sobre-imagem"></i>
+        <h4 class="nota-item">5.5</h4>
+      </div>
+      <div class="carrossel-item">
+        <img src="../img/batman.jpg" alt="">
+        <i class="fa-solid fa-star icone-sobre-imagem"></i>
+        <h4 class="nota-item">6.7</h4>
+      </div>
+      <div class="carrossel-item">
+        <img src="../img/coringa.jpg" alt="">
+        <i class="fa-solid fa-star icone-sobre-imagem"></i>
+        <h4 class="nota-item">8.2</h4>
+
+      </div>
+      <div class="carrossel-item">
+        <img src="../img/batman.jpg" alt="">
+        <i class="fa-solid fa-star icone-sobre-imagem"></i>
+        <h4 class="nota-item">4.9</h4>
+
+      </div>
+      <div class="carrossel-item">
+        <img src="../img/coringa.jpg" alt="">
+        <i class="fa-solid fa-star icone-sobre-imagem"></i>
+        <h4 class="nota-item">4.4</h4>
+
+      </div>
+      <div class="carrossel-item">
+        <img src="../img/batman.jpg" alt="">
+        <i class="fa-solid fa-star icone-sobre-imagem"></i>
+        <h4 class="nota-item">7.4</h4>
+
+      </div>
+      <div class="carrossel-item">
+        <img src="../img/coringa.jpg" alt="">
+        <i class="fa-solid fa-star icone-sobre-imagem"></i>
+        <h4 class="nota-item">8.1</h4>
+
+      </div>
+    </div>
+  </div>
+
+<!-- Banner e cards vertical -->
   <div class="banner">
     <div class="central-card">
       <div class="container text-center">
@@ -176,12 +228,8 @@
             </div>
           </div>
 
-          <!-- Adicione mais cards abaixo conforme necessário -->
+          
         </div>
-
-
-
-
       </div>
     </div>
     </div>
