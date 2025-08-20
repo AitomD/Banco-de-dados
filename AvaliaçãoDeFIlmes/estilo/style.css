@@ -117,7 +117,6 @@
 }
 
 /* Carrosel com rolagem */
-
 .carrossel-wrapper {
     width: 1200px;
     max-width: 90%;     
@@ -128,9 +127,11 @@
 
 /* Container carrossel*/
 .carrossel-container {
+  background-color: black;
     display: flex;
-    gap: 6px;
+    gap: 30px;
     overflow-x: auto;
+    overflow-y: hidden;
     scroll-behavior: smooth;
     -webkit-overflow-scrolling: touch;
 }
@@ -139,7 +140,7 @@
 .carrossel-item {
     flex: 0 0 auto;
     width: 250px;
-    height: 300px;
+    height: 350px;
     border-radius: 8px;
     overflow: hidden;
     position: relative;
@@ -153,15 +154,19 @@
     object-fit: cover;
     display: block;
     filter: brightness(50%);
+    transition: transform 1s;
   }
-
+  /* Hover das imagens do carrosel */
+.carrossel-item:hover{
+  transition: all 0.4s;
+  transform: scale(1.04);
+}
 .carrossel-container::-webkit-scrollbar {
     height: 15px;               /* altura da barra */
 }
 
 .carrossel-container::-webkit-scrollbar-track {
-    background: #000000;        /* cor do fundo da barra */
-    border-radius: 5px;         /* borda arredondada opcional */
+    background: #00000000;        /* cor do fundo da barra */
 }
 
 .carrossel-container::-webkit-scrollbar-thumb {
@@ -197,7 +202,9 @@
     padding: 4px;
 }
 
-
+.textlightblue{
+  color: var(--bluesec);
+}
 
 /* ------ Footer ------- */
 .footer{

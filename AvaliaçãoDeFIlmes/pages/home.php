@@ -26,13 +26,14 @@
     color: #888;
   }
 
-        .input-box input {
-            width: 100%;
-            padding: 10px 10px 10px 35px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-        }
-    </style>
+  .input-box input {
+    width: 100%;
+    padding: 10px 10px 10px 35px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+</style>
+
 <body>
 
   <!-- Apagar depois de fazer o index -->
@@ -50,7 +51,7 @@
             <a href="../pages/home.php"><button class="neon-btn">HOME</button></a>
           </li>
           <li class="nav-item mx-2">
-            <a href="#"><button class="neon-btn">SUPORTE</button></a>
+            <a href="../pages/suporte.php"><button class="neon-btn">SUPORTE</button></a>
           </li>
 
           <!-- Dropdown SÉRIES -->
@@ -165,75 +166,74 @@
     </div>
   </div>
 
-<!-- Banner e cards vertical -->
-  <div class="banner">
-    <div class="central-card">
-      <div class="container text-center">
-        <p class="fw-bold fs-3 mb-3">Lançamentos que dão o que falar</p>
-        <div class="row">
-          <div class="col">
-            <div class="card" style="width: 18rem;">
-              <img src="../img/batman.jpg" class="card-img-top" alt="...">
-              <div class="card-body">
-                <h5 class="card-title">Batman</h5>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card’s content.</p>
-                <a href="#" class="neon-btn">Avaliar</a>
-              </div>
-            </div>
-            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade"
-              data-bs-slide="prev">
-              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-              <span class="visually-hidden">Previous</span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade"
-              data-bs-slide="next">
-              <span class="carousel-control-next-icon" aria-hidden="true"></span>
-              <span class="visually-hidden">Next</span>
-            </button>
+  <div class="alt" style="height: 70px;";></div>
+
+<div class="container my-4">
+  <div class="row">
+    <!-- Carrossel principal à esquerda -->
+    <div class="col-md-8">
+      <div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <img src="../img/banner.png" class="d-block w-100 rounded" alt="Filme 1">
+          </div>
+          <div class="carousel-item">
+            <img src="../img/banner.png" class="d-block w-100 rounded" alt="Filme 2">
+          </div>
+          <div class="carousel-item">
+            <img src="../img/banner.png" class="d-block w-100 rounded" alt="Filme 3">
           </div>
         </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade"
+          data-bs-slide="prev">
+          <span class="carousel-control-prev-icon"></span>
+          <span class="visually-hidden">Anterior</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade"
+          data-bs-slide="next">
+          <span class="carousel-control-next-icon"></span>
+          <span class="visually-hidden">Próximo</span>
+        </button>
+      </div>
+    </div>
 
-        <!-- Cards: empilhados verticalmente à direita -->
-        <div class="col-md-4 d-flex flex-column gap-3">
-          <h4 class="font-lightblue fw-bold my-0">A seguir</h4>
-          <hr class="font-lightblue my-0">
+    <!-- Cards à direita -->
+    <div class="col-md-4 d-flex flex-column gap-3">
+      <h4 class="textlightblue">A seguir</h4>
+      <hr class="font-lightblue my-0">
 
-          <!-- Card 1 -->
-          <div class="card text-light border-0 d-flex flex-row mb-2" style="width: 100%;">
-            <img src="../img/banner.png" alt="..." style="width: 40%; object-fit: cover;">
-            <div class="card-body bg-main">
-              <h5 class="card-title">FILME EXEMPLO 1</h5>
-              <p class="card-text">Descrição do filme 1.</p>
-              <button class="neon-btn">Go somewhere</button>
-            </div>
-          </div>
+      <!-- Card 1 -->
+      <div class="card text-light border-0 d-flex flex-row mb-2" style="width: 100%;">
+        <img src="../img/banner.png" alt="..." style="width: 40%; object-fit: cover;">
+        <div class="card-body bg-main">
+          <h5 class="card-title">FILME EXEMPLO 1</h5>
+          <p class="card-text">Descrição do filme 1.</p>
+          <button class="neon-btn">Assistir</button>
+        </div>
+      </div>
 
-          <!-- Card 2 -->
-          <div class="card text-light border-0 d-flex flex-row my-2" style="width: 100%;">
-            <img src="../img/banner.png" alt="..." style="width: 40%; object-fit: cover;">
-            <div class="card-body bg-main">
-              <h5 class="card-title">FILME EXEMPLO 2</h5>
-              <p class="card-text">Descrição do filme 2.</p>
-              <button class="neon-btn">Go somewhere</button>
-            </div>
-          </div>
+      <!-- Card 2 -->
+      <div class="card text-light border-0 d-flex flex-row mb-2" style="width: 100%;">
+        <img src="../img/banner.png" alt="..." style="width: 40%; object-fit: cover;">
+        <div class="card-body bg-main">
+          <h5 class="card-title">FILME EXEMPLO 2</h5>
+          <p class="card-text">Descrição do filme 2.</p>
+          <button class="neon-btn">Assistir</button>
+        </div>
+      </div>
 
-          <!-- Card 3 -->
-          <div class="card text-light border-0 d-flex flex-row my-2" style="width: 100%;">
-            <img src="../img/banner.png" alt="..." style="width: 40%; object-fit: cover;">
-            <div class="card-body bg-main">
-              <h5 class="card-title">FILME EXEMPLO 3</h5>
-              <p class="card-text">Descrição do filme 3.</p>
-              <button class="neon-btn">Go somewhere</button>
-            </div>
-          </div>
-
-          
+      <!-- Card 3 -->
+      <div class="card text-light border-0 d-flex flex-row mb-2" style="width: 100%;">
+        <img src="../img/banner.png" alt="..." style="width: 40%; object-fit: cover;">
+        <div class="card-body bg-main">
+          <h5 class="card-title">FILME EXEMPLO 3</h5>
+          <p class="card-text">Descrição do filme 3.</p>
+          <button class="neon-btn">Assistir</button>
         </div>
       </div>
     </div>
-    </div>
-  </main>
+  </div>
+</div>
 
 
   <!-- Apagar depois de fazer o index -->
@@ -280,7 +280,7 @@
 
   <!-- Script para tooltip dos icones footer -->
   <script>
-    document.addEventListener('DOMContentLoaded', function () {
+    document.addEventListener('DOMContentLoaded', function() {
       const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]');
       tooltipTriggerList.forEach(el => new bootstrap.Tooltip(el));
     });
