@@ -178,7 +178,7 @@
             <img src="../img/banner.png" class="d-block w-100 rounded" alt="Filme 1">
           </div>
           <div class="carousel-item">
-            <img src="../img/banner.png" class="d-block w-100 rounded" alt="Filme 2">
+            <img src="../img/banner1.jpeg" class="d-block w-100 rounded" alt="Filme 2">
           </div>
           <div class="carousel-item">
             <img src="../img/banner.png" class="d-block w-100 rounded" alt="Filme 3">
