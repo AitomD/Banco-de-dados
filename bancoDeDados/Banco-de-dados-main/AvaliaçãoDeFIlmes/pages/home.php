@@ -48,42 +48,16 @@
       <div class="collapse navbar-collapse justify-content-center" id="navbarSupportedContent">
         <ul class="navbar-nav d-flex align-items-center gap-2">
           <li class="nav-item mx-2">
-            <a href="../pages/home.php"><button class="neon-btn">HOME</button></a>
+            <a href="../pages/home.php" class="a-btn">HOME</a>
           </li>
           <li class="nav-item mx-2">
-            <a href="../pages/suporte.php"><button class="neon-btn">SUPORTE</button></a>
+            <a href="../pages/suporte.php" class="a-btn">SUPORTE</a>
           </li>
-
-          <!-- Dropdown SÉRIES -->
-          <li class="nav-item dropdown mx-2">
-            <button class="neon-btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-              SÉRIES
-            </button>
-            <ul class="dropdown-menu dropdown-menu-dark">
-              <li><a class="dropdown-item active" href="#">Ação</a></li>
-              <li><a class="dropdown-item" href="#">Comédia</a></li>
-              <li><a class="dropdown-item" href="#">Drama</a></li>
-              <li>
-                <hr class="dropdown-divider">
-              </li>
-              <li><a class="dropdown-item" href="#">Mais</a></li>
-            </ul>
+          <li class="nav-item mx-2">
+            <a href="../pages/filmes.php" class="a-btn">FILMES</a>
           </li>
-
-          <!-- Dropdown FILMES -->
-          <li class="nav-item dropdown mx-2   ">
-            <button class="neon-btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-              FILMES
-            </button>
-            <ul class="dropdown-menu dropdown-menu-dark">
-              <li><a class="dropdown-item active" href="#">Ação</a></li>
-              <li><a class="dropdown-item" href="#">Comédia</a></li>
-              <li><a class="dropdown-item" href="#">Drama</a></li>
-              <li>
-                <hr class="dropdown-divider">
-              </li>
-              <li><a class="dropdown-item" href="#">Mais</a></li>
-            </ul>
+          <li class="nav-item mx-2">
+            <a href="../pages/series.php" class="a-btn">SÉRIES</a>
           </li>
 
           <!-- Search -->
@@ -99,12 +73,12 @@
 
 
       <!-- Teste de botoes com links para paginas de cadastro e login-->
-
-      <a href="cadastro.php" target="_blank">
-        <button type="button" class=" neon-btn mx-4 text-end">CADASTRAR</button>
+      
+      <a href="cadastro.php" target="_blank" class="text-light mx-4 a-btn">
+        LOGAR
       </a>
       <a href="login.php" target="_blank">
-        <button type="button" class=" neon-btn mx-4 text-end">LOGAR</button>
+        <button type="button" class=" neon-btn text-end">CADASTRAR</button>
       </a>
     </div>
     </div>
