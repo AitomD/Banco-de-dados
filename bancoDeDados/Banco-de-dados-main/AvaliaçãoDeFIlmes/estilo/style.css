@@ -228,7 +228,11 @@
     color: rgb(105, 105, 105);
 }
 
-
+.ajust {
+  width: 100%;
+  height: 200px; /* ou a altura que quiser */
+  object-fit: cover;
+}
 /*---Font----*/
 .textlightblue{
   color: var(--bluesec);
