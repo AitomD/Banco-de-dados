@@ -14,7 +14,6 @@ body {
     background: linear-gradient(rgba(0, 0, 0, 0.829),rgb(0,0,0,0.829)), url(../img/banner1.jpeg);
     background-size: cover;
     background-position: center;
-    padding-top: 70px;
 }
 .left, .right {
     flex: 1;
