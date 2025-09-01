@@ -14,76 +14,31 @@
 
 <body>
     
-
     <?php include 'navbar.php'; ?>
 
+    <div class="alto" style="height: 100px;"></div>
 
     <div class="container my-4">
         <!-- Gênero Ação -->
         <h2 class="mb-3">Ação</h2>
-        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4">
-            <div class="col">
-                <div class="card h-100">
-                    <img src="https://via.placeholder.com/300x400" class="card-img-top" alt="Capa do Filme">
-                    <div class="card-body">
-                        <h5 class="card-title">Filme de Ação 1</h5>
-                        <p class="card-text">Um herói enfrenta grandes desafios para salvar o mundo.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col">
-                <div class="card h-100">
-                    <img src="https://via.placeholder.com/300x400" class="card-img-top" alt="Capa do Filme">
-                    <div class="card-body">
-                        <h5 class="card-title">Filme de Ação 2</h5>
-                        <p class="card-text">Explosões, perseguições e muita adrenalina.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col">
-                <div class="card h-100">
-                    <img src="https://via.placeholder.com/300x400" class="card-img-top" alt="Capa do Filme">
-                    <div class="card-body">
-                        <h5 class="card-title">Filme de Ação 3</h5>
-                        <p class="card-text">Uma missão impossível em território inimigo.</p>
-                    </div>
-                </div>
-            </div>
+        <div id="acao" class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4">
+            <!-- Filmes de Ação (16 máx) -->
         </div>
 
         <!-- Gênero Comédia -->
         <h2 class="mt-5 mb-3">Comédia</h2>
-        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4">
-            <div class="col">
-                <div class="card h-100">
-                    <img src="https://via.placeholder.com/300x400" class="card-img-top" alt="Capa do Filme">
-                    <div class="card-body">
-                        <h5 class="card-title">Comédia 1</h5>
-                        <p class="card-text">Situações hilárias em uma aventura inesperada.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col">
-                <div class="card h-100">
-                    <img src="https://via.placeholder.com/300x400" class="card-img-top" alt="Capa do Filme">
-                    <div class="card-body">
-                        <h5 class="card-title">Comédia 2</h5>
-                        <p class="card-text">Uma turma de amigos apronta todas.</p>
-                    </div>
-                </div>
-            </div>
+        <div id="comedia" class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4">
+            <!-- Filmes de Comédia (16 máx) -->
         </div>
     </div>
 
-
-    <?php include 'footer.php';  ?>
-
+    <?php include 'footer.php'; ?>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q"
         crossorigin="anonymous"></script>
 
-    <script src="../js/home.js"></script>
+    <script src="../js/filmes.js"></script>
 </body>
 
 </html>

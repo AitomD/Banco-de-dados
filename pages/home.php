@@ -76,101 +76,14 @@
 
 <body>
 
-  <!-- Apagar depois de fazer o index -->
-
- <nav class="navbar navbar-expand-lg ">
-    <div class="container-fluid mx-5">
-      <a class="navbar-brand " href="../pages/home.php"><img src="../img/logo2.png" alt="logo" class="me-4"></a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-        aria-controls="navbarSupportedContent" aria-expanded="false" al aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse justify-content-center" id="navbarSupportedContent">
-        <ul class="navbar-nav d-flex align-items-center gap-2">
-          <li class="nav-item mx-2">
-            <a href="../pages/home.php" class="a-btn">HOME</a>
-          </li>
-          <li class="nav-item mx-2">
-            <a href="../pages/filmes.php" class="a-btn">FILMES</a>
-          </li>
-          <li class="nav-item mx-2">
-            <a href="../pages/series.php" class="a-btn">SÉRIES</a>
-          </li>
-
-          <li class="nav-item mx-5">
-            <div class="input-box d-flex align-items-center">
-              <input class="form-control-sm " type="search" placeholder="Pesquisar..." aria-label="Search"
-                style="height: 40px; width: 500px; border-radius: 8px" />
-              <i class="fa-solid fa-magnifying-glass me-1 "></i>
-            </div>
-          </li>
-        </ul>
-      </div>
-      <a href="login.php" class="text-light mx-4 a-btn">
-        LOGAR
-      </a>
-      <a href="cadastro.php" >
-        <button type="button" class=" neon-btn text-end">CADASTRAR</button>
-      </a>
-    </div>
-    </div>
-  </nav>
+  <?php include 'navbar.php' ?>
 
   <!-- Conteudo do HOME -->
 
   <div class="alto" style="height: 100px;"></div>
 
   <!-- Carrosel de fotos e notas -->
-  <div class="carrossel-wrapper">
-    <div class="carrossel-container">
-      <div class="carrossel-item">
-        <img src="../img/batman.jpg" alt="">
-        <i class="fa-solid fa-star icone-sobre-imagem  "></i>
-        <h4 class="nota-item">4.5</h4>
-      </div>
-      <div class="carrossel-item">
-        <img src="../img/coringa.jpg" alt="">
-        <i class="fa-solid fa-star icone-sobre-imagem  "></i>
-        <h4 class="nota-item">5.5</h4>
-      </div>
-      <div class="carrossel-item">
-        <img src="../img/batman.jpg" alt="">
-        <i class="fa-solid fa-star icone-sobre-imagem  "></i>
-        <h4 class="nota-item">6.7</h4>
-      </div>
-      <div class="carrossel-item">
-        <img src="../img/coringa.jpg" alt="">
-        <i class="fa-solid fa-star icone-sobre-imagem  "></i>
-        <h4 class="nota-item">8.2</h4>
-
-      </div>
-      <div class="carrossel-item">
-        <img src="../img/batman.jpg" alt="">
-        <i class="fa-solid fa-star icone-sobre-imagem  "></i>
-        <h4 class="nota-item">4.9</h4>
-
-      </div>
-      <div class="carrossel-item">
-        <img src="../img/coringa.jpg" alt="">
-        <i class="fa-solid fa-star icone-sobre-imagem "></i>
-        <h4 class="nota-item">4.4</h4>
-
-      </div>
-      <div class="carrossel-item">
-        <img src="../img/batman.jpg" alt="">
-        <i class="fa-solid fa-star icone-sobre-imagem "></i>
-        <h4 class="nota-item">7.4</h4>
-
-      </div>
-      <div class="carrossel-item">
-        <img src="../img/coringa.jpg" alt="">
-        <i class="fa-solid fa-star icone-sobre-imagem  "></i>
-        <h4 class="nota-item">8.1</h4>
-
-      </div>
-    </div>
-  </div>
-
+  
   <div class="alt" style="height: 70px;";></div>
 
 <div class="container my-4">
@@ -286,20 +199,10 @@
           </div>
         </div>
 
-        <!-- Coluna 2 -->
-        <div>
-          <h5>Contato</h5>
-          <ul class="list-unstyled mb-0">
-            <li>Email: contato@exemplo.com</li>
-            <li>Telefone: (11) 1234-5678</li>
-            <li>Endereço: Rua Exemplo, 123</li>
-          </ul>
-        </div>
+        -- Coluna 2 -->
+        
+    <?php include 'footer.php'; ?>
 
-      </div>
-    </div>
-  </footer>
-   -->
   <!-- Script para tooltip dos icones footer -->
   <script>
     document.addEventListener('DOMContentLoaded', function() {
