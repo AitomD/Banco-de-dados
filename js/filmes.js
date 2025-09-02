@@ -2,25 +2,47 @@ const API_KEY = "d2b2038bd7bc5db74623478537729164";
 const BASE_URL = "https://api.themoviedb.org/3";
 const IMG_URL = "https://image.tmdb.org/t/p/w500";
 
+const filmesExibidos = new Set(); // 🔹 controle global para evitar repetição
+
 document.addEventListener("DOMContentLoaded", () => {
-  carregarFilmesPorGenero(28, "#acao");     // Ação
-  carregarFilmesPorGenero(35, "#comedia"); // Comédia
+  carregarFilmesPorGenero(28, "#acao");      // Ação
+  carregarFilmesPorGenero(35, "#comedia");   // Comédia
+  carregarFilmesPorGenero(18, "#drama");     // Drama
+  carregarFilmesPorGenero(16, "#animacao");  // Animação
 });
 
-function carregarFilmesPorGenero(generoId, containerSelector) {
-  fetch(`${BASE_URL}/discover/movie?api_key=${API_KEY}&language=pt-BR&with_genres=${generoId}&page=1`)
-    .then((res) => res.json())
-    .then((data) => {
-      preencherCardsGenero(data.results.slice(0, 16), containerSelector); // pega 16 filmes
-    })
-    .catch((err) => console.error("Erro ao carregar filmes:", err));
+async function carregarFilmesPorGenero(generoId, containerSelector) {
+  const unicos = [];
+  let page = 1;
+
+  // tenta buscar até 5 páginas ou até ter 16 filmes únicos
+  while (unicos.length < 16 && page <= 5) {
+    try {
+      const res = await fetch(`${BASE_URL}/discover/movie?api_key=${API_KEY}&language=pt-BR&with_genres=${generoId}&certification_country=BR&certification.lte=14&page=${page}`);
+      const data = await res.json();
+
+      for (const filme of data.results) {
+        if (!filmesExibidos.has(filme.id) && unicos.length < 16) {
+          filmesExibidos.add(filme.id);
+          unicos.push(filme);
+        }
+      }
+
+      page++;
+    } catch (err) {
+      console.error("Erro ao carregar filmes:", err);
+      break;
+    }
+  }
+
+  preencherCardsGenero(unicos, containerSelector);
 }
 
 function preencherCardsGenero(filmes, containerSelector) {
   const container = document.querySelector(containerSelector);
   container.innerHTML = "";
 
-  filmes.forEach((filme) => {
+  filmes.forEach(filme => {
     const col = document.createElement("div");
     col.className = "col";
 

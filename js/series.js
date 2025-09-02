@@ -2,6 +2,8 @@ const API_KEY = "d2b2038bd7bc5db74623478537729164";
 const BASE_URL = "https://api.themoviedb.org/3";
 const IMG_URL = "https://image.tmdb.org/t/p/w500";
 
+const seriesExibidas = new Set(); // 🔹 controle global de séries já mostradas
+
 document.addEventListener("DOMContentLoaded", () => {
   carregarSeriesPorGenero(10759, "#series-acao");     // Ação & Aventura
   carregarSeriesPorGenero(35, "#series-comedia");     // Comédia
@@ -13,7 +15,16 @@ function carregarSeriesPorGenero(generoId, containerSelector) {
   fetch(`${BASE_URL}/discover/tv?api_key=${API_KEY}&language=pt-BR&with_genres=${generoId}&page=1`)
     .then((res) => res.json())
     .then((data) => {
-      preencherCardsGenero(data.results.slice(0, 16), containerSelector);
+      const unicas = [];
+
+      for (const serie of data.results) {
+        if (!seriesExibidas.has(serie.id)) {
+          seriesExibidas.add(serie.id); // 🔹 evita repetir em outras categorias
+          unicas.push(serie);
+        }
+      }
+
+      preencherCardsGenero(unicas.slice(0, 16), containerSelector);
     })
     .catch((err) => console.error("Erro ao carregar séries:", err));
 }

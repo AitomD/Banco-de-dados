@@ -13,22 +13,30 @@
 </head>
 
 <body>
-    
+
     <?php include 'navbar.php'; ?>
 
     <div class="alto" style="height: 100px;"></div>
 
     <div class="container my-4">
         <!-- Gênero Ação -->
-        <h2 class="mb-3">Ação</h2>
         <div id="acao" class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4">
-            <!-- Filmes de Ação (16 máx) -->
+            <!-- Filmes de Ação serão inseridos pelo JS -->
         </div>
 
         <!-- Gênero Comédia -->
-        <h2 class="mt-5 mb-3">Comédia</h2>
-        <div id="comedia" class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4">
-            <!-- Filmes de Comédia (16 máx) -->
+        <div id="comedia" class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4 mt-5">
+            <!-- Filmes de Comédia serão inseridos pelo JS -->
+        </div>
+
+        <!-- Gênero Drama -->
+        <div id="drama" class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4 mt-5">
+            <!-- Filmes de Drama serão inseridos pelo JS -->
+        </div>
+
+        <!-- Gênero Animação -->
+        <div id="animacao" class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4 mt-5">
+            <!-- Filmes de Animação serão inseridos pelo JS -->
         </div>
     </div>
 
