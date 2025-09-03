@@ -10,6 +10,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <link rel="stylesheet" href="../estilo/style.css">
   <link rel="stylesheet" href="../estilo/form.css">
+  <link rel="shortcut icon" href="../Icons/home.png" type="image/x-icon">
 </head>
 <style>
   .input-box {
@@ -210,7 +211,7 @@
       tooltipTriggerList.forEach(el => new bootstrap.Tooltip(el));
     });
   </script>
-  <script src="../js/emailver.js"></script>
+
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q"

@@ -4,53 +4,38 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cadastrar</title>
+    <title>Logar</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link rel="stylesheet" href="../estilo/form.css">
     <link rel="stylesheet" href="../estilo/style.css">
+    <link rel="shortcut icon" href="../Icons/login.png" type="image/x-icon">
 </head>
 
-<!-- Conteudo princiapl -->
-
 <body>
-    <!-- FORMULÁRIO DE CADASTRO -->
     <div style="height:80px;">
-        <a href="/pages/home.php" class="ms-5">
-            <img src="../img/logo2.png" alt="" style="height:150px;">
-        </a>
+        <a href="../pages/home.php" class="ms-5 "><img src="../img/logo2.png" alt="" style="height:150px;"></a>
     </div>
-
     <div class="container">
         <div class="right">
             <div class="glass">
-                <h2 class="fw-bold mb-3">Crie sua conta</h2>
-                <form action="salvar_cadastro.php" method="POST">
-                    <div class="input-box">
-                        <i class="fa-solid fa-font"></i>
-                        <input type="text" name="nome" placeholder="Nome" required>
-                    </div>
-
-                    <div class="input-box">
-                        <i class="fa fa-lock"></i>
-                        <input type="password" name="senha" placeholder="Senha" id="password" required>
-                        <span class="toggle-password fa-solid fa-eye-slash"></span>
-                    </div>
-
-                    <div class="input-box">
-                        <i class="fa-solid fa-envelope"></i>
-                        <input type="email" name="email" placeholder="E-mail" required>
-                    </div>
-
-                    <div class="d-flex justify-content-center">
-                        <button type="submit" class="neon-btn fw-bold mt-2">Cadastrar</button>
-                    </div>
-                </form>
+                <h2>Faça Login</h2>
+                <div class="input-box">
+                    <i class="fa-solid fa-envelope"></i>
+                    <input type="text" placeholder="E-mail">
+                </div>
+                <div class="input-box">
+                    <i class="fa fa-lock"></i>
+                    <input type="password" placeholder="Senha" id="password">
+                    <span class="toggle-password fa-solid fa-eye-slash"></span>
+                </div>
+                <div class="d-flex justify-content-center">
+                    <button class="neon-btn fw-bold ">Entrar</button>
+                </div>
             </div>
         </div>
     </div>
-
 
     <script>
         document.addEventListener('DOMContentLoaded', function () {
