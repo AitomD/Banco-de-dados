@@ -10,6 +10,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link rel="stylesheet" href="../estilo/style.css">
     <link rel="stylesheet" href="../estilo/form.css">
+    <link rel="shortcut icon" href="../Icons/fs.png" type="image/x-icon">
+
 </head>
 
 <body>
