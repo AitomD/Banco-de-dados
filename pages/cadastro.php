@@ -17,7 +17,7 @@
 
 <body>
     <div style="height:80px;">
-        <a href="/pages/home.php" class="ms-5 "><img src="../img/logo2.png" alt="" style="height:150px;"></a>
+        <a href="home.php" class="ms-5 "><img src="../img/logo2.png" alt="" style="height:150px;"></a>
     </div>
 
     <div class="container ">
