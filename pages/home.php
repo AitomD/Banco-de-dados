@@ -11,6 +11,7 @@
   <link rel="stylesheet" href="../estilo/style.css">
   <link rel="stylesheet" href="../estilo/form.css">
   <link rel="shortcut icon" href="../img/logo2.png" type="image/x-icon">
+  <link rel="shortcut icon" href="../Icons/home.png" type="image/x-icon">
 </head>
 <style>
   .input-box {
