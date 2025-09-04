@@ -47,7 +47,6 @@
         <!-- Fim card modelo -->
 
         <!-- Gênero Ação -->
-        <div id="acao" class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4"></div>
 
         <!-- Gênero Comédia -->
         <div id="comedia" class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4 mt-5"></div>
