@@ -6,10 +6,10 @@
   const seriesExibidas = new Set();
 
   document.addEventListener("DOMContentLoaded", () => {
-    carregarSeriesPorGenero(10759, "#series-acao");     // Ação & Aventura
-    carregarSeriesPorGenero(35, "#series-comedia");     // Comédia
-    carregarSeriesPorGenero(18, "#series-drama");       // Drama
-    carregarSeriesPorGenero(16, "#series-animacao");    // Animação
+    carregarSeriesPorGenero(10759, "#series-acao");
+    carregarSeriesPorGenero(35, "#series-comedia");
+    carregarSeriesPorGenero(18, "#series-drama");
+    carregarSeriesPorGenero(16, "#series-animacao");
   });
 
   async function carregarSeriesPorGenero(generoId, containerSelector) {
@@ -56,11 +56,17 @@
             <div class="mt-auto">
               <i class="fa-solid fa-star text-warning"></i> ${serie.vote_average.toFixed(1)}
             </div>
+            <button class="btn btn-primary avaliar-btn mt-2">Avaliar</button>
           </div>
         </div>
       `;
 
       container.appendChild(col);
+
+      const botao = col.querySelector('.avaliar-btn');
+      botao.addEventListener('click', () => {
+        window.location.href = `avaliar.php?id=${serie.id}&type=tv`;
+      });
     });
   }
 })();

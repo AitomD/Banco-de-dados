@@ -4,93 +4,149 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Filmes</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <title>Avaliar Filme</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="../estilo/style.css">
     <link rel="stylesheet" href="../estilo/form.css">
-    <link rel="shortcut icon" href="../Icons/fs.png" type="image/x-icon">
+    <style>
+        .avaliar-container {
+            display: flex;
+            gap: 30px;
+            color: white;
+            border-radius: 10px;
+            padding: 40px;
+            max-width: 1000px;
+            background-color: #021526;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Imagem do poster */
+        .poster {
+            width: 150px;
+            height: auto;
+            border-radius: 5px;
+        }
+
+        /* Informações do filme (título, sinopse, estrelas) */
+        .info {
+            flex: 1;
+        }
+
+        /* Estrelas de avaliação */
+        .estrela {
+            font-size: 40px;
+            cursor: pointer;
+            color: #123155ff;
+            transition: color 0.2s;
+        }
+
+        .estrela:hover {
+            color: gold;
+        }
+
+        .estrela.selecionada {
+            color: gold;
+        }
+
+        /* Textarea para comentário */
+        textarea {
+            width: 100%;
+            resize: vertical;
+            margin-top: 40px;
+            padding: 10px;
+            border-radius: 5px;
+            border: none;
+            outline: none;
+            font-family: 'Fredoka', sans-serif;
+        }
+    </style>
 </head>
 
 <body>
 
     <?php include 'navbar.php'; ?>
 
-    <div class="alto" style="height: 100px;"></div>
+    <div class="alto" style="height: 189px;"></div>
 
-    <div class="container my-4">
+    <div class="avaliar-container">
+        <img class="poster" src="https://via.placeholder.com/150x225" alt="Capa do filme">
+        <div class="info">
+            <h3 id="titulo-filme">Título do Filme</h3>
+            <p id="sinopse">Breve sinopse do filme vai aqui. Resuma em 2-3 linhas.</p>
 
-        <!-- Card modelo escondido -->
-        <div id="card-modelo" class="col d-none">
-            <div class="card h-100 bg-main text-light border-0">
-                <img src="" class="card-img-top poster" alt="Poster">
-                <div class="card-body d-flex flex-column">
-                    <span class="badge bg-primary mb-2">Filme</span>
-                    <h5 class="card-title titulo">Título</h5>
-                    <p class="card-text descricao">Descrição</p>
-
-                    <div class="mt-auto d-flex flex-column">
-                        <div>
-                            <i class="fa-solid fa-star text-warning"></i>
-                            <span class="nota">0.0</span>
-                        </div>
-
-                        <!-- Botão Avaliar já no HTML -->
-                        <button class="btn btn-outline-warning btn-sm mt-2 avaliar-btn">
-                            <i class="fa-solid fa-star"></i> Avaliar
-                        </button>
-                    </div>
-                </div>
+            <div id="estrelas" class="mb-2">
+                <!-- 10 estrelas -->
+                <?php for ($i = 1; $i <= 10; $i++): ?>
+                    <span class="estrela" data-valor="<?= $i ?>">&#9733;</span>
+                <?php endfor; ?>
             </div>
+
+            <textarea id="comentario" rows="4" placeholder="Deixe seu comentário..."></textarea>
+            <button class="btn btn-primary mt-2" id="enviar">Enviar Avaliação</button>
         </div>
-        <!-- Fim card modelo -->
-
-        <!-- Gênero Ação -->
-
-        <!-- Gênero Comédia -->
-        <div id="comedia" class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4 mt-5"></div>
-
-        <!-- Gênero Drama -->
-        <div id="drama" class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4 mt-5"></div>
-
-        <!-- Gênero Animação -->
-        <div id="animacao" class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4 mt-5"></div>
     </div>
 
-    <!-- Modal de Avaliação -->
-<div class="modal fade" id="modalFilme" tabindex="-1" aria-labelledby="modalFilmeLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered modal-lg">
-    <div class="modal-content bg-main bg-dark">
-      <div class="modal-header">
-        <h5 class="modal-title" id="modalFilmeLabel">Título do Filme</h5>
-        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Fechar"></button>
-      </div>
-      <div class="modal-body d-flex gap-3">
-        <img src="" id="modalPoster" class="img-fluid" style="max-width: 200px;" alt="Poster">
-        <div>
-          <p id="modalSinopse">Sinopse completa do filme...</p>
-          <p>Nota atual: <span id="modalNota">0.0</span> <i class="fa-solid fa-star text-warning"></i></p>
-          <div id="avaliacaoEstrelas" class="mt-3">
-            <span class="estrela btn btn-outline-warning btn-sm me-1" data-valor="1">★</span>
-            <span class="estrela btn btn-outline-warning btn-sm me-1" data-valor="2">★</span>
-            <span class="estrela btn btn-outline-warning btn-sm me-1" data-valor="3">★</span>
-            <span class="estrela btn btn-outline-warning btn-sm me-1" data-valor="4">★</span>
-            <span class="estrela btn btn-outline-warning btn-sm" data-valor="5">★</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
+    <div class="alto" style="height: 189px;"></div>
 
     <?php include 'footer.php'; ?>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q"
-        crossorigin="anonymous"></script>
+    <script>
+        // === Preencher filme ou série automaticamente ===
+        const API_KEY = "d2b2038bd7bc5db74623478537729164";
+        const IMG_URL = "https://image.tmdb.org/t/p/w500";
 
-    <script src="../js/filmes.js"></script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const id = urlParams.get('id');
+        const type = urlParams.get('type') || 'movie'; // 'movie' ou 'tv'
+
+        async function carregarFilmeSerie() {
+            if (!id) return;
+
+            try {
+                const res = await fetch(`https://api.themoviedb.org/3/${type}/${id}?api_key=${API_KEY}&language=pt-BR`);
+                const data = await res.json();
+
+                document.querySelector('.poster').src = data.poster_path ? IMG_URL + data.poster_path : 'https://via.placeholder.com/150x225';
+                document.querySelector('.poster').alt = data.title || data.name;
+                document.getElementById('titulo-filme').textContent = data.title || data.name;
+                document.getElementById('sinopse').textContent = data.overview || 'Sem descrição disponível.';
+            } catch (err) {
+                console.error('Erro ao carregar detalhes:', err);
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', carregarFilmeSerie);
+
+        // === Avaliação por estrelas ===
+        const estrelas = document.querySelectorAll('.estrela');
+        let notaSelecionada = 0;
+
+        estrelas.forEach(estrela => {
+            estrela.addEventListener('click', () => {
+                notaSelecionada = parseInt(estrela.dataset.valor);
+                atualizarEstrelas();
+            });
+        });
+
+        function atualizarEstrelas() {
+            estrelas.forEach(estrela => {
+                if (parseInt(estrela.dataset.valor) <= notaSelecionada) {
+                    estrela.classList.add('selecionada');
+                } else {
+                    estrela.classList.remove('selecionada');
+                }
+            });
+        }
+
+        document.getElementById('enviar').addEventListener('click', () => {
+            const comentario = document.getElementById('comentario').value;
+            alert(`Avaliação enviada!\nNota: ${notaSelecionada}\nComentário: ${comentario}`);
+            // Aqui você pode adicionar código para salvar a avaliação via PHP/DB
+        });
+    </script>
+
 </body>
 
 </html>
