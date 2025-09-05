@@ -36,48 +36,59 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg ">
-        <div class="container-fluid mx-5">
-            <a class="navbar-brand " href="../pages/home.php"><img src="../img/logo2.png" alt="logo" class="me-4"></a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" al
-                aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse justify-content-center" id="navbarSupportedContent">
-                <ul class="navbar-nav d-flex align-items-center gap-2">
-                    <li class="nav-item mx-2">
-                        <a href="../pages/home" class="a-btn">HOME</a>
-                    </li>
-                    <li class="nav-item mx-2">
-                        <a href="../pages/filmes" class="a-btn">FILMES</a>
-                    </li>
-                    <li class="nav-item mx-2">
-                        <a href="../pages/series" class="a-btn">SÉRIES</a>
-                    </li>
+<?php include_once __DIR__ . 'includes/session_handler.php'; ?>
+<nav class="navbar navbar-expand-lg">
+    <div class="container-fluid mx-5">
+        <a class="navbar-brand" href="../pages/home.php">
+            <img src="../img/logo2.png" alt="logo" class="me-4">
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+            data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+            aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
 
-                    <!-- Search -->
-                    <li class="nav-item mx-5">
-                        <div class="input-box d-flex align-items-center">
-                            <input class="form-control-sm " type="search" placeholder="Pesquisar..." aria-label="Search"
-                                style="height: 40px; width: 500px; border-radius: 8px" />
-                            <i class="fa-solid fa-magnifying-glass me-1 "></i>
-                        </div>
-                    </li>
+        <div class="collapse navbar-collapse justify-content-center" id="navbarSupportedContent">
+            <ul class="navbar-nav d-flex align-items-center gap-2">
+                <li class="nav-item mx-2">
+                    <a href="../pages/home.php" class="a-btn">HOME</a>
+                </li>
+                <li class="nav-item mx-2">
+                    <a href="../pages/filmes.php" class="a-btn">FILMES</a>
+                </li>
+                <li class="nav-item mx-2">
+                    <a href="../pages/series.php" class="a-btn">SÉRIES</a>
+                </li>
+                <li class="nav-item mx-5">
+                    <div class="input-box d-flex align-items-center">
+                        <input class="form-control-sm" type="search" placeholder="Pesquisar..." aria-label="Search"
+                            style="height: 40px; width: 500px; border-radius: 8px" />
+                        <i class="fa-solid fa-magnifying-glass me-1"></i>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+        <?php if ($isLoggedIn): ?>
+            <div class="dropdown">
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
+                    data-bs-toggle="dropdown" aria-expanded="false">
+                    <?php echo htmlspecialchars($usuarioNome); ?>
+                </button>
+                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton">
+                    <li><a class="dropdown-item" href="../pages/perfil.php">Perfil</a></li>
+                    <li><a class="dropdown-item" href="../logout.php">Sair</a></li>
                 </ul>
             </div>
-
-            <!-- Teste de botoes com links para paginas de cadastro e login-->
-
-            <a href="cadastro.php" target="_blank" class="text-light mx-4 a-btn">
-                LOGAR
+        <?php else: ?>
+            <a href="../pages/cadastro.php" class="text-light mx-4 a-btn">LOGAR</a>
+            <a href="../pages/login.php">
+                <button type="button" class="neon-btn text-end">CADASTRAR</button>
             </a>
-            <a href="login.php" target="_blank">
-                <button type="button" class=" neon-btn text-end">CADASTRAR</button>
-            </a>
-        </div>
-        </div>
-    </nav>
+        <?php endif; ?>
+    </div>
+</nav>
+
     <main>
         <?php
 
