@@ -1,0 +1,52 @@
+.avaliar-container {
+            display: flex;
+            gap: 30px;
+            color: white;
+            border-radius: 10px;
+            padding: 40px;
+            max-width: 1000px;
+            background-color: #021526;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Imagem do poster */
+        .poster {
+            width: 150px;
+            height: auto;
+            border-radius: 5px;
+        }
+
+        /* Informações do filme (título, sinopse, estrelas) */
+        .info {
+            flex: 1;
+        }
+
+        /* Estrelas de avaliação */
+        .estrela {
+            font-size: 40px;
+            cursor: pointer;
+            color: #123155ff;
+            transition: color 0.2s;
+        }
+
+        .estrela:hover {
+            color: gold;
+        }
+
+        .estrela.selecionada {
+            color: gold;
+        }
+
+        /* Textarea para comentário */
+        textarea {
+            width: 100%;
+            resize: vertical;
+            margin-top: 40px;
+            padding: 10px;
+            border-radius: 5px;
+            border: none;
+            outline: none;
+            font-family: 'Fredoka', sans-serif;
+        }

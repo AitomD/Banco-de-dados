@@ -84,7 +84,6 @@ function preencherCards(filmes) {
         </div>
 
         <button class="neon-btn mt-auto">Ver Mais</button>
-        <a class="a-btn my-3 text-center"><i class="fa-solid fa-play"></i> Trailer</a>
       </div>
     </div>
   </div>

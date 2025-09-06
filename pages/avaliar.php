@@ -69,57 +69,219 @@
     <?php include 'navbar.php'; ?>
 
     <div class="alto" style="height: 189px;"></div>
+    <style>
+        {
+            background-color: #0d1117;
+            /* Fundo escuro para a página */
+            color: white;
+            padding: 20px;
+        }
 
-    <div class="avaliar-container">
-        <img class="poster" src="https://via.placeholder.com/150x225" alt="Capa do filme">
-        <div class="info">
-            <h3 id="titulo-filme">Título do Filme</h3>
-            <p id="sinopse">Breve sinopse do filme vai aqui. Resuma em 2-3 linhas.</p>
+        .avaliar-container {
+            display: flex;
+            gap: 40px;
+            max-width: 1200px;
+            /* Largura máxima para centralizar o conteúdo */
+            margin: 40px auto;
+            /* Centraliza o contêiner e cria margem nas bordas */
+            background-color: #021526;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+           
+        }
 
-            <div id="estrelas" class="mb-2">
-                <!-- 10 estrelas -->
-                <?php for ($i = 1; $i <= 10; $i++): ?>
-                    <span class="estrela" data-valor="<?= $i ?>">&#9733;</span>
-                <?php endfor; ?>
+        .poster {
+            width: 500px;
+            height: auto;
+            border-radius: 5px;
+        }
+
+        .info-container {
+            flex: 1;
+            /* Ocupa o restante do espaço */
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .trailer-container {
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        #trailer-video {
+            width: 100%;
+            height: 400px;
+        }
+
+        .estrela {
+            font-size: 40px;
+            cursor: pointer;
+            color: #123155ff;
+            transition: color 0.2s;
+        }
+
+        .estrela:hover,
+        .estrela.selecionada {
+            color: gold;
+        }
+
+        textarea {
+            width: 100%;
+            resize: vertical;
+            padding: 10px;
+            border-radius: 5px;
+            border: none;
+            outline: none;
+            font-family: 'Fredoka', sans-serif;
+            background-color: #123155ff;
+            color: white;
+        }
+    </style>
+    <style>
+    /* ====== AJUSTES DE RESPONSIVIDADE ====== */
+    @media (max-width: 768px) {
+        .avaliar-container {
+            flex-direction: column;       /* Coloca poster em cima e info embaixo */
+            align-items: center;          /* Centraliza no eixo horizontal */
+            padding: 20px;                /* Menos padding no mobile */
+            gap: 20px;                    /* Menos espaço entre elementos */
+        }
+
+        .poster {
+            width: 100%;                  /* Poster ocupa toda largura */
+            max-width: 300px;             /* Mas não ultrapassa 300px */
+            height: auto;
+        }
+
+        .info-container {
+            width: 100%;                  /* Ocupa toda a largura */
+        }
+
+        #trailer-video {
+            height: 220px;                /* Diminui altura do vídeo */
+        }
+
+        textarea {
+            font-size: 14px;              /* Texto menor em celular */
+        }
+
+        .estrela {
+            font-size: 28px;              /* Estrelas menores */
+        }
+
+        .neon-btn {
+            width: 100%;                  /* Botão ocupa toda largura */
+            text-align: center;
+        }
+    }
+
+    /* Para telas bem pequenas (até 480px) */
+    @media (max-width: 480px) {
+        .poster {
+            max-width: 220px;             /* Poster mais compacto */
+        }
+
+        #trailer-video {
+            height: 180px;                /* Vídeo ainda menor */
+        }
+
+        h3, h4 {
+            font-size: 1.1rem;
+            text-align: center;           /* Centraliza títulos */
+        }
+
+        p#sinopse {
+            font-size: 0.9rem;
+            text-align: justify;
+        }
+    }
+</style>
+
+    </head>
+
+    <body>
+
+        <div class="avaliar-container">
+            <img class="poster" src="https://via.placeholder.com/250x375" alt="Capa do filme">
+
+            <div class="info-container">
+                <h3 id="titulo-filme">Título do Filme</h3>
+                <p id="sinopse">Breve sinopse do filme vai aqui. Resuma em 2-3 linhas.</p>
+
+                <div class="trailer-container">
+                    <h4 class="text-center">Trailer</h4>
+                    <iframe id="trailer-video" src="" frameborder="0" allow="autoplay; encrypted-media"
+                        allowfullscreen></iframe>
+                </div>
+
+                <div class="mt-4">
+                    <h4>Sua Avaliação</h4>
+                    <div id="estrelas" class="mb-2">
+                        <?php for ($i = 1; $i <= 10; $i++): ?>
+                            <span class="estrela" data-valor="<?= $i ?>">&#9733;</span>
+                        <?php endfor; ?>
+                    </div>
+
+                    <textarea id="comentario" rows="4" placeholder="Deixe seu comentário..."></textarea>
+                    <button class="neon-btn mt-3" id="enviar">Enviar Avaliação</button>
+                </div>
             </div>
-
-            <textarea id="comentario" rows="4" placeholder="Deixe seu comentário..."></textarea>
-            <button class="btn btn-primary mt-2" id="enviar">Enviar Avaliação</button>
         </div>
-    </div>
 
-    <div class="alto" style="height: 189px;"></div>
+        <div class="alto" style="height: 100px;"></div>
 
-    <?php include 'footer.php'; ?>
+        <?php include 'footer.php'; ?>
 
-    <script>
-        // === Preencher filme ou série automaticamente ===
+       <script>
         const API_KEY = "d2b2038bd7bc5db74623478537729164";
         const IMG_URL = "https://image.tmdb.org/t/p/w500";
 
         const urlParams = new URLSearchParams(window.location.search);
         const id = urlParams.get('id');
-        const type = urlParams.get('type') || 'movie'; // 'movie' ou 'tv'
+        const type = urlParams.get('type') || 'movie';
 
         async function carregarFilmeSerie() {
             if (!id) return;
 
             try {
+                // Requisição principal para os detalhes do filme/série
                 const res = await fetch(`https://api.themoviedb.org/3/${type}/${id}?api_key=${API_KEY}&language=pt-BR`);
                 const data = await res.json();
 
-                document.querySelector('.poster').src = data.poster_path ? IMG_URL + data.poster_path : 'https://via.placeholder.com/150x225';
+                // Atualiza o poster, título e sinopse
+                document.querySelector('.poster').src = data.poster_path ? IMG_URL + data.poster_path : 'https://via.placeholder.com/250x375';
                 document.querySelector('.poster').alt = data.title || data.name;
                 document.getElementById('titulo-filme').textContent = data.title || data.name;
                 document.getElementById('sinopse').textContent = data.overview || 'Sem descrição disponível.';
+
+                // Busca e exibe o trailer
+                const videosRes = await fetch(`https://api.themoviedb.org/3/${type}/${id}/videos?api_key=${API_KEY}&language=pt-BR`);
+                const videosData = await videosRes.json();
+
+                const trailer = videosData.results.find(video => video.site === 'YouTube' && video.type === 'Trailer');
+                const trailerIframe = document.getElementById('trailer-video');
+                const trailerContainer = document.querySelector('.trailer-container');
+
+                if (trailer) {
+                    const trailerUrl = `https://www.youtube.com/embed/${trailer.key}?autoplay=1&rel=0`;
+                    trailerIframe.src = trailerUrl;
+                    trailerContainer.style.display = 'block'; // Garante que o contêiner esteja visível
+                } else {
+                    trailerContainer.style.display = 'none'; // Esconde se não houver trailer
+                }
+
             } catch (err) {
                 console.error('Erro ao carregar detalhes:', err);
+                // Opcional: esconder o container de avaliação em caso de erro
+                document.querySelector('.avaliar-container').style.display = 'none';
             }
         }
 
         document.addEventListener('DOMContentLoaded', carregarFilmeSerie);
 
-        // === Avaliação por estrelas ===
+        // === Lógica de Avaliação por Estrelas ===
         const estrelas = document.querySelectorAll('.estrela');
         let notaSelecionada = 0;
 
@@ -143,10 +305,9 @@
         document.getElementById('enviar').addEventListener('click', () => {
             const comentario = document.getElementById('comentario').value;
             alert(`Avaliação enviada!\nNota: ${notaSelecionada}\nComentário: ${comentario}`);
-            // Aqui você pode adicionar código para salvar a avaliação via PHP/DB
         });
     </script>
 
-</body>
+    </body>
 
 </html>
