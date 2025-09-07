@@ -1,44 +1,61 @@
 <style>
-/* Em telas menores que 992px (breakpoint lg do Bootstrap) */
-@media (max-width: 991.98px) {
-    /* Esconde os botões fora do collapse */
-    .navbar > .container-fluid > .auth-links {
-        display: none !important;
-    }
+    /* Em telas menores que 992px (breakpoint lg do Bootstrap) */
+    @media (max-width: 991.98px) {
 
-    /* Garante que dentro do collapse apareçam */
-    #navbarSupportedContent .a-btn,
-    #navbarSupportedContent .neon-btn {
-        display: inline-block !important;
-        width: 100%;
-        text-align: center;
-        margin: 5px 0;
-    }
+        /* Esconde os botões fora do collapse */
+        .navbar>.container-fluid>.auth-links {
+            display: none !important;
+        }
 
-    #navbarSupportedContent {
-        background-color: #021526;
-        padding: 15px;
-        border-radius: 8px;
-    }
+        /* Dentro do collapse, mostrar links e botões centralizados */
+        #navbarSupportedContent .a-btn,
+        #navbarSupportedContent .neon-btn {
+            display: inline-block !important;
+            width: 100%;
+            text-align: center;
+            margin: 5px 0;
+        }
 
-    .navbar .container-fluid {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-    }
+        /* Auth-links aparecem dentro do collapse */
+        #navbarSupportedContent .auth-links {
+            display: flex !important;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            margin-top: 15px;
+        }
 
-    .navbar-brand {
-        margin: 0;
-    }
+        /* Estilização do collapse */
+        #navbarSupportedContent {
+            background-color: #021526;
+            padding: 15px;
+            border-radius: 8px;
+        }
 
-    .navbar-toggler {
-        margin-left: auto;
-    }
+        .navbar .container-fluid {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
 
-    .navbar-collapse {
-        margin-top: 15px;
-    }
-}
+        .navbar-brand {
+            margin: 0;
+        }
+
+        .navbar-toggler {
+            margin-left: auto;
+            color: white;
+        }
+
+
+            .navbar-collapse {
+                margin-top: 15px;
+            }
+
+            .navbar {
+                height: auto;
+            }
+        }
 </style>
 
 <nav class="navbar navbar-expand-lg">
@@ -49,9 +66,9 @@
         </a>
 
         <!-- Hamburguer -->
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-            data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-            aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler text-light" type="button" data-bs-toggle="collapse"
+            data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+            aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
 
@@ -70,7 +87,7 @@
                 </li>
             </ul>
 
-            <!-- Botões Login e Cadastro (separados) -->
+            <!-- Botões Login e Cadastro -->
             <div class="auth-links d-flex align-items-center gap-2">
                 <a href="login.php" class="text-light a-btn">LOGAR</a>
                 <a href="cadastro.php">
