@@ -10,11 +10,8 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <link rel="stylesheet" href="../estilo/style.css">
   <link rel="stylesheet" href="../estilo/form.css">
-<<<<<<< HEAD
   <link rel="shortcut icon" href="../img/logo2.png" type="image/x-icon">
-=======
   <link rel="shortcut icon" href="../Icons/home.png" type="image/x-icon">
->>>>>>> a52155d73005f1b1954881600026744f78bed7e3
 </head>
 <style>
   .input-box {
