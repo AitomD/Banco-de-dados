@@ -107,13 +107,9 @@
     </nav>
 
     <main>
-<<<<<<< HEAD
-        
-        <?php
-=======
-         <?php
->>>>>>> 982c1977bfe57d1fc6e951e29cedb2ccef054a5b
 
+        <?php
+        
         if (isset($_GET['param'])) {
             $param = $_GET['param'];
             //separar o parametor por /
