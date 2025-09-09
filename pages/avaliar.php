@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Avaliar Filme</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
     <link rel="stylesheet" href="../estilo/style.css">
     <link rel="stylesheet" href="../estilo/form.css">
     <style>
@@ -69,14 +70,8 @@
     <?php include 'navbar.php'; ?>
 
     <div class="alto" style="height: 189px;"></div>
-    <style>
-        {
-            background-color: #0d1117;
-            /* Fundo escuro para a página */
-            color: white;
-            padding: 20px;
-        }
 
+    <style>
         .avaliar-container {
             display: flex;
             gap: 40px;
@@ -88,7 +83,7 @@
             padding: 40px;
             border-radius: 10px;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
-           
+
         }
 
         .poster {
@@ -140,64 +135,79 @@
         }
     </style>
     <style>
-    /* ====== AJUSTES DE RESPONSIVIDADE ====== */
-    @media (max-width: 768px) {
-        .avaliar-container {
-            flex-direction: column;       /* Coloca poster em cima e info embaixo */
-            align-items: center;          /* Centraliza no eixo horizontal */
-            padding: 20px;                /* Menos padding no mobile */
-            gap: 20px;                    /* Menos espaço entre elementos */
+        /* ====== AJUSTES DE RESPONSIVIDADE ====== */
+        @media (max-width: 768px) {
+            .avaliar-container {
+                flex-direction: column;
+                /* Coloca poster em cima e info embaixo */
+                align-items: center;
+                /* Centraliza no eixo horizontal */
+                padding: 20px;
+                /* Menos padding no mobile */
+                gap: 20px;
+                /* Menos espaço entre elementos */
+            }
+
+            .poster {
+                width: 100%;
+                /* Poster ocupa toda largura */
+                max-width: 300px;
+                /* Mas não ultrapassa 300px */
+                height: auto;
+            }
+
+            .info-container {
+                width: 100%;
+                /* Ocupa toda a largura */
+            }
+
+            #trailer-video {
+                height: 220px;
+                /* Diminui altura do vídeo */
+            }
+
+            textarea {
+                font-size: 14px;
+                /* Texto menor em celular */
+            }
+
+            .estrela {
+                font-size: 28px;
+                /* Estrelas menores */
+            }
+
+            .neon-btn {
+                width: 100%;
+                /* Botão ocupa toda largura */
+                text-align: center;
+            }
         }
 
-        .poster {
-            width: 100%;                  /* Poster ocupa toda largura */
-            max-width: 300px;             /* Mas não ultrapassa 300px */
-            height: auto;
-        }
+        /* Para telas bem pequenas (até 480px) */
+        @media (max-width: 480px) {
+            .poster {
+                max-width: 220px;
+                /* Poster mais compacto */
+            }
 
-        .info-container {
-            width: 100%;                  /* Ocupa toda a largura */
-        }
+            #trailer-video {
+                height: 180px;
+                /* Vídeo ainda menor */
+            }
 
-        #trailer-video {
-            height: 220px;                /* Diminui altura do vídeo */
-        }
+            h3,
+            h4 {
+                font-size: 1.1rem;
+                text-align: center;
+                /* Centraliza títulos */
+            }
 
-        textarea {
-            font-size: 14px;              /* Texto menor em celular */
+            p#sinopse {
+                font-size: 0.9rem;
+                text-align: justify;
+            }
         }
-
-        .estrela {
-            font-size: 28px;              /* Estrelas menores */
-        }
-
-        .neon-btn {
-            width: 100%;                  /* Botão ocupa toda largura */
-            text-align: center;
-        }
-    }
-
-    /* Para telas bem pequenas (até 480px) */
-    @media (max-width: 480px) {
-        .poster {
-            max-width: 220px;             /* Poster mais compacto */
-        }
-
-        #trailer-video {
-            height: 180px;                /* Vídeo ainda menor */
-        }
-
-        h3, h4 {
-            font-size: 1.1rem;
-            text-align: center;           /* Centraliza títulos */
-        }
-
-        p#sinopse {
-            font-size: 0.9rem;
-            text-align: justify;
-        }
-    }
-</style>
+    </style>
 
     </head>
 
@@ -226,6 +236,9 @@
 
                     <textarea id="comentario" rows="4" placeholder="Deixe seu comentário..."></textarea>
                     <button class="neon-btn mt-3" id="enviar">Enviar Avaliação</button>
+                    <button class="neon-btn ms-3" id="btn-coracao">
+                        <i id="icone-coracao" class="fa-regular fa-heart"></i>
+                    </button>
                 </div>
             </div>
         </div>
@@ -234,79 +247,88 @@
 
         <?php include 'footer.php'; ?>
 
-       <script>
-        const API_KEY = "d2b2038bd7bc5db74623478537729164";
-        const IMG_URL = "https://image.tmdb.org/t/p/w500";
+        <script>
+            const API_KEY = "d2b2038bd7bc5db74623478537729164";
+            const IMG_URL = "https://image.tmdb.org/t/p/w500";
 
-        const urlParams = new URLSearchParams(window.location.search);
-        const id = urlParams.get('id');
-        const type = urlParams.get('type') || 'movie';
+            const urlParams = new URLSearchParams(window.location.search);
+            const id = urlParams.get('id');
+            const type = urlParams.get('type') || 'movie';
 
-        async function carregarFilmeSerie() {
-            if (!id) return;
+            async function carregarFilmeSerie() {
+                if (!id) return;
 
-            try {
-                // Requisição principal para os detalhes do filme/série
-                const res = await fetch(`https://api.themoviedb.org/3/${type}/${id}?api_key=${API_KEY}&language=pt-BR`);
-                const data = await res.json();
+                try {
+                    // Requisição principal para os detalhes do filme/série
+                    const res = await fetch(`https://api.themoviedb.org/3/${type}/${id}?api_key=${API_KEY}&language=pt-BR`);
+                    const data = await res.json();
 
-                // Atualiza o poster, título e sinopse
-                document.querySelector('.poster').src = data.poster_path ? IMG_URL + data.poster_path : 'https://via.placeholder.com/250x375';
-                document.querySelector('.poster').alt = data.title || data.name;
-                document.getElementById('titulo-filme').textContent = data.title || data.name;
-                document.getElementById('sinopse').textContent = data.overview || 'Sem descrição disponível.';
+                    // Atualiza o poster, título e sinopse
+                    document.querySelector('.poster').src = data.poster_path ? IMG_URL + data.poster_path : 'https://via.placeholder.com/250x375';
+                    document.querySelector('.poster').alt = data.title || data.name;
+                    document.getElementById('titulo-filme').textContent = data.title || data.name;
+                    document.getElementById('sinopse').textContent = data.overview || 'Sem descrição disponível.';
 
-                // Busca e exibe o trailer
-                const videosRes = await fetch(`https://api.themoviedb.org/3/${type}/${id}/videos?api_key=${API_KEY}&language=pt-BR`);
-                const videosData = await videosRes.json();
+                    // Busca e exibe o trailer
+                    const videosRes = await fetch(`https://api.themoviedb.org/3/${type}/${id}/videos?api_key=${API_KEY}&language=pt-BR`);
+                    const videosData = await videosRes.json();
 
-                const trailer = videosData.results.find(video => video.site === 'YouTube' && video.type === 'Trailer');
-                const trailerIframe = document.getElementById('trailer-video');
-                const trailerContainer = document.querySelector('.trailer-container');
+                    const trailer = videosData.results.find(video => video.site === 'YouTube' && video.type === 'Trailer');
+                    const trailerIframe = document.getElementById('trailer-video');
+                    const trailerContainer = document.querySelector('.trailer-container');
 
-                if (trailer) {
-                    const trailerUrl = `https://www.youtube.com/embed/${trailer.key}?autoplay=1&rel=0`;
-                    trailerIframe.src = trailerUrl;
-                    trailerContainer.style.display = 'block'; // Garante que o contêiner esteja visível
-                } else {
-                    trailerContainer.style.display = 'none'; // Esconde se não houver trailer
+                    if (trailer) {
+                        const trailerUrl = `https://www.youtube.com/embed/${trailer.key}?autoplay=1&rel=0`;
+                        trailerIframe.src = trailerUrl;
+                        trailerContainer.style.display = 'block'; // Garante que o contêiner esteja visível
+                    } else {
+                        trailerContainer.style.display = 'none'; // Esconde se não houver trailer
+                    }
+
+                } catch (err) {
+                    console.error('Erro ao carregar detalhes:', err);
+                    // Opcional: esconder o container de avaliação em caso de erro
+                    document.querySelector('.avaliar-container').style.display = 'none';
                 }
-
-            } catch (err) {
-                console.error('Erro ao carregar detalhes:', err);
-                // Opcional: esconder o container de avaliação em caso de erro
-                document.querySelector('.avaliar-container').style.display = 'none';
             }
-        }
 
-        document.addEventListener('DOMContentLoaded', carregarFilmeSerie);
+            document.addEventListener('DOMContentLoaded', carregarFilmeSerie);
 
-        // === Lógica de Avaliação por Estrelas ===
-        const estrelas = document.querySelectorAll('.estrela');
-        let notaSelecionada = 0;
+            // === Lógica de Avaliação por Estrelas ===
+            const estrelas = document.querySelectorAll('.estrela');
+            let notaSelecionada = 0;
 
-        estrelas.forEach(estrela => {
-            estrela.addEventListener('click', () => {
-                notaSelecionada = parseInt(estrela.dataset.valor);
-                atualizarEstrelas();
-            });
-        });
-
-        function atualizarEstrelas() {
             estrelas.forEach(estrela => {
-                if (parseInt(estrela.dataset.valor) <= notaSelecionada) {
-                    estrela.classList.add('selecionada');
-                } else {
-                    estrela.classList.remove('selecionada');
-                }
+                estrela.addEventListener('click', () => {
+                    notaSelecionada = parseInt(estrela.dataset.valor);
+                    atualizarEstrelas();
+                });
             });
-        }
 
-        document.getElementById('enviar').addEventListener('click', () => {
-            const comentario = document.getElementById('comentario').value;
-            alert(`Avaliação enviada!\nNota: ${notaSelecionada}\nComentário: ${comentario}`);
-        });
-    </script>
+            function atualizarEstrelas() {
+                estrelas.forEach(estrela => {
+                    if (parseInt(estrela.dataset.valor) <= notaSelecionada) {
+                        estrela.classList.add('selecionada');
+                    } else {
+                        estrela.classList.remove('selecionada');
+                    }
+                });
+            }
+
+            document.getElementById('enviar').addEventListener('click', () => {
+                const comentario = document.getElementById('comentario').value;
+                alert(`Avaliação enviada!\nNota: ${notaSelecionada}\nComentário: ${comentario}`);
+            });
+
+            const btnCoracao = document.getElementById("btn-coracao");
+            const iconeCoracao = document.getElementById("icone-coracao");
+
+            btnCoracao.addEventListener("click", () => {
+                const preenchido = iconeCoracao.classList.contains("fa-solid");
+                iconeCoracao.classList.toggle("fa-solid", !preenchido);
+                iconeCoracao.classList.toggle("fa-regular", preenchido);
+            });
+        </script>
 
     </body>
 

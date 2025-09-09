@@ -18,7 +18,9 @@
 
     while (unicos.length < 16 && page <= 5) {
       try {
-        const res = await fetch(`${BASE_URL}/discover/movie?api_key=${API_KEY}&language=pt-BR&with_genres=${generoId}&sort_by=popularity.desc&page=${page}`);
+        const res = await fetch(
+          `${BASE_URL}/discover/movie?api_key=${API_KEY}&language=pt-BR&with_genres=${generoId}&sort_by=popularity.desc&page=${page}`
+        );
         const data = await res.json();
 
         for (const filme of data.results) {
@@ -42,21 +44,28 @@
     container.innerHTML = "";
 
     filmes.forEach(filme => {
-      const modelo = document.getElementById('card-modelo');
-      const col = modelo.cloneNode(true);
-      col.classList.remove('d-none');
-      col.id = '';
-      col.querySelector('.poster').src = filme.poster_path ? IMG_URL + filme.poster_path : 'https://via.placeholder.com/300x400';
-      col.querySelector('.poster').alt = filme.title;
-      col.querySelector('.titulo').textContent = filme.title;
-      col.querySelector('.descricao').textContent = filme.overview ? filme.overview.substring(0, 100) + '...' : 'Sem descrição disponível.';
-      col.querySelector('.nota').textContent = filme.vote_average.toFixed(1);
+      const col = document.createElement("div");
+      col.className = "col";
+
+      col.innerHTML = `
+        <div class="card h-100 bg-main text-light border-0">
+          <img src="${filme.poster_path ? IMG_URL + filme.poster_path : "https://via.placeholder.com/300x400"}" class="card-img-top" alt="${filme.title}">
+          <div class="card-body d-flex flex-column">
+            <span class="badge bg-warning mb-2">Filme</span>
+            <h5 class="card-title">${filme.title}</h5>
+            <p class="card-text">${filme.overview ? filme.overview.substring(0, 100) + "..." : "Sem descrição disponível."}</p>
+            <div class="mt-auto">
+              <i class="fa-solid fa-star text-warning"></i> ${filme.vote_average.toFixed(1)}
+            </div>
+            <button class="btn btn-primary avaliar-btn mt-2">Avaliar</button>
+          </div>
+        </div>
+      `;
 
       container.appendChild(col);
 
-      const botao = col.querySelector('.avaliar-btn');
-      botao.addEventListener('click', () => {
-        // Redireciona com id e tipo
+      const botao = col.querySelector(".avaliar-btn");
+      botao.addEventListener("click", () => {
         window.location.href = `avaliar.php?id=${filme.id}&type=movie`;
       });
     });

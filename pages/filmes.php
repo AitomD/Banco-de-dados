@@ -45,17 +45,25 @@
             </div>
         </div>
         <!-- Fim card modelo -->
+        <div class="alto" style="height: 10px;"></div>
 
         <!-- Gênero Ação -->
+        <h2 class="mb-3 text-light ">Ação</h2>
         <div id="acao" class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4"></div>
 
         <!-- Gênero Comédia -->
+        <div class="alto" style="height: 10px;"></div>
+        <h2 class="mb-3 text-light">Comédia</h2>
         <div id="comedia" class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4 mt-5"></div>
 
         <!-- Gênero Drama -->
+        <div class="alto" style="height: 10px;"></div>   
+        <h2 class="mb-3 text-light">Drama</h2>
         <div id="drama" class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4 mt-5"></div>
 
         <!-- Gênero Animação -->
+        <div class="alto" style="height: 10px;"></div>   
+        <h2 class="mb-3 text-light">Animação</h2>
         <div id="animacao" class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4 mt-5"></div>
     </div>
 
