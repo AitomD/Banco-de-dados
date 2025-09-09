@@ -27,8 +27,13 @@
 
         /* Estilização do collapse */
         #navbarSupportedContent {
+<<<<<<< HEAD
             padding: 15px;
             border-radius: 8px;
+=======
+            background-color: #021526;
+            padding: 15px;
+>>>>>>> 982c1977bfe57d1fc6e951e29cedb2ccef054a5b
         }
 
         .navbar .container-fluid {
@@ -46,6 +51,7 @@
             color: white;
         }
 
+<<<<<<< HEAD
         .navbar-collapse {
             margin-top: 15px;
         }
@@ -60,13 +66,35 @@
 
 <nav class="navbar  mb-5 navbar-expand-lg">
     <div class="container-fluid mx-5">
+=======
+
+            .navbar-collapse {
+                margin-top: 15px;
+            }
+
+            .navbar {
+                height: auto;
+            }
+        }
+        .navbar .navbar-toggler-icon {
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='white' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+}
+</style>
+
+<nav class="navbar navbar-expand-lg">
+    <div class="container-fluid px-3">
+>>>>>>> 982c1977bfe57d1fc6e951e29cedb2ccef054a5b
         <!-- Logo -->
         <a class="navbar-brand" href="../pages/home.php">
             <img src="../img/logo2.png" alt="logo" class="me-4">
         </a>
 
         <!-- Hamburguer -->
+<<<<<<< HEAD
         <button class="navbar-toggler text-light" type="button" data-bs-toggle="collapse"
+=======
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+>>>>>>> 982c1977bfe57d1fc6e951e29cedb2ccef054a5b
             data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
             aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -97,6 +125,10 @@
         </div>
     </div>
 </nav>
+<<<<<<< HEAD
 <br>
 <br>
+=======
+
+>>>>>>> 982c1977bfe57d1fc6e951e29cedb2ccef054a5b
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
