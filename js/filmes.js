@@ -55,9 +55,9 @@
       container.appendChild(col);
 
       const botao = col.querySelector('.avaliar-btn');
-      // Alterado: redireciona para avaliar.php
       botao.addEventListener('click', () => {
-        window.location.href = 'avaliar.php';
+        // Redireciona com id e tipo
+        window.location.href = `avaliar.php?id=${filme.id}&type=movie`;
       });
     });
   }

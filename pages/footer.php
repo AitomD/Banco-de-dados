@@ -1,5 +1,5 @@
-<footer class="footer py-4 end-line">
-    <div class="container">
+<footer class="footer py-4 end-line w-100 ">
+    <div class="container-fluid">
       <div class="d-flex flex-column flex-md-row justify-content-between">
 
         <!-- Coluna 1 -->

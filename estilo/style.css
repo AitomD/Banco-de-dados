@@ -194,29 +194,6 @@
     background-color: #37c6ffb2;
 }
 
-/* Estrelas foto */
-.icone-sobre-imagem {
-    position: absolute;
-    bottom: 20px;
-    left: 8px;
-    font-size: 45px;
-    background: transparent;
-    color: var(--yellow);
-    padding: 4px;
-}
-
-/* Numeros de notas */
-.nota-item{
-   position: absolute;
-    bottom: 5px;
-    right: 115px;
-    font-size: 45px;
-    font-family: 'Montserrat';
-    color: var(--yellow);
-    padding: 4px;
-}
-
-
 
 /* ------ Footer ------- */
 .footer{

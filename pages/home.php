@@ -10,6 +10,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <link rel="stylesheet" href="../estilo/style.css">
   <link rel="stylesheet" href="../estilo/form.css">
+  <link rel="shortcut icon" href="../img/logo2.png" type="image/x-icon">
   <link rel="shortcut icon" href="../Icons/home.png" type="image/x-icon">
 </head>
 <style>
@@ -81,11 +82,10 @@
 
   <!-- Conteudo do HOME -->
 
-  <div class="alto" style="height: 100px;"></div>
 
   <!-- Carrosel de fotos e notas -->
   
-  <div class="alt" style="height: 70px;";></div>
+  <div class="alt" style="height: 90px;";></div>
 
 <div class="container my-4">
   <div class="row">
@@ -170,37 +170,6 @@
     </div>
   </div>
 </div>
-
-
-
-  <!-- 
-  <footer class="footer py-4 end-line">
-    <div class="container">
-      <div class="d-flex flex-column flex-md-row justify-content-between">
-
-        <div class="mb-3 mb-md-0">
-          <h5>Sobre Nós</h5>
-          <div class="row">
-            <div class="d-inline-flex align-items-center">
-              <p class="mb-1 me-3">Aitom Henrique Donatoni </p>
-              <a href="#" class="text-light fs-5 me-3"><i class="fab fa-instagram" data-bs-toggle="tooltip"
-                  title="Instagram"></i></i></a>
-              <a href="#" class="text-light fs-5 me-3"><i class="fab fa-github" data-bs-toggle="tooltip"
-                  title="GitHub"></i></a>
-            </div>
-          </div>
-          <div class="row">
-            <div class="d-inline-flex align-items-center">
-              <p class="mb-1 me-3">Fernando Consolin Rosa</p>
-              <a href="#" class="text-light fs-5 me-3"><i class="fab fa-instagram" data-bs-toggle="tooltip"
-                  title="Instagram"></i></i></a>
-              <a href="#" class="text-light fs-5 me-3"><i class="fab fa-github" data-bs-toggle="tooltip"
-                  title="GitHub"></i></a>
-            </div>
-          </div>
-        </div>
-
-        -- Coluna 2 -->
         
     <?php include 'footer.php'; ?>
 

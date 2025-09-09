@@ -7,6 +7,8 @@
     <title>Blue Star</title>
     <link rel="shortcut icon" href="starlogo.png" type="image/x-icon">
     <link rel="stylesheet" href="estilo/style.css">
+    <link rel="stylesheet" href="estilo/form.css">
+    <link rel="stylesheet" href="estilo/avaliar.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
@@ -36,60 +38,61 @@
 </head>
 
 <body>
-<?php include_once __DIR__ . 'includes/session_handler.php'; ?>
-<nav class="navbar navbar-expand-lg">
-    <div class="container-fluid mx-5">
-        <a class="navbar-brand" href="../pages/home.php">
-            <img src="../img/logo2.png" alt="logo" class="me-4">
-        </a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-            data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-            aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
 
-        <div class="collapse navbar-collapse justify-content-center" id="navbarSupportedContent">
-            <ul class="navbar-nav d-flex align-items-center gap-2">
-                <li class="nav-item mx-2">
-                    <a href="../pages/home.php" class="a-btn">HOME</a>
-                </li>
-                <li class="nav-item mx-2">
-                    <a href="../pages/filmes.php" class="a-btn">FILMES</a>
-                </li>
-                <li class="nav-item mx-2">
-                    <a href="../pages/series.php" class="a-btn">SÉRIES</a>
-                </li>
-                <li class="nav-item mx-5">
-                    <div class="input-box d-flex align-items-center">
-                        <input class="form-control-sm" type="search" placeholder="Pesquisar..." aria-label="Search"
-                            style="height: 40px; width: 500px; border-radius: 8px" />
-                        <i class="fa-solid fa-magnifying-glass me-1"></i>
-                    </div>
-                </li>
-            </ul>
-        </div>
+    <nav class="navbar navbar-expand-lg">
+        <div class="container-fluid mx-5">
+            <a class="navbar-brand" href="../pages/home.php">
+                <img src="../img/logo2.png" alt="logo" class="me-4">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
 
-        <?php if ($isLoggedIn): ?>
-            <div class="dropdown">
-                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
-                    data-bs-toggle="dropdown" aria-expanded="false">
-                    <?php echo htmlspecialchars($usuarioNome); ?>
-                </button>
-                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton">
-                    <li><a class="dropdown-item" href="../pages/perfil.php">Perfil</a></li>
-                    <li><a class="dropdown-item" href="../logout.php">Sair</a></li>
+            <div class="collapse navbar-collapse justify-content-center" id="navbarSupportedContent">
+                <ul class="navbar-nav d-flex align-items-center gap-2">
+                    <li class="nav-item mx-2">
+                        <a href="../pages/home.php" class="a-btn">HOME</a>
+                    </li>
+                    <li class="nav-item mx-2">
+                        <a href="../pages/filmes.php" class="a-btn">FILMES</a>
+                    </li>
+                    <li class="nav-item mx-2">
+                        <a href="../pages/series.php" class="a-btn">SÉRIES</a>
+                    </li>
+                    <li class="nav-item mx-5">
+                        <div class="input-box d-flex align-items-center">
+                            <input class="form-control-sm" type="search" placeholder="Pesquisar..." aria-label="Search"
+                                style="height: 40px; width: 500px; border-radius: 8px" />
+                            <i class="fa-solid fa-magnifying-glass me-1"></i>
+                        </div>
+                    </li>
                 </ul>
             </div>
-        <?php else: ?>
-            <a href="../pages/cadastro.php" class="text-light mx-4 a-btn">LOGAR</a>
-            <a href="../pages/login.php">
-                <button type="button" class="neon-btn text-end">CADASTRAR</button>
-            </a>
-        <?php endif; ?>
-    </div>
-</nav>
+
+            <?php if ($isLoggedIn): ?>
+                <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                        <?php echo htmlspecialchars($usuarioNome); ?>
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton">
+                        <li><a class="dropdown-item" href="../pages/perfil.php">Perfil</a></li>
+                        <li><a class="dropdown-item" href="../logout.php">Sair</a></li>
+                    </ul>
+                </div>
+            <?php else: ?>
+                <a href="../pages/cadastro.php" class="text-light mx-4 a-btn">LOGAR</a>
+                <a href="../pages/login.php">
+                    <button type="button" class="neon-btn text-end">CADASTRAR</button>
+                </a>
+            <?php endif; ?>
+        </div>
+    </nav>
 
     <main>
+        
         <?php
 
         if (isset($_GET['param'])) {
@@ -99,63 +102,24 @@
             //print_r($_GET);
         }
         $page = $p[0] ?? "home";
-        $filmes = $p[1] ?? "filmes";
+        $ofertas = $p[1] ?? "filmes";
 
         if ($page == "filmes") {
-            $pagina = "pages/{$filmes}.php";
+            $pagina = "/pages/{$filmes}.php";
         } else {
-            $pagina = "pages/{$page}.php";
+            $pagina = "/pages/{$page}.php";
         }
         //verificar se a página existe
         if (file_exists($pagina)) {
             include $pagina;
         } else {
-            include "pages/erro.php";
+            include "/pages/erro.php";
         }
         ?>
 
     </main>
 
-    <footer class="footer py-4 end-line">
-        <div class="container">
-            <div class="d-flex flex-column flex-md-row justify-content-between">
-
-                <!-- Coluna 1 -->
-                <div class="mb-3 mb-md-0">
-                    <h5>Sobre Nós</h5>
-                    <div class="row">
-                        <div class="d-inline-flex align-items-center">
-                            <p class="mb-1 me-3">Aitom Henrique Donatoni </p>
-                            <a href="#" class="text-light fs-5 me-3"><i class="fab fa-instagram"
-                                    data-bs-toggle="tooltip" title="Instagram"></i></i></a>
-                            <a href="#" class="text-light fs-5 me-3"><i class="fab fa-github" data-bs-toggle="tooltip"
-                                    title="GitHub"></i></a>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="d-inline-flex align-items-center">
-                            <p class="mb-1 me-3">Fernando Consolin Rosa</p>
-                            <a href="#" class="text-light fs-5 me-3"><i class="fab fa-instagram"
-                                    data-bs-toggle="tooltip" title="Instagram"></i></i></a>
-                            <a href="#" class="text-light fs-5 me-3"><i class="fab fa-github" data-bs-toggle="tooltip"
-                                    title="GitHub"></i></a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Coluna 2 -->
-                <div>
-                    <h5>Contato</h5>
-                    <ul class="list-unstyled mb-0">
-                        <li>Email: contato@exemplo.com</li>
-                        <li>Telefone: (11) 1234-5678</li>
-                        <li>Endereço: Rua Exemplo, 123</li>
-                    </ul>
-                </div>
-
-            </div>
-        </div>
-    </footer>
+    <?php include 'footer.php'; ?>
 
 
     <!-- Script para tooltip dos icones footer -->
