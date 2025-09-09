@@ -82,11 +82,10 @@
 
   <!-- Conteudo do HOME -->
 
-  <div class="alto" style="height: 100px;"></div>
 
   <!-- Carrosel de fotos e notas -->
   
-  <div class="alt" style="height: 70px;";></div>
+  <div class="alt" style="height: 90px;";></div>
 
 <div class="container my-4">
   <div class="row">

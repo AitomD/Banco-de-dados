@@ -27,8 +27,13 @@
 
         /* Estilização do collapse */
         #navbarSupportedContent {
+<<<<<<< HEAD
+            padding: 15px;
+            border-radius: 8px;
+=======
             background-color: #021526;
             padding: 15px;
+>>>>>>> 982c1977bfe57d1fc6e951e29cedb2ccef054a5b
         }
 
         .navbar .container-fluid {
@@ -46,6 +51,22 @@
             color: white;
         }
 
+<<<<<<< HEAD
+        .navbar-collapse {
+            margin-top: 15px;
+        }
+
+        .navbar {
+            height: auto;
+        }
+
+
+    }
+</style>
+
+<nav class="navbar  mb-5 navbar-expand-lg">
+    <div class="container-fluid mx-5">
+=======
 
             .navbar-collapse {
                 margin-top: 15px;
@@ -62,13 +83,18 @@
 
 <nav class="navbar navbar-expand-lg">
     <div class="container-fluid px-3">
+>>>>>>> 982c1977bfe57d1fc6e951e29cedb2ccef054a5b
         <!-- Logo -->
         <a class="navbar-brand" href="../pages/home.php">
             <img src="../img/logo2.png" alt="logo" class="me-4">
         </a>
 
         <!-- Hamburguer -->
+<<<<<<< HEAD
+        <button class="navbar-toggler text-light" type="button" data-bs-toggle="collapse"
+=======
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+>>>>>>> 982c1977bfe57d1fc6e951e29cedb2ccef054a5b
             data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
             aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -99,5 +125,10 @@
         </div>
     </div>
 </nav>
+<<<<<<< HEAD
+<br>
+<br>
+=======
 
+>>>>>>> 982c1977bfe57d1fc6e951e29cedb2ccef054a5b
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
