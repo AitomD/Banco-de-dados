@@ -70,9 +70,8 @@
         </a>
 
         <!-- Hamburguer -->
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-            data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-            aria-label="Toggle navigation">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
 
@@ -91,12 +90,26 @@
                 </li>
             </ul>
 
-            <!-- Botões Login e Cadastro -->
+            <!-- Auth Links (Login, Cadastro ou Dropdown se logado) -->
             <div class="auth-links d-flex align-items-center gap-2">
-                <a href="login.php" class="text-light a-btn">LOGAR</a>
-                <a href="cadastro.php">
-                    <button type="button" class="neon-btn">CADASTRAR</button>
-                </a>
+                <?php if (isset($_SESSION['usuario_nome'])): ?>
+                    <!-- Dropdown de Logout com nome do usuário logado -->
+                    <div class="dropdown">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            <?php echo $_SESSION['usuario_nome']; ?>
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <li><a class="dropdown-item" href="logout.php">Sair</a></li>
+                        </ul>
+                    </div>
+                <?php else: ?>
+                    <!-- Botões de Login e Cadastro -->
+                    <a href="login.php" class="text-light a-btn">LOGAR</a>
+                    <a href="cadastro.php">
+                        <button type="button" class="neon-btn">CADASTRAR</button>
+                    </a>
+                <?php endif; ?>
             </div>
         </div>
     </div>

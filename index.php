@@ -25,6 +25,3 @@ if (file_exists($path) && $page !== '404') {
 }
 
 ?>
-
-<main>
-    </main>
