@@ -1,3 +1,38 @@
+<?php
+session_start();
+require_once '../includes/fazercadastro.php'; // Incluir a classe User para login
+
+// Variável de erro para exibir mensagens de erro caso o login falhe
+$error = "";
+
+// Verifica se o formulário foi enviado
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    // Captura os dados do formulário
+    $email = $_POST['email'];
+    $senha = $_POST['senha'];
+
+    // Conecta ao banco de dados
+    $db = new DB();
+    $user = new User($db->getConnection());
+
+    // Atribui os dados à classe User
+    $user->email = $email;
+    $user->senha = $senha;
+
+    // Tenta fazer o login
+    $loggedUser = $user->login();
+    if ($loggedUser) {
+        // Se o login for bem-sucedido, armazena os dados do usuário na sessão
+        $_SESSION['usuario_id'] = $loggedUser['id'];
+        $_SESSION['usuario_nome'] = $loggedUser['nome'];  // Armazena o nome para mostrar na navbar
+        header('Location: home.php');  // Redireciona para a página inicial
+        exit();
+    } else {
+        $error = "Credenciais inválidas!";
+    }
+}
+?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -21,18 +56,32 @@
         <div class="right">
             <div class="glass">
                 <h2>Faça Login</h2>
-                <div class="input-box">
-                    <i class="fa-solid fa-envelope"></i>
-                    <input type="text" placeholder="E-mail">
-                </div>
-                <div class="input-box">
-                    <i class="fa fa-lock"></i>
-                    <input type="password" placeholder="Senha" id="password">
-                    <span class="toggle-password fa-solid fa-eye-slash"></span>
-                </div>
-                <div class="d-flex justify-content-center">
-                    <button class="neon-btn fw-bold ">Entrar</button>
-                </div>
+                <!-- Formulário de Login -->
+                <form method="POST" action="login.php">
+                    <!-- Campo E-mail -->
+                    <div class="input-box">
+                        <i class="fa-solid fa-envelope"></i>
+                        <input type="text" name="email" placeholder="E-mail" required>
+                    </div>
+                    <!-- Campo Senha -->
+                    <div class="input-box">
+                        <i class="fa fa-lock"></i>
+                        <input type="password" name="senha" placeholder="Senha" id="password" required>
+                        <span class="toggle-password fa-solid fa-eye-slash"></span>
+                    </div>
+
+                    <!-- Botão de Login -->
+                    <div class="d-flex justify-content-center">
+                        <button type="submit" class="neon-btn fw-bold">Entrar</button>
+                    </div>
+                </form>
+
+                <!-- Exibe erro caso o login falhe -->
+                <?php
+                if (!empty($error)) {
+                    echo "<p style='color: red; text-align: center;'>$error</p>";
+                }
+                ?>
             </div>
         </div>
     </div>
