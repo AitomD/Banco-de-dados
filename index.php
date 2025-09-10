@@ -38,7 +38,6 @@
 </head>
 
 <body>
-<<<<<<< HEAD
 
     <nav class="navbar navbar-expand-lg">
         <div class="container-fluid mx-5">
@@ -51,7 +50,6 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
 
-=======
    
     <nav class="navbar navbar-expand-lg">
         <div class="container-fluid mx-5">
@@ -64,7 +62,6 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
 
->>>>>>> 982c1977bfe57d1fc6e951e29cedb2ccef054a5b
             <div class="collapse navbar-collapse justify-content-center" id="navbarSupportedContent">
                 <ul class="navbar-nav d-flex align-items-center gap-2">
                     <li class="nav-item mx-2">
