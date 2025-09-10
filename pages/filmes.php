@@ -9,10 +9,18 @@
         integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link rel="stylesheet" href="../estilo/style.css">
-    <link rel="stylesheet" href="../estilo/form.css">
     <link rel="shortcut icon" href="../Icons/fs.png" type="image/x-icon">
 </head>
-
+<style>
+  body{
+  background-image: linear-gradient(rgba(0,0,0,0.9), rgba(0,0,0,0.4)), url('../img/capanova.jpg');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed; /* faz a imagem ficar fixa */
+  background-repeat: no-repeat; /* evita repetição da imagem */
+  color: white;
+}
+</style>
 <body>
 
     <?php include 'navbar.php'; ?>
