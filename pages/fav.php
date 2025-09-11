@@ -20,7 +20,12 @@
       <!-- Filmes favoritos vão aparecer aqui -->
     </div>
   </div>
+
   <script src="../js/dropdown.js"></script>
   <script src="favoritos.js"></script>
+
+  <?php include 'footer.php'; ?>
+
+  <script src="../js/favoritos.js"></script>
 </body>
 </html>
