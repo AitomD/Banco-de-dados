@@ -1,45 +1,41 @@
-// Lista fake de filmes favoritos
-let favoritos = [
-  { id: 1, titulo: "Clube da Luta", poster: "/a26cQPRhJPX6GbWfQbvZdrrp9j9.jpg" },
-  { id: 2, titulo: "Batman Begins", poster: "/b1L7qevxiVpkVFq4dmdQfJGwXau.jpg" },
-  { id: 3, titulo: "Vingadores", poster: "/RYMX2wcKCBAr24UyPD7xwmjaTn.jpg" },
-  { id: 4, titulo: "Interestelar", poster: "/gEU2QniE6E77NI6lCU6MxlNBvIx.jpg" }
-];
-
-// Renderizar favoritos
-function mostrarFavoritos() {
+document.addEventListener("DOMContentLoaded", () => {
   const container = document.getElementById("favoritosContainer");
-  container.innerHTML = "";
+  const favoritos = JSON.parse(localStorage.getItem("favoritos")) || [];
 
   if (favoritos.length === 0) {
-    container.innerHTML = `<p class="text-center">Você ainda não favoritou nenhum filme.</p>`;
+    container.innerHTML = `<p class="text-center text-muted">Nenhum filme favoritado ainda.</p>`;
     return;
   }
 
   favoritos.forEach(filme => {
     container.innerHTML += `
       <div class="col">
-        <div class="card bg-secondary text-light h-100 shadow border-0">
-          <img src="https://image.tmdb.org/t/p/w500${filme.poster}" class="card-img-top" alt="${filme.titulo}">
-          <div class="card-body d-flex flex-column justify-content-between">
-            <h6 class="card-title text-center">${filme.titulo}</h6>
-          </div>
-          <div class="card-footer bg-dark text-center border-0">
-            <button class="btn btn-danger btn-sm w-100" onclick="removerFavorito(${filme.id})">
-              ❌ Remover dos Favoritos
-            </button>
+        <div class="card h-100 shadow bg-dark text-light">
+          <img src="${filme.poster}" class="card-img-top" alt="${filme.titulo}">
+          <div class="card-body d-flex flex-column">
+            <h5 class="card-title">${filme.titulo}</h5>
+            <p class="card-text small text-muted">${filme.sinopse.substring(0, 100)}...</p>
+            <div class="mt-auto d-flex justify-content-between">
+              <a href="avaliar.php?id=${filme.id}&type=${filme.type}" class="btn btn-primary btn-sm">Ver detalhes</a>
+              <button class="btn btn-danger btn-sm btn-remover" data-id="${filme.id}" data-type="${filme.type}">
+                ❌ Remover
+              </button>
+            </div>
           </div>
         </div>
       </div>
     `;
   });
-}
 
-// Função para remover um favorito
-function removerFavorito(id) {
-  favoritos = favoritos.filter(f => f.id !== id);
-  mostrarFavoritos();
-}
+  // Função de remover favorito
+  document.querySelectorAll(".btn-remover").forEach(botao => {
+    botao.addEventListener("click", () => {
+      const id = botao.getAttribute("data-id");
+      const type = botao.getAttribute("data-type");
 
-// Chama ao carregar
-document.addEventListener("DOMContentLoaded", mostrarFavoritos);
+      let novosFavoritos = favoritos.filter(f => !(f.id == id && f.type == type));
+      localStorage.setItem("favoritos", JSON.stringify(novosFavoritos));
+      location.reload(); // Recarrega a página para atualizar
+    });
+  });
+});

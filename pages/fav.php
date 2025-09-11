@@ -21,6 +21,8 @@
     </div>
   </div>
 
-  <script src="favoritos.js"></script>
+  <?php include 'footer.php'; ?>
+
+  <script src="../js/favoritos.js"></script>
 </body>
 </html>
