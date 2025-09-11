@@ -50,7 +50,7 @@
         <img src="../img/404.png" alt="Erro 404">
         <h1>Oops! Página não encontrada</h1>
         <p>Desculpe, a página que você está procurando não existe.</p>
-        <a href="index.php">Voltar para a Página Inicial</a>
+        <a href="home.php">Voltar para a Página Inicial</a>
     </div>
 </body>
 </html>

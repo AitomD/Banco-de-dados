@@ -21,7 +21,7 @@ if (file_exists($path) && $page !== '404') {
     include $path;
 } else {
     // Se a página não existir ou for a 404, inclui a página de erro
-    include __DIR__ . "/pages/404.php";
+    include __DIR__ . "../pages/404.php";
 }
 
 ?>

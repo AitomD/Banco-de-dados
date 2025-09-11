@@ -1,9 +1,15 @@
+<?php
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+?>
+
 <style>
     /* Em telas menores que 992px (breakpoint lg do Bootstrap) */
     @media (max-width: 991.98px) {
 
         /* Esconde os botões fora do collapse */
-        .navbar>.container-fluid>.auth-links {
+        .navbar>.container-fluid>.auth-links-desktop {
             display: none !important;
         }
 
@@ -16,8 +22,7 @@
             margin: 5px 0;
         }
 
-        /* Auth-links aparecem dentro do collapse */
-        #navbarSupportedContent .auth-links {
+        #navbarSupportedContent .auth-links-mobile {
             display: flex !important;
             flex-direction: column;
             align-items: center;
@@ -25,7 +30,6 @@
             margin-top: 15px;
         }
 
-        /* Estilização do collapse */
         #navbarSupportedContent {
             background-color: #021526;
             padding: 15px;
@@ -90,29 +94,53 @@
                 </li>
             </ul>
 
-            <!-- Auth Links (Login, Cadastro ou Dropdown se logado) -->
-            <div class="auth-links d-flex align-items-center gap-2">
+            <!-- Auth Links - Versão MOBILE -->
+            <div class="auth-links-mobile d-lg-none">
                 <?php if (isset($_SESSION['usuario_nome'])): ?>
-                    <!-- Dropdown de Logout com nome do usuário logado -->
-                    <div class="dropdown">
-                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
+                    <div class="dropdown text-center">
+                        <button class="btn btn-secondary dropdown-toggle w-100" type="button" id="dropdownMenuButtonMobile"
                             data-bs-toggle="dropdown" aria-expanded="false">
-                            <?php echo $_SESSION['usuario_nome']; ?>
+                            <?php echo htmlspecialchars($_SESSION['usuario_nome']); ?>
                         </button>
-                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            <li><a class="dropdown-item" href="logout.php">Sair</a></li>
+                        <ul class="dropdown-menu w-100 text-center" aria-labelledby="dropdownMenuButtonMobile">
+                            <li><a class="dropdown-item" href="../pages/fav.php">Favoritos</a></li>
+                            <li><a class="dropdown-item" href="../pages/logout.php">Sair</a></li>
                         </ul>
                     </div>
                 <?php else: ?>
-                    <!-- Botões de Login e Cadastro -->
-                    <a href="login.php" class="text-light a-btn">LOGAR</a>
-                    <a href="cadastro.php">
+                    <a href="../pages/login.php" class="text-light a-btn">LOGAR</a>
+                    <a href="../pages/cadastro.php">
                         <button type="button" class="neon-btn">CADASTRAR</button>
                     </a>
                 <?php endif; ?>
             </div>
         </div>
+
+        <!-- Auth Links - Versão DESKTOP -->
+        <div class="auth-links-desktop d-none d-lg-flex align-items-center gap-2">
+            <?php if (isset($_SESSION['usuario_nome'])): ?>
+                <div class="dropdown">
+                    <button class="neon-btn dropdown-toggle" type="button" id="dropdownMenuButtonDesktop"
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="fa-solid fa-user-circle fs-5"></i>
+                        <?php echo htmlspecialchars($_SESSION['usuario_nome']); ?>
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButtonDesktop">
+                        <li><a class="dropdown-item " href="../pages/fav.php">Favoritos</a></li>
+                        <li><a class="dropdown-item" href="../pages/logout.php">Sair</a></li>
+                    </ul>
+                </div>
+            <?php else: ?>
+                <a href="../pages/login.php" class="text-light a-btn">LOGAR</a>
+                <a href="../pages/cadastro.php">
+                    <button type="button" class="neon-btn">CADASTRAR</button>
+                </a>
+            <?php endif; ?>
+
+        </div>
     </div>
 </nav>
+<script src="../js/dropdown.js"></script>
+
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>

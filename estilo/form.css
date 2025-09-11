@@ -90,3 +90,28 @@ h2 {
 .toggle-password:hover {
     color: #333;
 }
+
+/* Personaliza o fundo e borda do dropdown */
+.custom-dropdown {
+    background-color: #021526 !important;
+    border: none;
+    padding: 0;
+}
+
+/* Estiliza os itens do dropdown com a fonte e remove borda */
+.custom-dropdown .dropdown-item {
+    color: white;
+    padding: 10px 20px;
+}
+
+/* Aplica a classe a-btn, se necessário ajustar mais */
+.custom-dropdown .dropdown-item.a-btn {
+    font-family: inherit; /* ou sua fonte customizada */
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Hover */
+.custom-dropdown .dropdown-item:hover {
+    background-color: #032037;
+}

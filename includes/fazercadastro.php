@@ -15,30 +15,17 @@ class User {
 
     // Cadastro do usuário
     public function register() {
-        // Definir o SQL para inserção de dados na tabela 'usuarios'
         $query = "INSERT INTO usuario (nome, email, senha) VALUES (:nome, :email, :senha)";
-
-        // Preparar a declaração SQL
         $stmt = $this->conn->prepare($query);
-        
-        // Vincular os parâmetros de forma segura
         $stmt->bindParam(':nome', $this->nome);
         $stmt->bindParam(':email', $this->email);
-        $stmt->bindParam(':senha', password_hash($this->senha, PASSWORD_BCRYPT)); // Usar hash para a senha
-
-        // Executar a declaração e retornar true se for bem-sucedido
-        if ($stmt->execute()) {
-            return true;
-        }
-
-        // Retorna false se a execução falhar
-        return false;
+        $stmt->bindParam(':senha', password_hash($this->senha, PASSWORD_BCRYPT));
+        return $stmt->execute();
     }
 
     // Login do usuário
     public function login() {
-        // Verifique se a coluna 'id' está sendo recuperada da tabela
-        $query = "SELECT id, nome, senha FROM usuario WHERE email = :email LIMIT 1";
+        $query = "SELECT id_usuario, nome, senha FROM usuario WHERE email = :email LIMIT 1";
         $stmt = $this->conn->prepare($query);
         $stmt->bindParam(':email', $this->email);
         $stmt->execute();
@@ -46,13 +33,11 @@ class User {
         if ($stmt->rowCount() > 0) {
             $user = $stmt->fetch(PDO::FETCH_ASSOC);
             if (password_verify($this->senha, $user['senha'])) {
-                return $user;  // Aqui você pode acessar o 'id' e outros dados
+                return $user;  // Contém 'id', 'nome', e 'senha'
             }
         }
     
         return false;
     }
-    
 }
-
 ?>

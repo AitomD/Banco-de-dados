@@ -20,7 +20,7 @@
       <!-- Filmes favoritos vão aparecer aqui -->
     </div>
   </div>
-
+  <script src="../js/dropdown.js"></script>
   <script src="favoritos.js"></script>
 </body>
 </html>
