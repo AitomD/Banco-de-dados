@@ -25,16 +25,10 @@
           </div>
         </div>
 
-        <!-- Coluna 2 -->
-        <div>
-          <h5>Contato</h5>
-          <ul class="list-unstyled mb-0">
-            <li>Email: contato@exemplo.com</li>
-            <li>Telefone: (11) 1234-5678</li>
-            <li>Endereço: Rua Exemplo, 123</li>
-          </ul>
-        </div>
-
+        
+      </div>
+      <div class="text-center">
+        &copy; 2025 BlueStar. Todos os direitos reservados.
       </div>
     </div>
   </footer>

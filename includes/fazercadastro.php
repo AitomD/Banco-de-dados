@@ -1,24 +1,43 @@
 <?php
-require_once '../includes/db.php';
+require_once '../includes/db.php';  // Inclui o arquivo que contém a classe DB para conexão com o banco
 
-if ($_SERVER["REQUEST_METHOD"] === "POST") {
-    $nome = $_POST['nome'];
-    $email = $_POST['email'];
-    $senha = password_hash($_POST['senha'], PASSWORD_DEFAULT);
+class User {
+    private $conn;
+    
+    public $nome;
+    public $email;
+    public $senha;
 
-    // Verifica se o e-mail já existe
-    $stmt = $pdo->prepare("SELECT id FROM usuarios WHERE email = ?");
-    $stmt->execute([$email]);
+    // Construtor da classe que recebe a conexão do banco de dados
+    public function __construct($db) {
+        $this->conn = $db;
+    }
 
-    if ($stmt->rowCount() > 0) {
-        echo "E-mail já cadastrado.";
-    } else {
-        // Insere no banco
-        $stmt = $pdo->prepare("INSERT INTO usuarios (nome, email, senha) VALUES (?, ?, ?)");
-        $stmt->execute([$nome, $email, $senha]);
+    // Cadastro do usuário
+    public function register() {
+        $query = "INSERT INTO usuario (nome, email, senha) VALUES (:nome, :email, :senha)";
+        $stmt = $this->conn->prepare($query);
+        $stmt->bindParam(':nome', $this->nome);
+        $stmt->bindParam(':email', $this->email);
+        $stmt->bindParam(':senha', password_hash($this->senha, PASSWORD_BCRYPT));
+        return $stmt->execute();
+    }
 
-        header("Location: login.php");
-        exit;
+    // Login do usuário
+    public function login() {
+        $query = "SELECT id_usuario, nome, senha FROM usuario WHERE email = :email LIMIT 1";
+        $stmt = $this->conn->prepare($query);
+        $stmt->bindParam(':email', $this->email);
+        $stmt->execute();
+    
+        if ($stmt->rowCount() > 0) {
+            $user = $stmt->fetch(PDO::FETCH_ASSOC);
+            if (password_verify($this->senha, $user['senha'])) {
+                return $user;  // Contém 'id', 'nome', e 'senha'
+            }
+        }
+    
+        return false;
     }
 }
 ?>

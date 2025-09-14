@@ -50,7 +50,7 @@
         <div class="card h-100 bg-main text-light border-0">
           <img src="${serie.poster_path ? IMG_URL + serie.poster_path : "https://via.placeholder.com/300x400"}" class="card-img-top" alt="${serie.name}">
           <div class="card-body d-flex flex-column">
-            <span class="badge bg-success mb-2">Série</span>
+            <span class="badge bg-warning mb-2">Série</span>
             <h5 class="card-title">${serie.name}</h5>
             <p class="card-text">${serie.overview ? serie.overview.substring(0, 100) + "..." : "Sem descrição disponível."}</p>
             <div class="mt-auto">

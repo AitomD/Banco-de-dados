@@ -9,10 +9,9 @@
         integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link rel="stylesheet" href="../estilo/style.css">
-    <link rel="stylesheet" href="../estilo/form.css">
+    <link rel="stylesheet" href="../estilo/local.css">
     <link rel="shortcut icon" href="../Icons/fs.png" type="image/x-icon">
 </head>
-
 <body>
     <?php include 'navbar.php'; ?>
 
@@ -20,25 +19,25 @@
 
     <div class="container my-4">
         <!-- Gênero Ação -->
-        <h2 class="mb-3 text-light">Ação</h2>
+        <h2 class="mb-3 text-light text-center">Ação</h2>
         <div id="series-acao" class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4">
             <!-- Filmes de Ação (16 máx) serão carregados pelo JS -->
         </div>
 
         <!-- Gênero Comédia -->
-        <h2 class="mt-5 mb-3 text-light">Comédia</h2>
+        <h2 class="mt-5 mb-3 text-light text-center">Comédia</h2>
         <div id="series-comedia" class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4">
             <!-- Filmes de Comédia (16 máx) serão carregados pelo JS -->
         </div>
 
         <!-- Gênero Drama -->
-        <h2 class="mt-5 mb-3 text-light">Drama</h2>
+        <h2 class="mt-5 mb-3 text-light text-center">Drama</h2>
         <div id="series-drama" class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4">
             <!-- Filmes de Drama (16 máx) serão carregados pelo JS -->
         </div>
 
         <!-- Gênero Animação -->
-        <h2 class="mt-5 mb-3 text-light">Animação</h2>
+        <h2 class="mt-5 mb-3 text-light text-center">Animação</h2>
         <div id="series-animacao" class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4">
             <!-- Filmes de Animação (16 máx) serão carregados pelo JS -->
         </div>

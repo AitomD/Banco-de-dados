@@ -1,3 +1,7 @@
+<?php
+session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -10,6 +14,8 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <link rel="stylesheet" href="../estilo/style.css">
   <link rel="stylesheet" href="../estilo/form.css">
+  <link rel="stylesheet" href="../estilo/local.css">
+  <link rel="shortcut icon" href="../img/logo2.png" type="image/x-icon">
   <link rel="shortcut icon" href="../Icons/home.png" type="image/x-icon">
 </head>
 <style>
@@ -73,6 +79,9 @@
   text-shadow: 2px 2px 8px rgba(0,0,0,0.7);
 }
 
+/* sombra forte no carrossel */
+
+
 </style>
 
 <body>
@@ -81,11 +90,10 @@
 
   <!-- Conteudo do HOME -->
 
-  <div class="alto" style="height: 100px;"></div>
 
   <!-- Carrosel de fotos e notas -->
   
-  <div class="alt" style="height: 70px;";></div>
+  <div class="alt" style="height: 90px;";></div>
 
 <div class="container my-4">
   <div class="row">
@@ -128,8 +136,7 @@
 
     <!-- Cards abaixo -->
     <div class="col-12">
-      <h4 class="text-light text-center fs-3">A SEGUIR</h4>
-      <hr class="font-lightblue my-2">
+      <h2 class="text-light text-center">A SEGUIR</h2>
       <div class="row g-3">
         <!-- Card 1 -->
         <div class="col-md-4">

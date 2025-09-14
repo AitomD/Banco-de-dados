@@ -1,9 +1,15 @@
+<?php
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+?>
+
 <style>
     /* Em telas menores que 992px (breakpoint lg do Bootstrap) */
     @media (max-width: 991.98px) {
 
         /* Esconde os botões fora do collapse */
-        .navbar>.container-fluid>.auth-links {
+        .navbar>.container-fluid>.auth-links-desktop {
             display: none !important;
         }
 
@@ -16,8 +22,7 @@
             margin: 5px 0;
         }
 
-        /* Auth-links aparecem dentro do collapse */
-        #navbarSupportedContent .auth-links {
+        #navbarSupportedContent .auth-links-mobile {
             display: flex !important;
             flex-direction: column;
             align-items: center;
@@ -25,7 +30,6 @@
             margin-top: 15px;
         }
 
-        /* Estilização do collapse */
         #navbarSupportedContent {
             background-color: #021526;
             padding: 15px;
@@ -47,28 +51,32 @@
             color: white;
         }
 
-
-            .navbar-collapse {
-                margin-top: 15px;
-            }
-
-            .navbar {
-                height: auto;
-            }
+        .navbar-collapse {
+            margin-top: 15px;
         }
+
+        .navbar {
+            height: auto;
+            position: relative; 
+        }
+    }
+
+    /* Ícone do botão hamburguer em branco */
+    .navbar .navbar-toggler-icon {
+        background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='white' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+    }
 </style>
 
-<nav class="navbar navbar-expand-lg">
-    <div class="container-fluid mx-5">
+<nav class="navbar navbar-expand-lg  position-relative mb-5">
+    <div class="container-fluid px-3">
         <!-- Logo -->
         <a class="navbar-brand" href="../pages/home.php">
             <img src="../img/logo2.png" alt="logo" class="me-4">
         </a>
 
         <!-- Hamburguer -->
-        <button class="navbar-toggler text-light" type="button" data-bs-toggle="collapse"
-            data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-            aria-label="Toggle navigation">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
 
@@ -87,15 +95,53 @@
                 </li>
             </ul>
 
-            <!-- Botões Login e Cadastro -->
-            <div class="auth-links d-flex align-items-center gap-2">
-                <a href="login.php" class="text-light a-btn">LOGAR</a>
-                <a href="cadastro.php">
+            <!-- Auth Links - Versão MOBILE -->
+            <div class="auth-links-mobile d-lg-none">
+                <?php if (isset($_SESSION['usuario_nome'])): ?>
+                    <div class="dropdown text-center">
+                        <button class="btn btn-secondary dropdown-toggle w-100" type="button" id="dropdownMenuButtonMobile"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            <?php echo htmlspecialchars($_SESSION['usuario_nome']); ?>
+                        </button>
+                        <ul class="dropdown-menu w-100 text-center" aria-labelledby="dropdownMenuButtonMobile">
+                            <li><a class="dropdown-item" href="../pages/fav.php">Favoritos</a></li>
+                            <li><a class="dropdown-item" href="../pages/logout.php">Sair</a></li>
+                        </ul>
+                    </div>
+                <?php else: ?>
+                    <a href="../pages/login.php" class="text-light a-btn">LOGAR</a>
+                    <a href="../pages/cadastro.php">
+                        <button type="button" class="neon-btn">CADASTRAR</button>
+                    </a>
+                <?php endif; ?>
+            </div>
+        </div>
+
+        <!-- Auth Links - Versão DESKTOP -->
+        <div class="auth-links-desktop d-none d-lg-flex align-items-center gap-2">
+            <?php if (isset($_SESSION['usuario_nome'])): ?>
+                <div class="dropdown">
+                    <button class="neon-btn dropdown-toggle" type="button" id="dropdownMenuButtonDesktop"
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="fa-solid fa-user-circle fs-5"></i>
+                        <?php echo htmlspecialchars($_SESSION['usuario_nome']); ?>
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButtonDesktop">
+                        <li><a class="dropdown-item " href="../pages/fav.php">Favoritos</a></li>
+                        <li><a class="dropdown-item" href="../pages/logout.php">Sair</a></li>
+                    </ul>
+                </div>
+            <?php else: ?>
+                <a href="../pages/login.php" class="text-light a-btn">LOGAR</a>
+                <a href="../pages/cadastro.php">
                     <button type="button" class="neon-btn">CADASTRAR</button>
                 </a>
-            </div>
+            <?php endif; ?>
+
         </div>
     </div>
 </nav>
+<script src="../js/dropdown.js"></script>
+
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>

@@ -55,7 +55,6 @@ function preencherCarrossel(filmes) {
   });
 }
 
-
 function preencherCards(filmes) {
   const cardsContainer = document.querySelector(
     ".container .row .col-12 .row.g-3"
@@ -83,12 +82,20 @@ function preencherCards(filmes) {
              data-id="${filme.id}"></i>
         </div>
 
-        <button class="neon-btn mt-auto">Ver Mais</button>
+        <button class="neon-btn mt-auto" onclick="window.location.href='avaliar.php?id=${
+          filme.id
+        }'">Ver Mais</button>
       </div>
     </div>
   </div>
 `;
 
     cardsContainer.appendChild(cardDiv);
+     container.appendChild(col);
+
+      const botao = col.querySelector(".avaliar-btn");
+      botao.addEventListener("click", () => {
+        window.location.href = `avaliar.php?id=${filme.id}&type=movie`;
+      });
   });
 }
