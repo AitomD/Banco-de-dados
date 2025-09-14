@@ -12,6 +12,20 @@
     <link rel="stylesheet" href="../estilo/local.css">
     <link rel="shortcut icon" href="../Icons/fs.png" type="image/x-icon">
 </head>
+
+    <link rel="shortcut icon" href="../Icons/fs.png" type="image/x-icon">
+</head>
+<style>
+  body{
+  background-image: linear-gradient(rgba(0,0,0,0.9), rgba(0,0,0,0.4)), url('../img/capanova.jpg');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed; /* faz a imagem ficar fixa */
+  background-repeat: no-repeat; /* evita repetição da imagem */
+  color: white;
+}
+</style>
+
 <body>
 
     <?php include 'navbar.php'; ?>
@@ -47,22 +61,34 @@
         <div class="alto" style="height: 10px;"></div>
 
         <!-- Gênero Ação -->
+
         <h2 class="mb-3 text-light text-center ">Ação</h2>
+
+        <h2 class="mb-3 text-light ">Ação</h2>
         <div id="acao" class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4"></div>
 
         <!-- Gênero Comédia -->
         <div class="alto" style="height: 10px;"></div>
+
         <h2 class="mb-3 text-light text-center">Comédia</h2>
+
+        <h2 class="mb-3 text-light">Comédia</h2>
         <div id="comedia" class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4 mt-5"></div>
 
         <!-- Gênero Drama -->
         <div class="alto" style="height: 10px;"></div>   
+
         <h2 class="mb-3 text-light text-center">Drama</h2>
+
+        <h2 class="mb-3 text-light">Drama</h2>
         <div id="drama" class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4 mt-5"></div>
 
         <!-- Gênero Animação -->
         <div class="alto" style="height: 10px;"></div>   
+
         <h2 class="mb-3 text-light text-center">Animação</h2>
+
+        <h2 class="mb-3 text-light">Animação</h2>
         <div id="animacao" class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4 mt-5"></div>
     </div>
 

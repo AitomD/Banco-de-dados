@@ -58,6 +58,7 @@ if (session_status() === PHP_SESSION_NONE) {
         .navbar {
             height: auto;
             position: relative; 
+
         }
     }
 
@@ -67,7 +68,11 @@ if (session_status() === PHP_SESSION_NONE) {
     }
 </style>
 
+
 <nav class="navbar navbar-expand-lg  position-relative mb-5">
+
+<nav class="navbar navbar-expand-lg mb-5">
+
     <div class="container-fluid px-3">
         <!-- Logo -->
         <a class="navbar-brand" href="../pages/home.php">
