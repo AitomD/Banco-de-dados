@@ -14,7 +14,6 @@ session_start();
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <link rel="stylesheet" href="../estilo/style.css">
   <link rel="stylesheet" href="../estilo/form.css">
-
   <link rel="stylesheet" href="../estilo/local.css">
   <link rel="shortcut icon" href="../img/logo2.png" type="image/x-icon">
   <link rel="shortcut icon" href="../Icons/home.png" type="image/x-icon">
@@ -79,13 +78,6 @@ session_start();
   color: #fff;
   text-shadow: 2px 2px 8px rgba(0,0,0,0.7);
 }
-body{
-  background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('../img/capanova.jpg');
-  background-size: cover;
-  background-position: center;
-}
-/* sombra forte no carrossel */
-
 
 /* sombra forte no carrossel */
 
