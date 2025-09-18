@@ -2,12 +2,10 @@
 session_start();
 require_once '../includes/fazercadastro.php'; // Incluir a classe User para login
 
-// Variável de erro para exibir mensagens de erro caso o login falhe
 $error = "";
 
 // Verifica se o formulário foi enviado
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    // Captura os dados do formulário
     $email = $_POST['email'];
     $senha = $_POST['senha'];
 
@@ -15,17 +13,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $db = new DB();
     $user = new User($db->getConnection());
 
-    // Atribui os dados à classe User
     $user->email = $email;
     $user->senha = $senha;
 
-    // Tenta fazer o login
     $loggedUser = $user->login();
     if ($loggedUser) {
-        // Se o login for bem-sucedido, armazena os dados do usuário na sessão
-        $_SESSION['usuario_id'] = $loggedUser['id'];
-        $_SESSION['usuario_nome'] = $loggedUser['nome'];  // Armazena o nome para mostrar na navbar
-        header('Location: home.php');  // Redireciona para a página inicial
+        // Salva corretamente a sessão com id_usuario
+        $_SESSION['id_usuario'] = $loggedUser['id_usuario'];
+        $_SESSION['usuario_nome'] = $loggedUser['nome'];
+        header('Location: home.php');
         exit();
     } else {
         $error = "Credenciais inválidas!";
@@ -40,8 +36,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Logar</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link rel="stylesheet" href="../estilo/form.css">
     <link rel="stylesheet" href="../estilo/style.css">
@@ -50,38 +45,40 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 <body>
     <div style="height:80px;">
-        <a href="../pages/home.php" class="ms-5 "><img src="../img/logo2.png" alt="" style="height:150px;"></a>
+        <a href="../pages/home.php" class="ms-5">
+            <img src="../img/logo2.png" alt="" style="height:150px;">
+        </a>
     </div>
+
     <div class="container">
         <div class="right">
             <div class="glass">
                 <h2>Faça Login</h2>
-                <!-- Formulário de Login -->
                 <form method="POST" action="login.php">
-                    <!-- Campo E-mail -->
                     <div class="input-box">
                         <i class="fa-solid fa-envelope"></i>
                         <input type="text" name="email" placeholder="E-mail" required>
                     </div>
-                    <!-- Campo Senha -->
+
                     <div class="input-box">
                         <i class="fa fa-lock"></i>
                         <input type="password" name="senha" placeholder="Senha" id="password" required>
                         <span class="toggle-password fa-solid fa-eye-slash"></span>
                     </div>
 
-                    <!-- Botão de Login -->
                     <div class="d-flex justify-content-center">
                         <button type="submit" class="neon-btn fw-bold">Entrar</button>
                     </div>
                 </form>
 
-                <!-- Exibe erro caso o login falhe -->
-                <?php
-                if (!empty($error)) {
-                    echo "<p style='color: red; text-align: center;'>$error</p>";
-                }
-                ?>
+                <?php if (!empty($error)) { ?>
+                    <p style='color: red; text-align: center;'><?= $error ?></p>
+                <?php } ?>
+
+                <!-- Botão de cadastro -->
+                <div class="d-flex justify-content-center mt-3">
+                    <a href="cadastro.php" class="neon-btn fw-bold">Criar conta</a>
+                </div>
             </div>
         </div>
     </div>
@@ -92,20 +89,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             const password = document.querySelector('#password');
 
             togglePassword.addEventListener('click', function () {
-                // Alterna o tipo do input entre 'password' e 'text'
                 const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
                 password.setAttribute('type', type);
-
-                // Alterna a classe do ícone para mudar entre olho aberto e fechado
                 this.classList.toggle('fa-eye');
                 this.classList.toggle('fa-eye-slash');
             });
         });
     </script>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q"
-        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>
