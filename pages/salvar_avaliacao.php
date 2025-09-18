@@ -1,19 +1,22 @@
 <?php
 session_start();
-if(!isset($_SESSION['id_usuario'])){
-    echo "Erro: você precisa estar logado.";
+
+// Verifica se o usuário está logado
+if (!isset($_SESSION['id_usuario'])) {
+    echo "Você precisa estar logado para avaliar!";
     exit;
 }
 
-require_once '../includes/db.php'; // <--- Inclua a conexão com o banco
+require_once '../includes/db.php'; // conexão em $conn (PDO)
 
-$id_usuario = $_SESSION['id_usuario'];
-$id_filmeserie = $_POST['id_filmeserie'];
-$nota = $_POST['nota'];
-$comentario = $_POST['comentario'];
+// Pega os dados do POST
+$id_usuario   = $_SESSION['id_usuario'];
+$id_filmeserie = $_POST['id_filmeserie'] ?? null;
+$nota         = $_POST['nota'] ?? null;
+$comentario   = trim($_POST['comentario'] ?? "");
 
-// Verifica campos
-if($id_usuario && $id_filmeserie && $nota && !empty($comentario)) {
+// Validação básica
+if ($id_usuario && $id_filmeserie && $nota && !empty($comentario)) {
     try {
         $sql = "INSERT INTO avaliacao (id_usuario, id_filmeserie, nota, comentario, dt_avaliacao) 
                 VALUES (:id_usuario, :id_filmeserie, :nota, :comentario, NOW())";
@@ -24,13 +27,13 @@ if($id_usuario && $id_filmeserie && $nota && !empty($comentario)) {
         $stmt->bindParam(':nota', $nota, PDO::PARAM_INT);
         $stmt->bindParam(':comentario', $comentario, PDO::PARAM_STR);
 
-        if($stmt->execute()){
+        if ($stmt->execute()) {
             echo "Avaliação enviada com sucesso!";
         } else {
             echo "Erro ao enviar avaliação!";
         }
-    } catch(PDOException $e) {
-        echo "Erro: " . $e->getMessage();
+    } catch (PDOException $e) {
+        echo "Erro no banco: " . $e->getMessage();
     }
 } else {
     echo "Preencha todos os campos antes de enviar!";

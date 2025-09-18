@@ -77,8 +77,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
                 <!-- Botão de cadastro -->
                 <div class="d-flex justify-content-center mt-3">
-                    <a href="cadastro.php" class="neon-btn fw-bold">Criar conta</a>
-                </div>
+    <p class="mb-0">
+        Não tem uma conta? 
+        <a href="cadastro.php" class="fw-bold text-decoration-underline">Cadastre-se</a> agora!
+    </p>
+</div>
+
             </div>
         </div>
     </div>

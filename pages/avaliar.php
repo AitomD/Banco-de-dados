@@ -1,12 +1,3 @@
-<?php
-session_start();
-
-// Se o usuário não estiver logado, redireciona para a página de cadastro
-if(!isset($_SESSION['id_usuario'])){
-    echo "<script>alert('Você precisa estar logado para avaliar!'); window.location.href='login.php';</script>";
-    exit;
-}
-?>
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -312,12 +303,6 @@ function verificarFavorito(data) {
 // Enviar avaliação para o PHP
 document.getElementById('enviar').addEventListener('click', () => {
     const comentario = document.getElementById('comentario').value;
-
-    if(notaSelecionada === 0 || comentario.trim() === "") {
-        alert("Escolha uma nota e escreva um comentário!");
-        return;
-    }
-
     const id_filmeserie = id;
 
     fetch('salvar_avaliacao.php', {
@@ -327,6 +312,17 @@ document.getElementById('enviar').addEventListener('click', () => {
     })
     .then(res => res.text())
     .then(resposta => {
+        if (resposta.includes("logado")) {
+            alert("Você precisa estar logado para avaliar!");
+            window.location.href = "login.php";
+            return;
+        }
+
+        if (resposta.includes("Preencha todos os campos")) {
+            alert("Escolha uma nota e escreva um comentário!");
+            return;
+        }
+
         alert(resposta);
         document.getElementById('comentario').value = "";
         notaSelecionada = 0;

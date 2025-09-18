@@ -1,8 +1,3 @@
-<?php
-if (session_status() === PHP_SESSION_NONE) {
-    session_start();
-}
-?>
 
 <style>
     /* Em telas menores que 992px (breakpoint lg do Bootstrap) */
