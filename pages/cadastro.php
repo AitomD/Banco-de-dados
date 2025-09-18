@@ -45,7 +45,7 @@
 
                     <div class="input-box">
                         <i class="fa-solid fa-phone"></i>
-                        <input type="text" name="telefone" placeholder="Telefone">
+                        <input type="text" name="telefone" id="telefone" placeholder="Telefone">
                     </div>
 
                     <div class="d-flex justify-content-center">
@@ -61,11 +61,11 @@
 
 
     <script>
-        document.addEventListener('DOMContentLoaded', function () {
+        document.addEventListener('DOMContentLoaded', function() {
             const togglePassword = document.querySelector('.toggle-password');
             const password = document.querySelector('#password');
 
-            togglePassword.addEventListener('click', function () {
+            togglePassword.addEventListener('click', function() {
                 // Alterna o tipo do input entre 'password' e 'text'
                 const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
                 password.setAttribute('type', type);
@@ -76,6 +76,16 @@
             });
         });
     </script>
+
+    <!-- Script para mascara de telefone -->
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script src="../js/jquery.mask.min.js"></script>
+
+    <script>
+  $(document).ready(function(){
+    $('#telefone').mask('(00) 00000-0000');
+  });
+</script>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q"
