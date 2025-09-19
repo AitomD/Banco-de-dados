@@ -57,7 +57,7 @@
             <div class="mt-auto">
               <i class="fa-solid fa-star text-warning"></i> ${filme.vote_average.toFixed(1)}
             </div>
-            <button class="btn btn-primary avaliar-btn mt-2">Avaliar</button>
+            <button class="neon-btn avaliar-btn mt-2">Avaliar</button>
           </div>
         </div>
       `;

@@ -44,9 +44,6 @@ body {
     box-shadow: 0 0px  20px rgba(3, 3, 3, 0.322);
 }
 
-
-
-
 h2 {
     margin-bottom: 20px;
     font-size: 1.8rem;
@@ -114,4 +111,25 @@ h2 {
 /* Hover */
 .custom-dropdown .dropdown-item:hover {
     background-color: #032037;
+}
+
+.movie-title {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+
+.movie-synopsis {
+  color: #f1f1f1;
+  font-size: 0.9rem;
+  line-height: 1.4;
+  opacity: 0.85;
+  margin-top: 0.5rem;
+}
+
+.card {
+  border-radius: 12px;
+  overflow: hidden;
 }

@@ -1,9 +1,3 @@
-<?php
-if (session_status() === PHP_SESSION_NONE) {
-    session_start();
-}
-?>
-
 <style>
     /* Em telas menores que 992px (breakpoint lg do Bootstrap) */
     @media (max-width: 991.98px) {
@@ -57,8 +51,7 @@ if (session_status() === PHP_SESSION_NONE) {
 
         .navbar {
             height: auto;
-            position: relative; 
-
+            position: relative;
         }
     }
 
@@ -68,11 +61,7 @@ if (session_status() === PHP_SESSION_NONE) {
     }
 </style>
 
-
 <nav class="navbar navbar-expand-lg  position-relative mb-5">
-
-<nav class="navbar navbar-expand-lg mb-5">
-
     <div class="container-fluid px-3">
         <!-- Logo -->
         <a class="navbar-brand" href="../pages/home.php">
@@ -125,12 +114,12 @@ if (session_status() === PHP_SESSION_NONE) {
         <!-- Auth Links - Versão DESKTOP -->
         <div class="auth-links-desktop d-none d-lg-flex align-items-center gap-2">
             <?php if (isset($_SESSION['usuario_nome'])): ?>
-                <div class="dropdown">
-                    <button class="neon-btn dropdown-toggle" type="button" id="dropdownMenuButtonDesktop"
-                        data-bs-toggle="dropdown" aria-expanded="false">
+                <div class="dropdown mt-2">
+                    <a class="a-btn dropdown-toggle" type="button" id="dropdownMenuButtonDesktop" data-bs-toggle="dropdown"
+                        aria-expanded="false">
                         <i class="fa-solid fa-user-circle fs-5"></i>
                         <?php echo htmlspecialchars($_SESSION['usuario_nome']); ?>
-                    </button>
+                    </a>
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButtonDesktop">
                         <li><a class="dropdown-item " href="../pages/fav.php">Favoritos</a></li>
                         <li><a class="dropdown-item" href="../pages/logout.php">Sair</a></li>
