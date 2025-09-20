@@ -1,7 +1,3 @@
-<<<<<<< HEAD
-=======
-
->>>>>>> 108a33b2bb7d52d53d732e3cb060c6ab69d49e73
 <style>
     /* Em telas menores que 992px (breakpoint lg do Bootstrap) */
     @media (max-width: 991.98px) {
