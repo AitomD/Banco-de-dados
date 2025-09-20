@@ -68,6 +68,7 @@
       botao.addEventListener("click", () => {
         window.location.href = `avaliar.php?id=${filme.id}&type=movie`;
       });
+      
     });
   }
 })();

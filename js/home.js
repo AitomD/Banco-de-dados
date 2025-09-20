@@ -12,7 +12,7 @@ function carregarFilmesPopulares() {
     .then((res) => res.json())
     .then((data) => {
       preencherCarrossel(data.results.slice(0, 5)); // carrossel principal com 5 filmes
-      preencherCards(data.results.slice(0, 6)); // cards abaixo do carrossel com 6 filmes
+      preencherCards(data.results.slice(0, 9)); // cards abaixo do carrossel com 9 filmes
     })
     .catch((err) => console.error("Erro ao carregar filmes:", err));
 }
@@ -27,7 +27,6 @@ function preencherCarrossel(filmes) {
     const item = document.createElement("div");
     item.className = `carousel-item ${index === 0 ? "active" : ""}`;
 
-    // Imagem menor e com altura fixa
     item.innerHTML = `
       <div style="position: relative; height: 500px; overflow: hidden; border-radius: 10px;">
         <img src="${IMG_URL}${filme.backdrop_path}" 
@@ -43,7 +42,7 @@ function preencherCarrossel(filmes) {
           text-align: center;
           padding: 10px 0;
           font-size: 1.5rem;
-          leter-spacing:1px;
+          letter-spacing: 1px;
           font-weight: bold;
         ">
           ${filme.title}
@@ -56,9 +55,7 @@ function preencherCarrossel(filmes) {
 }
 
 function preencherCards(filmes) {
-  const cardsContainer = document.querySelector(
-    ".container .row .col-12 .row.g-3"
-  );
+  const cardsContainer = document.querySelector(".container .row.g-3");
   cardsContainer.innerHTML = "";
 
   filmes.forEach((filme) => {
@@ -66,36 +63,46 @@ function preencherCards(filmes) {
     cardDiv.className = "col-md-4";
 
     cardDiv.innerHTML = `
-  <div style="display: flex; justify-content: center; width: 100%; margin-top:10px;">
-    <div class="card text-light border-0 h-100" style="width: 18rem; display: flex; flex-direction: column;">
-      <img src="${IMG_URL}${filme.poster_path}" alt="${filme.title}" 
-           class="card-img-top img-fluid" 
-           style="object-fit: fill; height: 250px;">
-      <div class="card-body bg-main d-flex flex-column" style="flex: 1; display: flex; flex-direction: column; justify-content: space-between;">
-        <h5 class="card-title" style="min-height: 3em;">${filme.title}</h5>
-        
-        <div class="my-4">
-          <i class="fa-solid fa-star text-warning"></i> 
-          <span>${filme.vote_average.toFixed(1)}</span>
-          <i class="fa-regular fa-star text-light rate-movie mx-2" 
-             style="cursor: pointer;" 
-             data-id="${filme.id}"></i>
+      <div style="display: flex; justify-content: center; width: 100%; margin-top:10px;">
+        <div class="card text-light border-0 h-100" style="width: 18rem; display: flex; flex-direction: column;">
+          <img src="${IMG_URL}${filme.poster_path}" alt="${filme.title}" 
+               class="card-img-top img-fluid" 
+               style="object-fit: fill; height: 250px;">
+          <div class="card-body bg-main d-flex flex-column" style="flex: 1; display: flex; flex-direction: column; justify-content: space-between;">
+            <h5 class="card-title" style="min-height: 3em;">${filme.title}</h5>
+            
+            <div class="my-4">
+              <i class="fa-solid fa-star text-warning"></i> 
+              <span>${filme.vote_average.toFixed(1)}</span>
+            </div>
+          </div>
         </div>
-
-        <button class="neon-btn mt-auto" onclick="window.location.href='avaliar.php?id=${
-          filme.id
-        }'">Ver Mais</button>
       </div>
-    </div>
-  </div>
-`;
+    `;
 
+    // Botão Avaliar
+    const avaliarBtn = document.createElement('button');
+    avaliarBtn.className = "neon-btn mt-auto";
+    avaliarBtn.textContent = "Avaliar";
+    avaliarBtn.onclick = () => {
+      window.location.href = `avaliar?id=${filme.id}&type=movie`;
+    };
+
+    const cardBody = cardDiv.querySelector('.card-body');
+    cardBody.appendChild(avaliarBtn);
+    
     cardsContainer.appendChild(cardDiv);
-     container.appendChild(col);
-
-      const botao = col.querySelector(".avaliar-btn");
-      botao.addEventListener("click", () => {
-        window.location.href = `avaliar.php?id=${filme.id}&type=movie`;
-      });
   });
+
+  // ------------------ Botão final: Ver todos os filmes ------------------
+  const verMaisDiv = document.createElement("div");
+  verMaisDiv.className = "col-12 text-center mt-4";
+
+  verMaisDiv.innerHTML = `
+    <a class="a-btn my-5" href="filmes">
+      Ver Todos os Filmes
+    </a>
+  `;
+
+  cardsContainer.appendChild(verMaisDiv);
 }

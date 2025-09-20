@@ -1,49 +1,3 @@
-<main class="container">
-    
-    
-    <div class="alto" style="height: 50px;"></div>
-    
-    <div class="avaliar-container">
-        <img class="poster" src="https://via.placeholder.com/250x375" alt="Capa do filme">
-    
-        <div class="info-container">
-            <h3 id="titulo-filme" class="text-light">Título do Filme</h3>
-            <p id="sinopse" class="text-light">Breve sinopse do filme vai aqui. Resuma em 2-3 linhas.</p>
-    
-            <div class="trailer-container">
-                <h4 class="text-center text-light">Trailer</h4>
-                <iframe id="trailer-video" src="" frameborder="0" allow="autoplay; encrypted-media"
-                    allowfullscreen></iframe>
-            </div>
-    
-            <div class="mt-4">
-                <h4 class="text-light">Sua Avaliação</h4>
-                <div id="estrelas" class="mb-2">
-                    <?php for ($i = 1; $i <= 10; $i++): ?>
-                        <span class="estrela" data-valor="<?= $i ?>">&#9733;</span>
-                    <?php endfor; ?>
-                </div>
-    
-                <textarea id="comentario" rows="4" placeholder="Deixe seu comentário..."></textarea>
-                <button class="neon-btn mt-3" id="enviar">Enviar Avaliação</button>
-                <button class="neon-btn ms-3" id="btn-coracao" style="transform:scale(1.3);">
-                    <i id="icone-coracao" class="fa-regular fa-heart"></i>
-                </button>
-            </div>
-        </div>
-    </div>
-    
-    <div class="mt-5" id="avaliacoes-container">
-        <h4 class="text-center text-light">Avaliações de outros usuários</h4>
-        <div id="lista-avaliacoes">
-            <p class="text-light">Carregando avaliações...</p>
-        </div>
-    </div>
-    
-    <div class="alto" style="height: 100px;"></div>
-</main>
-
-<script>
 const API_KEY = "d2b2038bd7bc5db74623478537729164";
 const IMG_URL = "https://image.tmdb.org/t/p/w500";
 
@@ -51,7 +5,6 @@ const urlParams = new URLSearchParams(window.location.search);
 const id = urlParams.get('id');
 const type = urlParams.get('type') || 'movie';
 
-// -------------------- Carregar detalhes do filme --------------------
 async function carregarFilmeSerie() {
     if (!id) return;
 
@@ -86,7 +39,8 @@ async function carregarFilmeSerie() {
     }
 }
 
-// -------------------- Avaliações --------------------
+document.addEventListener('DOMContentLoaded', carregarFilmeSerie);
+
 const estrelas = document.querySelectorAll('.estrela');
 let notaSelecionada = 0;
 
@@ -107,7 +61,6 @@ function atualizarEstrelas() {
     });
 }
 
-// -------------------- Favoritos --------------------
 const btnCoracao = document.getElementById("btn-coracao");
 const iconeCoracao = document.getElementById("icone-coracao");
 
@@ -145,27 +98,10 @@ function verificarFavorito(data) {
     }
 }
 
-// -------------------- Função para carregar avaliações --------------------
-async function carregarAvaliacoes() {
-    const lista = document.getElementById('lista-avaliacoes');
-    try {
-        const res = await fetch(`buscar_avaliacoes.php?id_filmeserie=${id}`);
-        lista.innerHTML = await res.text();
-    } catch (err) {
-        lista.innerHTML = "<p>Erro ao carregar avaliações.</p>";
-        console.error(err);
-    }
-}
-
-// -------------------- Enviar avaliação --------------------
+// Enviar avaliação para o PHP
 document.getElementById('enviar').addEventListener('click', () => {
     const comentario = document.getElementById('comentario').value;
     const id_filmeserie = id;
-
-    if (!notaSelecionada || !comentario.trim()) {
-        alert("Escolha uma nota e escreva um comentário!");
-        return;
-    }
 
     fetch('salvar_avaliacao.php', {
         method: 'POST',
@@ -174,20 +110,21 @@ document.getElementById('enviar').addEventListener('click', () => {
     })
     .then(res => res.text())
     .then(resposta => {
-        alert(resposta);
-        if (!resposta.includes("Você já avaliou")) {
-            document.getElementById('comentario').value = "";
-            notaSelecionada = 0;
-            atualizarEstrelas();
-            carregarAvaliacoes(); // Atualiza a lista de avaliações
+        if (resposta.includes("logado")) {
+            alert("Você precisa estar logado para avaliar!");
+            window.location.href = "login.php";
+            return;
         }
+
+        if (resposta.includes("Preencha todos os campos")) {
+            alert("Escolha uma nota e escreva um comentário!");
+            return;
+        }
+
+        alert(resposta);
+        document.getElementById('comentario').value = "";
+        notaSelecionada = 0;
+        atualizarEstrelas();
     })
     .catch(err => console.error(err));
 });
-
-// -------------------- DOMContentLoaded --------------------
-document.addEventListener('DOMContentLoaded', () => {
-    carregarFilmeSerie();
-    carregarAvaliacoes(); // Carrega avaliações ao abrir a página
-});
-</script>

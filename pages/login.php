@@ -1,29 +1,31 @@
 <?php
 session_start();
-require_once '../includes/fazercadastro.php'; // Incluir a classe User para login
+require_once '../includes/fazercadastro.php';
 
-$error = "";
+$error = '';
 
-// Verifica se o formulário foi enviado
+// Verifica se o formulário foi enviado com dados POST
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $email = $_POST['email'];
     $senha = $_POST['senha'];
 
-    // Conecta ao banco de dados
+    // Conecta ao banco de dados e faz o login
     $db = new DB();
     $user = new User($db->getConnection());
-
     $user->email = $email;
     $user->senha = $senha;
-
     $loggedUser = $user->login();
+
     if ($loggedUser) {
-        // Salva corretamente a sessão com id_usuario
+        // Login bem-sucedido
         $_SESSION['id_usuario'] = $loggedUser['id_usuario'];
         $_SESSION['usuario_nome'] = $loggedUser['nome'];
-        header('Location: home.php');
+
+        // Redireciona para a página principal usando o sistema de roteamento
+        header('Location: ../index.php');
         exit();
     } else {
+        // Login falhou
         $error = "Credenciais inválidas!";
     }
 }
@@ -36,7 +38,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Logar</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link rel="stylesheet" href="../estilo/form.css">
     <link rel="stylesheet" href="../estilo/style.css">
@@ -45,7 +48,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 <body>
     <div style="height:80px;">
-        <a href="../pages/home.php" class="ms-5">
+        <a href="../index.php" class="ms-5">
             <img src="../img/logo2.png" alt="" style="height:150px;">
         </a>
     </div>
@@ -77,11 +80,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
                 <!-- Botão de cadastro -->
                 <div class="d-flex justify-content-center mt-3">
-    <p class="mb-0">
-        Não tem uma conta? 
-        <a href="cadastro.php" class="fw-bold text-decoration-underline">Cadastre-se</a> agora!
-    </p>
-</div>
+                    <p class="mb-0">
+                        Não tem uma conta?
+                        <a href="cadastro.php" class="fw-bold text-decoration-underline">Cadastre-se</a> agora!
+                    </p>
+                </div>
 
             </div>
         </div>

@@ -1,7 +1,3 @@
-<<<<<<< HEAD
-=======
-
->>>>>>> 108a33b2bb7d52d53d732e3cb060c6ab69d49e73
 <style>
     /* Em telas menores que 992px (breakpoint lg do Bootstrap) */
     @media (max-width: 991.98px) {
@@ -55,7 +51,7 @@
 
         .navbar {
             height: auto;
-            position: relative; 
+            position: relative;
 
         }
     }
@@ -69,8 +65,8 @@
 <nav class="navbar navbar-expand-lg  position-relative mb-5">
     <div class="container-fluid px-3">
         <!-- Logo -->
-        <a class="navbar-brand" href="../pages/home.php">
-            <img src="../img/logo2.png" alt="logo" class="me-4">
+        <a class="navbar-brand" href="index.php">
+            <img src="img/logo2.png" alt="logo" class="me-4">
         </a>
 
         <!-- Hamburguer -->
@@ -84,13 +80,13 @@
             <!-- Links centrais -->
             <ul class="navbar-nav d-flex align-items-center gap-2 mx-auto">
                 <li class="nav-item mx-2">
-                    <a href="../pages/home.php" class="a-btn">HOME</a>
+                    <a href="index.php" class="a-btn">HOME</a>
                 </li>
                 <li class="nav-item mx-2">
-                    <a href="../pages/filmes.php" class="a-btn">FILMES</a>
+                    <a href="filmes" class="a-btn">FILMES</a>
                 </li>
                 <li class="nav-item mx-2">
-                    <a href="../pages/series.php" class="a-btn">SÉRIES</a>
+                    <a href="series" class="a-btn">SÉRIES</a>
                 </li>
             </ul>
 
@@ -103,13 +99,13 @@
                             <?php echo htmlspecialchars($_SESSION['usuario_nome']); ?>
                         </button>
                         <ul class="dropdown-menu w-100 text-center" aria-labelledby="dropdownMenuButtonMobile">
-                            <li><a class="dropdown-item" href="../pages/fav.php">Favoritos</a></li>
-                            <li><a class="dropdown-item" href="../pages/logout.php">Sair</a></li>
+                            <li><a class="dropdown-item" href="fav">Favoritos</a></li>
+                            <li><a class="dropdown-item" href="logout">Sair</a></li>
                         </ul>
                     </div>
                 <?php else: ?>
-                    <a href="../pages/login.php" class="text-light a-btn">LOGAR</a>
-                    <a href="../pages/cadastro.php">
+                    <a href="login.php" class="text-light a-btn">LOGAR</a>
+                    <a href="cadastro.php">
                         <button type="button" class="neon-btn">CADASTRAR</button>
                     </a>
                 <?php endif; ?>
@@ -126,18 +122,18 @@
                         <?php echo htmlspecialchars($_SESSION['usuario_nome']); ?>
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButtonDesktop">
-                        <li><a class="dropdown-item " href="../pages/fav.php">Favoritos</a></li>
-                        <li><a class="dropdown-item" href="../pages/logout.php">Sair</a></li>
+                        <li><a class="dropdown-item" href="fav">Favoritos</a></li>
+                        <li><a class="dropdown-item" href="logout">Sair</a></li>
                     </ul>
                 </div>
             <?php else: ?>
-                <a href="../pages/login.php" class="text-light a-btn">LOGAR</a>
-                <a href="../pages/cadastro.php">
+                <a href="pages/login.php" class="text-light a-btn">LOGAR</a>
+                <a href="pages/cadastro.php">
                     <button type="button" class="neon-btn">CADASTRAR</button>
                 </a>
             <?php endif; ?>
-
         </div>
+
     </div>
 </nav>
 <script src="../js/dropdown.js"></script>
