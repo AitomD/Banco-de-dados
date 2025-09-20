@@ -25,9 +25,8 @@
             </div>
         </div>
     </div>
-<<<<<<< HEAD
+
 </main>
-=======
 
     <!-- Cards abaixo -->
     <div class="col-12">
@@ -72,8 +71,6 @@
     </div>
   </div>
 </div>
-        
-    <?php include 'footer.php'; ?>
 
   <!-- Script para tooltip dos icones footer -->
   <script>
@@ -91,4 +88,4 @@
 </body>
 
 </html>
->>>>>>> de5453478d63bdb6c54edcbc7eae37ec32d411ca
+
