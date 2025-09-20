@@ -1,6 +1,4 @@
-<?php
-session_start();
-?>
+
 
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -172,17 +170,17 @@ session_start();
     <img class="poster" src="https://via.placeholder.com/250x375" alt="Capa do filme">
 
     <div class="info-container">
-        <h3 id="titulo-filme">Título do Filme</h3>
-        <p id="sinopse">Breve sinopse do filme vai aqui. Resuma em 2-3 linhas.</p>
+        <h3 id="titulo-filme" class="text-light">Título do Filme</h3>
+        <p id="sinopse" class="text-light">Breve sinopse do filme vai aqui. Resuma em 2-3 linhas.</p>
 
         <div class="trailer-container">
-            <h4 class="text-center">Trailer</h4>
+            <h4 class="text-center text-light">Trailer</h4>
             <iframe id="trailer-video" src="" frameborder="0" allow="autoplay; encrypted-media"
                 allowfullscreen></iframe>
         </div>
 
         <div class="mt-4">
-            <h4>Sua Avaliação</h4>
+            <h4 class="text-light">Sua Avaliação</h4>
             <div id="estrelas" class="mb-2">
                 <?php for ($i = 1; $i <= 10; $i++): ?>
                     <span class="estrela" data-valor="<?= $i ?>">&#9733;</span>

@@ -66,7 +66,7 @@
 
       const botao = col.querySelector(".avaliar-btn");
       botao.addEventListener("click", () => {
-        window.location.href = `avaliar.php?id=${filme.id}&type=movie`;
+        window.location.href = `avaliar?id=${filme.id}&type=movie`;
       });
       
     });
