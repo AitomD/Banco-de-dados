@@ -23,11 +23,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
         <!-- Botões -->
         <div class="mt-auto d-flex justify-content-between">
-          <a href="avaliar.php?id=${filme.id}&type=${filme.type}" 
-             class="btn btn-primary btn-sm rounded-pill">
+          <a href="avaliar?id=${filme.id}&type=${filme.type}" 
+             class="btn btn-primary btn-sm ">
             Ver detalhes
           </a>
-          <button class="btn btn-danger btn-sm rounded-pill btn-remover" 
+          <button class="btn btn-danger btn-sm btn-remover" 
                   data-id="${filme.id}" data-type="${filme.type}">
             Remover
           </button>

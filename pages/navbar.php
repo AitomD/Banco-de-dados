@@ -94,47 +94,46 @@
             <div class="auth-links-mobile d-lg-none">
                 <?php if (isset($_SESSION['usuario_nome'])): ?>
                     <div class="dropdown text-center">
-                        <button class="btn btn-secondary dropdown-toggle w-100" type="button" id="dropdownMenuButtonMobile"
+                        <a class="a-btn dropdown-toggle w-100" href="#" role="button" id="dropdownMenuButtonMobile"
                             data-bs-toggle="dropdown" aria-expanded="false">
                             <?php echo htmlspecialchars($_SESSION['usuario_nome']); ?>
-                        </button>
+                        </a>
                         <ul class="dropdown-menu w-100 text-center" aria-labelledby="dropdownMenuButtonMobile">
                             <li><a class="dropdown-item" href="fav">Favoritos</a></li>
                             <li><a class="dropdown-item" href="logout">Sair</a></li>
                         </ul>
                     </div>
                 <?php else: ?>
-                    <a href="login.php" class="text-light a-btn">LOGAR</a>
-                    <a href="cadastro.php">
+                    <a href="pages/login.php" class="text-light a-btn">LOGAR</a>
+                    <a href="pages/cadastro.php">
                         <button type="button" class="neon-btn">CADASTRAR</button>
                     </a>
                 <?php endif; ?>
             </div>
-        </div>
 
-        <!-- Auth Links - Versão DESKTOP -->
-        <div class="auth-links-desktop d-none d-lg-flex align-items-center gap-2">
-            <?php if (isset($_SESSION['usuario_nome'])): ?>
-                <div class="dropdown mt-2">
-                    <a class="a-btn dropdown-toggle" type="button" id="dropdownMenuButtonDesktop" data-bs-toggle="dropdown"
-                        aria-expanded="false">
-                        <i class="fa-solid fa-user-circle fs-5"></i>
-                        <?php echo htmlspecialchars($_SESSION['usuario_nome']); ?>
+            <!-- Auth Links - Versão DESKTOP -->
+            <div class="auth-links-desktop d-none d-lg-flex align-items-center gap-2">
+                <?php if (isset($_SESSION['usuario_nome'])): ?>
+                    <div class="dropdown mt-2">
+                        <a class="a-btn dropdown-toggle" type="button" id="dropdownMenuButtonDesktop"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fa-solid fa-user-circle fs-5"></i>
+                            <?php echo htmlspecialchars($_SESSION['usuario_nome']); ?>
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButtonDesktop">
+                            <li><a class="dropdown-item" href="fav">Favoritos</a></li>
+                            <li><a class="dropdown-item" href="logout">Sair</a></li>
+                        </ul>
+                    </div>
+                <?php else: ?>
+                    <a href="pages/login.php" class="text-light a-btn">LOGAR</a>
+                    <a href="pages/cadastro.php">
+                        <button type="button" class="neon-btn">CADASTRAR</button>
                     </a>
-                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButtonDesktop">
-                        <li><a class="dropdown-item" href="fav">Favoritos</a></li>
-                        <li><a class="dropdown-item" href="logout">Sair</a></li>
-                    </ul>
-                </div>
-            <?php else: ?>
-                <a href="pages/login.php" class="text-light a-btn">LOGAR</a>
-                <a href="pages/cadastro.php">
-                    <button type="button" class="neon-btn">CADASTRAR</button>
-                </a>
-            <?php endif; ?>
-        </div>
+                <?php endif; ?>
+            </div>
 
-    </div>
+        </div>
 </nav>
 <script src="../js/dropdown.js"></script>
 

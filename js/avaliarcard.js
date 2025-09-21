@@ -5,6 +5,7 @@ const urlParams = new URLSearchParams(window.location.search);
 const id = urlParams.get('id');
 const type = urlParams.get('type') || 'movie';
 
+// ---------------- Carregar detalhes do filme/série ----------------
 async function carregarFilmeSerie() {
     if (!id) return;
 
@@ -17,6 +18,7 @@ async function carregarFilmeSerie() {
         document.getElementById('titulo-filme').textContent = data.title || data.name;
         document.getElementById('sinopse').textContent = data.overview || 'Sem descrição disponível.';
 
+        // Trailer
         const videosRes = await fetch(`https://api.themoviedb.org/3/${type}/${id}/videos?api_key=${API_KEY}&language=pt-BR`);
         const videosData = await videosRes.json();
 
@@ -31,7 +33,7 @@ async function carregarFilmeSerie() {
             trailerContainer.style.display = 'none';
         }
 
-        verificarFavorito(data);
+        verificarFavorito();
 
     } catch (err) {
         console.error('Erro ao carregar detalhes:', err);
@@ -39,8 +41,7 @@ async function carregarFilmeSerie() {
     }
 }
 
-document.addEventListener('DOMContentLoaded', carregarFilmeSerie);
-
+// ---------------- Sistema de estrelas ----------------
 const estrelas = document.querySelectorAll('.estrela');
 let notaSelecionada = 0;
 
@@ -61,6 +62,7 @@ function atualizarEstrelas() {
     });
 }
 
+// ---------------- Favoritos ----------------
 const btnCoracao = document.getElementById("btn-coracao");
 const iconeCoracao = document.getElementById("icone-coracao");
 
@@ -88,7 +90,7 @@ btnCoracao.addEventListener("click", () => {
     }
 });
 
-function verificarFavorito(data) {
+function verificarFavorito() {
     const favoritos = JSON.parse(localStorage.getItem("favoritos")) || [];
     const jaExiste = favoritos.some(f => f.id == id && f.type == type);
 
@@ -98,33 +100,71 @@ function verificarFavorito(data) {
     }
 }
 
-// Enviar avaliação para o PHP
+// ---------------- Carregar comentários ----------------
+function carregarComentarios() {
+    fetch(`pages/buscar_avaliacoes.php?id_filmeserie=${id}`)
+        .then(res => res.json())
+        .then(data => {
+            const lista = document.getElementById('lista-comentarios');
+            lista.innerHTML = "";
+
+            if (!data || data.length === 0) {
+                lista.innerHTML = "<p>Nenhum comentário ainda.</p>";
+                return;
+            }
+
+            data.forEach(c => {
+                const div = document.createElement('div');
+                div.className = "col-md-6 col-lg-4";
+
+                div.innerHTML = `
+                    <div class="card bg-dark text-white h-100 p-3">
+                        <h5>${c.nome}</h5>
+                        <p>Nota: ${c.nota}/10</p>
+                        <p>${c.comentario}</p>
+                        <small>${new Date(c.dt_avaliacao).toLocaleString('pt-BR')}</small>
+                    </div>
+                `;
+                lista.appendChild(div);
+            });
+        })
+        .catch(err => console.error("Erro ao carregar comentários:", err));
+}
+
+// ---------------- Enviar avaliação ----------------
 document.getElementById('enviar').addEventListener('click', () => {
     const comentario = document.getElementById('comentario').value;
-    const id_filmeserie = id;
+
+    if (!notaSelecionada || comentario.trim() === "") {
+        alert("Escolha uma nota e escreva um comentário!");
+        return;
+    }
 
     fetch('salvar_avaliacao.php', {
         method: 'POST',
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: `id_filmeserie=${id_filmeserie}&nota=${notaSelecionada}&comentario=${encodeURIComponent(comentario)}`
+        body: `id_filmeserie=${id}&nota=${notaSelecionada}&comentario=${encodeURIComponent(comentario)}`
     })
-    .then(res => res.text())
+    .then(res => res.json()) // resposta em JSON
     .then(resposta => {
-        if (resposta.includes("logado")) {
+        if (resposta.status === "erro" && resposta.mensagem.includes("logado")) {
             alert("Você precisa estar logado para avaliar!");
             window.location.href = "login.php";
             return;
         }
 
-        if (resposta.includes("Preencha todos os campos")) {
-            alert("Escolha uma nota e escreva um comentário!");
-            return;
-        }
-
-        alert(resposta);
+        alert(resposta.mensagem);
         document.getElementById('comentario').value = "";
         notaSelecionada = 0;
         atualizarEstrelas();
+        carregarComentarios();
     })
-    .catch(err => console.error(err));
+    .catch(err => console.error("Erro ao enviar avaliação:", err));
+});
+
+// ---------------- Inicialização ----------------
+document.addEventListener('DOMContentLoaded', () => {
+    carregarFilmeSerie();
+    carregarComentarios();
+    verificarFavorito();
 });

@@ -26,7 +26,7 @@ function atualizarEstrelas() {
 
 // Função para carregar comentários
 function carregarComentarios() {
-    fetch(`buscar.php?id_filmeserie=${id}`)
+    fetch(`buscar_avaliacoes.php?id_filmeserie=${id}`)
         .then(res => res.json())
         .then(data => {
             const lista = document.getElementById('lista-comentarios');
