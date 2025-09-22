@@ -1,145 +1,165 @@
 /* Estilos originais mantidos */
-        .avaliar-container {
-            display: flex;
-            gap: 40px;
-            max-width: 1200px;
-            margin: 40px auto;
-            background-color: #021526;
-            padding: 40px;
-            border-radius: 10px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
-        }
+.avaliar-container {
+  display: flex;
+  gap: 40px;
+  max-width: 1200px;
+  margin: 40px auto;
+  background-color: #021526;
+  padding: 40px;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+}
 
-        .poster {
-            width: 500px;
-            height: auto;
-            border-radius: 5px;
-        }
+.poster {
+  width: 500px;
+  height: auto;
+  border-radius: 5px;
+}
 
-        .info-container {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-        }
+.info-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
 
-        .trailer-container {
-            width: 100%;
-            margin-top: 20px;
-        }
+.trailer-container {
+  width: 100%;
+  margin-top: 20px;
+}
 
-        #trailer-video {
-            width: 100%;
-            height: 400px;
-        }
+#trailer-video {
+  width: 100%;
+  height: 400px;
+}
 
-        .estrela {
-            font-size: 40px;
-            cursor: pointer;
-            color: #123155ff;
-            transition: color 0.2s;
-        }
+.estrela {
+  font-size: 40px;
+  cursor: pointer;
+  color: #123155ff;
+  transition: color 0.2s;
+}
 
-        .estrela:hover,
-        .estrela.selecionada {
-            color: gold;
-        }
+.estrela:hover,
+.estrela.selecionada {
+  color: gold;
+}
 
-        textarea {
-            width: 100%;
-            resize: vertical;
-            padding: 10px;
-            border-radius: 5px;
-            border: none;
-            outline: none;
-            font-family: 'Fredoka', sans-serif;
-            background-color: #123155ff;
-            color: white;
-        }
+textarea {
+  width: 100%;
+  resize: vertical;
+  padding: 10px;
+  border-radius: 5px;
+  border: none;
+  outline: none;
+  font-family: "Fredoka", sans-serif;
+  background-color: #123155ff;
+  color: white;
+}
 
-        /* Novo estilo azul neon para botões */
-        .neon-btn {
-            background: #37c6ff;
-            color: white;
-            border: none;
-            padding: 5px 8px;
-            font-size: 14px;
-            border-radius: 8px;
-            cursor: pointer;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            font-weight: bold;
-            text-decoration: none;
-            box-shadow:
-              0 0 5px #37c6ff,
-              0 0 5px #37c6ff,
-              0 0 5px #37c6ff,
-              0 0 10px #37c6ff;
-            transition: all 0.3s ease;
-        }
+/* Novo estilo azul neon para botões */
+.neon-btn {
+  background: #37c6ff;
+  color: white;
+  border: none;
+  padding: 5px 8px;
+  font-size: 14px;
+  border-radius: 8px;
+  cursor: pointer;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-weight: bold;
+  text-decoration: none;
+  box-shadow: 0 0 5px #37c6ff, 0 0 5px #37c6ff, 0 0 5px #37c6ff,
+    0 0 10px #37c6ff;
+  transition: all 0.3s ease;
+}
 
-        .neon-btn:hover {
-            box-shadow:
-              0 0 5px #37c6ff,
-              0 0 10px #37c6ff,
-              0 0 10px #37c6ff,
-              0 0 15px #37c6ff;
-            transform: scale(0.9);
-        }
+.neon-btn:hover {
+  box-shadow: 0 0 5px #37c6ff, 0 0 10px #37c6ff, 0 0 10px #37c6ff,
+    0 0 15px #37c6ff;
+  transform: scale(0.9);
+}
 
-        @media (max-width: 768px) {
-            .avaliar-container {
-                flex-direction: column;
-                align-items: center;
-                padding: 20px;
-                gap: 20px;
-            }
+@media (max-width: 768px) {
+  .avaliar-container {
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    gap: 20px;
+  }
 
-            .poster {
-                width: 100%;
-                max-width: 300px;
-                height: auto;
-            }
+  .poster {
+    width: 100%;
+    max-width: 300px;
+    height: auto;
+  }
 
-            .info-container {
-                width: 100%;
-            }
+  .info-container {
+    width: 100%;
+  }
 
-            #trailer-video {
-                height: 220px;
-            }
+  #trailer-video {
+    height: 220px;
+  }
 
-            textarea {
-                font-size: 14px;
-            }
+  textarea {
+    font-size: 14px;
+  }
 
-            .estrela {
-                font-size: 28px;
-            }
+  .estrela {
+    font-size: 28px;
+  }
 
-            .neon-btn {
-                width: 100%;
-                text-align: center;
-            }
-        }
+  .neon-btn {
+    width: 100%;
+    text-align: center;
+  }
+}
 
-        @media (max-width: 480px) {
-            .poster {
-                max-width: 220px;
-            }
+@media (max-width: 480px) {
+  .poster {
+    max-width: 220px;
+  }
 
-            #trailer-video {
-                height: 180px;
-            }
+  #trailer-video {
+    height: 180px;
+  }
 
-            h3,
-            h4 {
-                font-size: 1.1rem;
-                text-align: center;
-            }
+  h3,
+  h4 {
+    font-size: 1.1rem;
+    text-align: center;
+  }
 
-            p#sinopse {
-                font-size: 0.9rem;
-                text-align: justify;
-            }
-        }
+  p#sinopse {
+    font-size: 0.9rem;
+    text-align: justify;
+  }
+}
+.avaliar-container {
+  display: flex;
+  flex-wrap: wrap; /* Permite quebrar em várias linhas em telas pequenas */
+  gap: 20px; /* Reduzido para ocupar menos espaço */
+  max-width: 1000px; /* Largura máxima ligeiramente menor */
+  margin: 20px auto; /* Margem menor para ocupar menos espaço vertical */
+  background-color: #021526; /* Mantido */
+  padding: 20px; /* Padding menor para compacto */
+  border-radius: 12px; /* Leve arredondamento moderno */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4); /* Sombra mais suave */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.avaliar-container:hover {
+  transform: translateY(-3px); /* Leve elevação no hover */
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.5);
+}
+
+/* Responsividade para tablets e celulares */
+@media (max-width: 768px) {
+  .avaliar-container {
+    flex-direction: column; /* Itens empilhados em telas pequenas */
+    gap: 15px;
+    padding: 15px;
+  }
+}

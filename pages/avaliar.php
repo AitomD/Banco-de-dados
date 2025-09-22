@@ -36,14 +36,15 @@
 
         </div>
     </div>
-    <div class="avaliacoes-container mt-5">
-        <h4 class="text-light text-center">Avaliações de outros usuários</h4>
-        <div id="lista-avaliacoes" class="text-light"></div>
+    <div class="container mt-4">
+        <h4 class="text-light text-center">Avaliações dos Usuários</h4>
+        <div id="lista-comentarios" class="row g-4 justify-content-center">
+            <!-- Comentários carregados via buscar_avaliacoes.php -->
+        </div>
     </div>
 
     <div class="alto" style="height: 100px;"></div>
 </main>
-
 
 <script>
     const API_KEY = "d2b2038bd7bc5db74623478537729164";
@@ -53,6 +54,7 @@
     const id = urlParams.get('id');
     const type = urlParams.get('type') || 'movie';
 
+    // -------------------- Carregar detalhes do filme --------------------
     async function carregarFilmeSerie() {
         if (!id) return;
 
@@ -65,6 +67,7 @@
             document.getElementById('titulo-filme').textContent = data.title || data.name;
             document.getElementById('sinopse').textContent = data.overview || 'Sem descrição disponível.';
 
+            // Carrega trailer
             const videosRes = await fetch(`https://api.themoviedb.org/3/${type}/${id}/videos?api_key=${API_KEY}&language=pt-BR`);
             const videosData = await videosRes.json();
 
@@ -87,8 +90,7 @@
         }
     }
 
-    document.addEventListener('DOMContentLoaded', carregarFilmeSerie);
-
+    // -------------------- Avaliações --------------------
     const estrelas = document.querySelectorAll('.estrela');
     let notaSelecionada = 0;
 
@@ -109,6 +111,7 @@
         });
     }
 
+    // -------------------- Favoritos --------------------
     const btnCoracao = document.getElementById("btn-coracao");
     const iconeCoracao = document.getElementById("icone-coracao");
 
@@ -146,29 +149,56 @@
         }
     }
 
-    // Enviar avaliação para o PHP
+    // -------------------- Carregar avaliações --------------------
+    async function carregarAvaliacoes() {
+        const lista = document.getElementById('lista-comentarios'); // <-- corrigido
+        try {
+            const res = await fetch(`pages/buscar_avaliacoes.php?id_filmeserie=${id}`);
+            lista.innerHTML = await res.text();
+        } catch (err) {
+            lista.innerHTML = "<p class='text-light'>Erro ao carregar avaliações.</p>";
+            console.error(err);
+        }
+    }
+
+    // -------------------- Enviar avaliação --------------------
     document.getElementById('enviar').addEventListener('click', () => {
         const comentario = document.getElementById('comentario').value;
+        const id_filmeserie = id;
 
-        if (notaSelecionada === 0 || comentario.trim() === "") {
+        if (!notaSelecionada || !comentario.trim()) {
             alert("Escolha uma nota e escreva um comentário!");
             return;
         }
 
-        const id_filmeserie = id;
-
-        fetch('salvar_avaliacao.php', {
+        fetch('pages/salvar_avaliacao.php', {
             method: 'POST',
             headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
             body: `id_filmeserie=${id_filmeserie}&nota=${notaSelecionada}&comentario=${encodeURIComponent(comentario)}`
         })
             .then(res => res.text())
             .then(resposta => {
+                if (resposta.includes("logado")) {
+                    alert("Você precisa estar logado para avaliar!");
+                    window.location.href = "pages/login.php";
+                    return;
+                }
+
                 alert(resposta);
-                document.getElementById('comentario').value = "";
-                notaSelecionada = 0;
-                atualizarEstrelas();
+
+                if (!resposta.includes("Você já avaliou")) {
+                    document.getElementById('comentario').value = "";
+                    notaSelecionada = 0;
+                    atualizarEstrelas();
+                    carregarAvaliacoes(); // atualiza imediatamente
+                }
             })
             .catch(err => console.error(err));
+    });
+
+    // -------------------- DOMContentLoaded --------------------
+    document.addEventListener('DOMContentLoaded', () => {
+        carregarFilmeSerie();
+        carregarAvaliacoes(); // carrega comentários dos outros usuários ao abrir
     });
 </script>
