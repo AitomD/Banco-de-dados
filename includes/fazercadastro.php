@@ -1,5 +1,5 @@
 <?php
-require_once '../includes/db.php';  // Inclui o arquivo que contém a classe DB para conexão com o banco
+require_once '../includes/db.php';  // Conexão com o banco
 
 class User {
     private $conn;
@@ -8,35 +8,68 @@ class User {
     public $email;
     public $senha;
 
-    // Construtor da classe que recebe a conexão do banco de dados
     public function __construct($db) {
         $this->conn = $db;
     }
 
-    // Cadastro do usuário
+    // Cadastro do usuário e login automático
     public function register() {
-        $query = "INSERT INTO usuario (nome, email, senha) VALUES (:nome, :email, :senha)";
-        $stmt = $this->conn->prepare($query);
+        // Verifica se o email já existe
+        $check = $this->conn->prepare("SELECT id_usuario FROM usuario WHERE email = :email LIMIT 1");
+        $check->bindParam(':email', $this->email);
+        $check->execute();
+
+        if ($check->rowCount() > 0) {
+            return false; // Email já cadastrado
+        }
+
+        // Insere o usuário
+        $stmt = $this->conn->prepare(
+            "INSERT INTO usuario (nome, email, senha) VALUES (:nome, :email, :senha)"
+        );
         $stmt->bindParam(':nome', $this->nome);
         $stmt->bindParam(':email', $this->email);
         $stmt->bindParam(':senha', password_hash($this->senha, PASSWORD_BCRYPT));
-        return $stmt->execute();
+
+        if ($stmt->execute()) {
+            // Pega o ID do usuário cadastrado
+            $userId = $this->conn->lastInsertId();
+
+            // Inicia sessão se ainda não estiver iniciada
+            if (session_status() === PHP_SESSION_NONE) {
+                session_start();
+            }
+
+            // Define variáveis de sessão para manter logado
+            $_SESSION['id_usuario'] = $userId;
+            $_SESSION['nome_usuario'] = $this->nome;
+
+            return true;
+        }
+
+        return false;
     }
 
     // Login do usuário
     public function login() {
-        $query = "SELECT id_usuario, nome, senha FROM usuario WHERE email = :email LIMIT 1";
-        $stmt = $this->conn->prepare($query);
+        $stmt = $this->conn->prepare(
+            "SELECT id_usuario, nome, senha FROM usuario WHERE email = :email LIMIT 1"
+        );
         $stmt->bindParam(':email', $this->email);
         $stmt->execute();
-    
+
         if ($stmt->rowCount() > 0) {
             $user = $stmt->fetch(PDO::FETCH_ASSOC);
             if (password_verify($this->senha, $user['senha'])) {
-                return $user;  // Contém 'id', 'nome', e 'senha'
+                if (session_status() === PHP_SESSION_NONE) {
+                    session_start();
+                }
+                $_SESSION['id_usuario'] = $user['id_usuario'];
+                $_SESSION['nome_usuario'] = $user['nome'];
+                return true;
             }
         }
-    
+
         return false;
     }
 }

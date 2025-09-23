@@ -3,6 +3,17 @@
 ob_start();
 session_start();
 
+// --- LOGOUT DIRETO ---
+if (isset($_GET['logout'])) {
+    // Limpa todas as variáveis de sessão
+    $_SESSION = [];
+    // Destrói a sessão
+    session_destroy();
+    // Redireciona para a home sem o parâmetro
+    header("Location: index.php");
+    exit;
+}
+
 // Define constantes para caminhos
 define('DS', DIRECTORY_SEPARATOR);
 define('ROOT_PATH', __DIR__ . DS);

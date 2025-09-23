@@ -1,65 +1,15 @@
+<?php
+// Início do arquivo: iniciar sessão antes de qualquer saída
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+
+// Define variáveis para facilitar o uso
+$usuario_logado = $_SESSION['nome_usuario'] ?? null;
+?>
+
 <style>
-    /* Em telas menores que 992px (breakpoint lg do Bootstrap) */
-    @media (max-width: 991.98px) {
-
-        /* Esconde os botões fora do collapse */
-        .navbar>.container-fluid>.auth-links-desktop {
-            display: none !important;
-        }
-
-        /* Dentro do collapse, mostrar links e botões centralizados */
-        #navbarSupportedContent .a-btn,
-        #navbarSupportedContent .neon-btn {
-            display: inline-block !important;
-            width: 100%;
-            text-align: center;
-            margin: 5px 0;
-        }
-
-        #navbarSupportedContent .auth-links-mobile {
-            display: flex !important;
-            flex-direction: column;
-            align-items: center;
-            gap: 10px;
-            margin-top: 15px;
-        }
-
-        #navbarSupportedContent {
-            background-color: #021526;
-            padding: 15px;
-            border-radius: 8px;
-        }
-
-        .navbar .container-fluid {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .navbar-brand {
-            margin: 0;
-        }
-
-        .navbar-toggler {
-            margin-left: auto;
-            color: white;
-        }
-
-        .navbar-collapse {
-            margin-top: 15px;
-        }
-
-        .navbar {
-            height: auto;
-            position: relative;
-
-        }
-    }
-
-    /* Ícone do botão hamburguer em branco */
-    .navbar .navbar-toggler-icon {
-        background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='white' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
-    }
+/* ... seu CSS atual ... */
 </style>
 
 <nav class="navbar navbar-expand-lg  position-relative mb-5">
@@ -90,17 +40,17 @@
                 </li>
             </ul>
 
-            <!-- Auth Links - Versão MOBILE -->
+            <!-- Auth Links - MOBILE -->
             <div class="auth-links-mobile d-lg-none">
-                <?php if (isset($_SESSION['usuario_nome'])): ?>
+                <?php if ($usuario_logado): ?>
                     <div class="dropdown text-center">
-                        <a class="a-btn dropdown-toggle w-100" href="#" role="button" id="dropdownMenuButtonMobile"
-                            data-bs-toggle="dropdown" aria-expanded="false">
-                            <?php echo htmlspecialchars($_SESSION['usuario_nome']); ?>
+                        <a class="a-btn dropdown-toggle w-100" href="#" role="button"
+                           id="dropdownMenuButtonMobile" data-bs-toggle="dropdown" aria-expanded="false">
+                            <?= htmlspecialchars($usuario_logado) ?>
                         </a>
                         <ul class="dropdown-menu w-100 text-center" aria-labelledby="dropdownMenuButtonMobile">
                             <li><a class="dropdown-item" href="fav">Favoritos</a></li>
-                            <li><a class="dropdown-item" href="logout">Sair</a></li>
+                            <li><a class="dropdown-item" href="index.php?logout=1">Sair</a></li>
                         </ul>
                     </div>
                 <?php else: ?>
@@ -111,18 +61,18 @@
                 <?php endif; ?>
             </div>
 
-            <!-- Auth Links - Versão DESKTOP -->
+            <!-- Auth Links - DESKTOP -->
             <div class="auth-links-desktop d-none d-lg-flex align-items-center gap-2">
-                <?php if (isset($_SESSION['usuario_nome'])): ?>
+                <?php if ($usuario_logado): ?>
                     <div class="dropdown mt-2">
                         <a class="a-btn dropdown-toggle" type="button" id="dropdownMenuButtonDesktop"
-                            data-bs-toggle="dropdown" aria-expanded="false">
+                           data-bs-toggle="dropdown" aria-expanded="false">
                             <i class="fa-solid fa-user-circle fs-5"></i>
-                            <?php echo htmlspecialchars($_SESSION['usuario_nome']); ?>
+                            <?= htmlspecialchars($usuario_logado) ?>
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButtonDesktop">
                             <li><a class="dropdown-item" href="fav">Favoritos</a></li>
-                            <li><a class="dropdown-item" href="logout">Sair</a></li>
+                            <li><a class="dropdown-item" href="index.php?logout=1">Sair</a></li>
                         </ul>
                     </div>
                 <?php else: ?>
@@ -132,10 +82,8 @@
                     </a>
                 <?php endif; ?>
             </div>
-
         </div>
 </nav>
+
 <script src="../js/dropdown.js"></script>
-
-
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
