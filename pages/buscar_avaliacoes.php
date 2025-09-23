@@ -21,19 +21,30 @@ try {
     $stmt->execute();
 
  if ($stmt->rowCount() === 0) {
-        echo "<p class='text-light'>Nenhuma avaliação ainda. Seja o primeiro!</p>";
-    } else {
-        while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-            echo "
-            <div class='card avaliar-container'>
-                <h5>{$row['nome']}</h5>
-                <p>Nota: {$row['nota']}/10</p>
-                <p>{$row['comentario']}</p>
-                <small>" . date("d/m/Y H:i", strtotime($row['dt_avaliacao'])) . "</small>
-            </div>
-            ";
+    echo "<p style='color:white;'>Nenhuma avaliação ainda. Seja o primeiro!</p>";
+} else {
+    while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+        // Converte a nota em estrelas
+        $nota = intval($row['nota']); // garante que seja inteiro
+        $maxEstrelas = 10;
+        $estrelas = '';
+        for ($i = 1; $i <= $maxEstrelas; $i++) {
+            $estrelas .= $i <= $nota ? '★' : '☆';
         }
+
+        echo "
+        <div style='background-color:#021526; color:white; padding:15px; margin-bottom:15px; border-radius:12px; font-family:Fredoka, sans-serif;'>
+            <h5 style='margin:0 0 5px 0;'>{$row['nome']}</h5>
+            <p style='margin:0 0 5px 0; color:#FFD700; font-size:1.5rem;'>{$estrelas}</p>
+            <p style='margin:0 0 5px 0;'>{$row['comentario']}</p>
+            <small>" . date("d/m/Y H:i", strtotime($row['dt_avaliacao'])) . "</small>
+        </div>
+        ";
     }
+}
+
+
+
 
 } catch (PDOException $e) {
     echo "<p class='text-danger'>Erro no banco: " . $e->getMessage() . "</p>";

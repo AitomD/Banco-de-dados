@@ -137,29 +137,3 @@ textarea {
     text-align: justify;
   }
 }
-.avaliar-container {
-  display: flex;
-  flex-wrap: wrap; /* Permite quebrar em várias linhas em telas pequenas */
-  gap: 20px; /* Reduzido para ocupar menos espaço */
-  max-width: 1000px; /* Largura máxima ligeiramente menor */
-  margin: 20px auto; /* Margem menor para ocupar menos espaço vertical */
-  background-color: #021526; /* Mantido */
-  padding: 20px; /* Padding menor para compacto */
-  border-radius: 12px; /* Leve arredondamento moderno */
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4); /* Sombra mais suave */
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.avaliar-container:hover {
-  transform: translateY(-3px); /* Leve elevação no hover */
-  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.5);
-}
-
-/* Responsividade para tablets e celulares */
-@media (max-width: 768px) {
-  .avaliar-container {
-    flex-direction: column; /* Itens empilhados em telas pequenas */
-    gap: 15px;
-    padding: 15px;
-  }
-}
