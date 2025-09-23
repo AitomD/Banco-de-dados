@@ -13,20 +13,18 @@
     <link rel="shortcut icon" href="../Icons/cadastro.png" type="image/x-icon">
 </head>
 
-<!-- Conteudo princiapl -->
-
 <body>
     <div style="height:80px;">
         <a href="../index.php" class="ms-5 "><img src="../img/logo2.png" alt="" style="height:150px;"></a>
     </div>
 
-    <div class="container ">
+    <div class="container">
         <div class="right">
             <div class="glass">
                 <h2 class="fw-bold mb-3">Crie sua conta</h2>
 
                 <!-- Formulário -->
-                <form action="salvar_cadastro.php" method="POST">
+                <form id="formCadastro" action="salvar_cadastro.php" method="POST">
                     <div class="input-box">
                         <i class="fa-solid fa-font"></i>
                         <input type="text" name="nome" placeholder="Nome" required>
@@ -45,7 +43,7 @@
 
                     <div class="input-box">
                         <i class="fa-solid fa-phone"></i>
-                        <input type="text" name="telefone" id="telefone" placeholder="Telefone">
+                        <input type="text" name="telefone" id="telefone" placeholder="Telefone" required>
                     </div>
 
                     <div class="d-flex justify-content-center">
@@ -56,36 +54,51 @@
 
             </div>
         </div>
-
     </div>
 
-
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             const togglePassword = document.querySelector('.toggle-password');
             const password = document.querySelector('#password');
 
-            togglePassword.addEventListener('click', function() {
-                // Alterna o tipo do input entre 'password' e 'text'
+            togglePassword.addEventListener('click', function () {
                 const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
                 password.setAttribute('type', type);
-
-                // Alterna a classe do ícone para mudar entre olho aberto e fechado
                 this.classList.toggle('fa-eye');
                 this.classList.toggle('fa-eye-slash');
             });
         });
     </script>
 
-    <!-- Script para mascara de telefone -->
+    <!-- jQuery + máscara -->
     <script src="../js/jquery-3.6.0.min.js"></script>
     <script src="../js/jquery.mask.min.js"></script>
-
     <script>
-  $(document).ready(function(){
-    $('#telefone').mask('(00) 00000-0000');
-  });
-</script>
+        $(document).ready(function () {
+            $('#telefone').mask('(00) 00000-0000');
+
+            // Validação no submit
+            $('#formCadastro').on('submit', function (e) {
+                const telefone = $('#telefone').val();
+                const email = $('input[name="email"]').val();
+
+                const regexTelefone = /^\(\d{2}\) \d{5}-\d{4}$/; // formato (99) 99999-9999
+                const regexEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; // formato básico de email
+
+                if (!regexTelefone.test(telefone)) {
+                    alert('Por favor, insira um número de telefone válido no formato (99) 99999-9999.');
+                    e.preventDefault();
+                    return;
+                }
+
+                if (!regexEmail.test(email)) {
+                    alert('Por favor, insira um e-mail válido (ex: exemplo@dominio.com).');
+                    e.preventDefault();
+                    return;
+                }
+            });
+        });
+    </script>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q"
