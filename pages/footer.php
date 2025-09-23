@@ -8,18 +8,18 @@
           <div class="row">
             <div class="d-inline-flex align-items-center">
               <p class="mb-1 me-3">Aitom Henrique Donatoni </p>
-              <a href="#" class="text-light fs-5 me-3"><i class="fab fa-instagram" data-bs-toggle="tooltip"
+              <a href="https://www.instagram.com/aitomdonatoni" target="_blank" class="text-light fs-5 me-3"><i class="fab fa-instagram" data-bs-toggle="tooltip"
                   title="Instagram"></i></i></a>
-              <a href="#" class="text-light fs-5 me-3"><i class="fab fa-github" data-bs-toggle="tooltip"
+              <a href="https://github.com/AitomD" target="_blank" class="text-light fs-5 me-3"><i class="fab fa-github" data-bs-toggle="tooltip"
                   title="GitHub"></i></a>
             </div>
           </div>
           <div class="row">
             <div class="d-inline-flex align-items-center">
               <p class="mb-1 me-3">Fernando Consolin Rosa</p>
-              <a href="#" class="text-light fs-5 me-3"><i class="fab fa-instagram" data-bs-toggle="tooltip"
+              <a href="https://www.instagram.com/ferconsolin_rosa/?next=%2F" target="_blank" class="text-light fs-5 me-3"><i class="fab fa-instagram" data-bs-toggle="tooltip"
                   title="Instagram"></i></i></a>
-              <a href="#" class="text-light fs-5 me-3"><i class="fab fa-github" data-bs-toggle="tooltip"
+              <a href="https://github.com/FernandoConsolinRosa11" target="_blank" class="text-light fs-5 me-3"><i class="fab fa-github" data-bs-toggle="tooltip"
                   title="GitHub"></i></a>
             </div>
           </div>
