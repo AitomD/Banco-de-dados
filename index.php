@@ -1,13 +1,14 @@
 <?php
-// Inicia a sessão na primeira linha
+// Inicia buffer de saída e sessão antes de qualquer HTML
+ob_start();
 session_start();
 
-// Define constantes para os caminhos, melhorando a organização
+// Define constantes para caminhos
 define('DS', DIRECTORY_SEPARATOR);
 define('ROOT_PATH', __DIR__ . DS);
 define('PAGES_PATH', ROOT_PATH . 'pages' . DS);
 
-// Inclusão da barra de navegação antes do HTML, se necessário
+// Inclui a barra de navegação
 include PAGES_PATH . 'navbar.php';
 ?>
 
@@ -32,45 +33,37 @@ include PAGES_PATH . 'navbar.php';
 <body>
     <main>
         <?php
-        // Roteamento mais robusto
-        $page = 'home'; // Página padrão
-        
+        // Página padrão
+        $page = 'home';
+
         // Verifica o parâmetro da URL
         if (isset($_GET['param'])) {
-            // Limpa e sanitiza o parâmetro para evitar ataques
             $param = htmlspecialchars($_GET['param']);
-            // Explode o parâmetro para pegar o nome da página
             $url_parts = explode('/', $param);
-            $page = $url_parts[0];
+            // Permite apenas letras, números, _ e -
+            $page = preg_replace('/[^a-zA-Z0-9_-]/', '', $url_parts[0]);
         }
 
-        // Constrói o caminho completo para o arquivo da página
+        // Caminho completo para a página
         $file_path = PAGES_PATH . $page . '.php';
 
-        // Verifica se a página existe e inclui
+        // Inclui a página se existir
         if (file_exists($file_path) && is_file($file_path)) {
             include $file_path;
         } else {
-            // Inclui a página de erro 404 se a página não for encontrada
             include PAGES_PATH . '404.php';
         }
         ?>
     </main>
 
     <?php
-    // Inclui o rodapé
     include PAGES_PATH . 'footer.php';
     ?>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]');
-            tooltipTriggerList.forEach(el => new bootstrap.Tooltip(el));
-        });
-    </script>
+    <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q" crossorigin="anonymous">
-        </script>
+    </script>
     <script src="js/home.js"></script>
     <script src="js/filmes.js"></script>
     <script src="js/series.js"></script>
@@ -78,6 +71,13 @@ include PAGES_PATH . 'navbar.php';
     <script src="js/avaliar.js"></script>
     <script src="js/dropdown.js"></script>
     <script src="js/favoritos.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]');
+            tooltipTriggerList.forEach(el => new bootstrap.Tooltip(el));
+        });
+    </script>
 </body>
 
 </html>

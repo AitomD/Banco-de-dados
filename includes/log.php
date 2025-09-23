@@ -12,7 +12,7 @@ class User {
         $this->conn = $db;
     }
 
-    // Login do usuário
+    // Login do usuário e criação da sessão
     public function login() {
         // Query SQL para buscar o usuário pelo email
         $query = "SELECT id, nome, senha FROM usuarios WHERE email = :email LIMIT 1";
@@ -23,15 +23,24 @@ class User {
 
         // Verifica se o usuário foi encontrado no banco
         if ($stmt->rowCount() > 0) {
-            // Usuário encontrado, agora verifica a senha
             $user = $stmt->fetch(PDO::FETCH_ASSOC);
+
             // Verifica se a senha fornecida é igual à senha do banco
             if (password_verify($this->senha, $user['senha'])) {
-                return $user;  // Retorna o usuário se as credenciais forem válidas
+                // Inicia a sessão se ainda não estiver iniciada
+                if (session_status() == PHP_SESSION_NONE) {
+                    session_start();
+                }
+
+                // Armazena dados do usuário na sessão
+                $_SESSION['id_usuario'] = $user['id'];
+                $_SESSION['nome_usuario'] = $user['nome'];
+
+                return true; // Login bem-sucedido
             }
         }
 
-        return false;  // Caso as credenciais sejam inválidas
+        return false; // Credenciais inválidas
     }
 }
 ?>
