@@ -81,8 +81,6 @@ include PAGES_PATH . 'navbar.php';
     <script src="js/avaliarcard.js"></script>
     <script src="js/avaliar.js"></script>
     <script src="js/dropdown.js"></script>
-    <script src="js/favoritos.js"></script>
-
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]');

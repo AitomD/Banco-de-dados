@@ -1,76 +1,47 @@
 <?php
-require_once '../includes/db.php';  // Conexão com o banco
+// Inicia a sessão apenas se não estiver ativa
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
 
-class User {
-    private $conn;
-    
-    public $nome;
-    public $email;
-    public $senha;
+require_once __DIR__ . '/db.php';
+require_once __DIR__ . '/log.php';
 
-    public function __construct($db) {
-        $this->conn = $db;
-    }
+// Se o usuário já estiver logado, redireciona para index.php
+if (isset($_SESSION['id_usuario'])) {
+    header("Location: ../index.php");
+    exit;
+}
 
-    // Cadastro do usuário e login automático
-    public function register() {
-        // Verifica se o email já existe
-        $check = $this->conn->prepare("SELECT id_usuario FROM usuario WHERE email = :email LIMIT 1");
-        $check->bindParam(':email', $this->email);
-        $check->execute();
+$erro = "";
 
-        if ($check->rowCount() > 0) {
-            return false; // Email já cadastrado
+// Se o formulário de cadastro foi enviado
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $nome     = trim($_POST['nome'] ?? '');
+    $email    = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL);
+    $senha    = trim($_POST['senha'] ?? '');
+    $telefone = trim($_POST['telefone'] ?? '');
+
+    if (empty($nome) || empty($email) || empty($senha) || empty($telefone)) {
+        $erro = "Todos os campos são obrigatórios!";
+    } else {
+        $db = new DB();
+        $pdo = $db->getConnection();
+
+        $user = new User($pdo);
+        $user->nome     = $nome;
+        $user->email    = $email;
+        $user->senha    = $senha;
+        $user->telefone = $telefone;
+
+        if ($user->register()) {
+            // Cadastro realizado → redireciona para a página inicial
+            header("Location: ../index.php");
+            exit;
+        } else {
+            $erro = "Erro ao cadastrar. Verifique se o email já está em uso ou se o telefone é válido.";
         }
-
-        // Insere o usuário
-        $stmt = $this->conn->prepare(
-            "INSERT INTO usuario (nome, email, senha) VALUES (:nome, :email, :senha)"
-        );
-        $stmt->bindParam(':nome', $this->nome);
-        $stmt->bindParam(':email', $this->email);
-        $stmt->bindParam(':senha', password_hash($this->senha, PASSWORD_BCRYPT));
-
-        if ($stmt->execute()) {
-            // Pega o ID do usuário cadastrado
-            $userId = $this->conn->lastInsertId();
-
-            // Inicia sessão se ainda não estiver iniciada
-            if (session_status() === PHP_SESSION_NONE) {
-                session_start();
-            }
-
-            // Define variáveis de sessão para manter logado
-            $_SESSION['id_usuario'] = $userId;
-            $_SESSION['nome_usuario'] = $this->nome;
-
-            return true;
-        }
-
-        return false;
-    }
-
-    // Login do usuário
-    public function login() {
-        $stmt = $this->conn->prepare(
-            "SELECT id_usuario, nome, senha FROM usuario WHERE email = :email LIMIT 1"
-        );
-        $stmt->bindParam(':email', $this->email);
-        $stmt->execute();
-
-        if ($stmt->rowCount() > 0) {
-            $user = $stmt->fetch(PDO::FETCH_ASSOC);
-            if (password_verify($this->senha, $user['senha'])) {
-                if (session_status() === PHP_SESSION_NONE) {
-                    session_start();
-                }
-                $_SESSION['id_usuario'] = $user['id_usuario'];
-                $_SESSION['nome_usuario'] = $user['nome'];
-                return true;
-            }
-        }
-
-        return false;
     }
 }
-?>
+
+// Se chegou aqui, exibe o formulário de cadastro

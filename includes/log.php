@@ -1,62 +1,103 @@
 <?php
-require_once 'db.php'; // Incluir a classe DB para usar a conexão com o banco
-
 class User {
     private $conn;
 
     public $nome;
     public $email;
     public $senha;
+    public $telefone;
 
     public function __construct($db) {
         $this->conn = $db;
     }
 
+    // Valida o telefone (somente números, 10 ou 11 dígitos)
+    private function validarTelefone() {
+        $numeros = preg_replace('/\D/', '', $this->telefone);
+        return preg_match("/^\d{10,11}$/", $numeros);
+    }
+
     // Cadastro do usuário e login automático
     public function register() {
-        $query = "INSERT INTO usuarios (nome, email, senha) VALUES (:nome, :email, :senha)";
-        $stmt = $this->conn->prepare($query);
-        $stmt->bindParam(':nome', $this->nome);
-        $stmt->bindParam(':email', $this->email);
-        $stmt->bindParam(':senha', password_hash($this->senha, PASSWORD_BCRYPT));
+        if (!$this->validarTelefone()) {
+            return false; // Telefone inválido
+        }
 
-        if ($stmt->execute()) {
-            // Pega o ID do usuário recém-criado
-            $userId = $this->conn->lastInsertId();
+        try {
+            $this->conn->beginTransaction();
 
-            // Inicia a sessão se ainda não estiver iniciada
+            // Limpa telefone
+            $telNumeros = preg_replace('/\D/', '', $this->telefone);
+
+            // Verifica se o telefone já existe
+            $stmtTel = $this->conn->prepare("SELECT id_telefone FROM telefone WHERE nm_telefone = :telefone LIMIT 1");
+            $stmtTel->bindParam(':telefone', $telNumeros);
+            $stmtTel->execute();
+
+            if ($stmtTel->rowCount() > 0) {
+                $idTelefone = (int)$stmtTel->fetchColumn();
+            } else {
+                // Insere novo telefone
+                $stmtInsertTel = $this->conn->prepare("INSERT INTO telefone (nm_telefone) VALUES (:telefone)");
+                $stmtInsertTel->bindParam(':telefone', $telNumeros);
+                $stmtInsertTel->execute();
+                $idTelefone = (int)$this->conn->lastInsertId();
+            }
+
+            // Verifica se o e-mail já existe
+            $stmtCheck = $this->conn->prepare("SELECT id_usuario FROM usuario WHERE email = :email LIMIT 1");
+            $stmtCheck->bindParam(':email', $this->email);
+            $stmtCheck->execute();
+
+            if ($stmtCheck->rowCount() > 0) {
+                $this->conn->rollBack();
+                return false; // E-mail já cadastrado
+            }
+
+            // Insere usuário
+            $stmtUser = $this->conn->prepare(
+                "INSERT INTO usuario (nome, email, senha, user_telefone) 
+                 VALUES (:nome, :email, :senha, :telefone)"
+            );
+            $stmtUser->bindParam(':nome', $this->nome);
+            $stmtUser->bindParam(':email', $this->email);
+            $stmtUser->bindParam(':senha', password_hash($this->senha, PASSWORD_BCRYPT));
+            $stmtUser->bindParam(':telefone', $idTelefone, PDO::PARAM_INT);
+            $stmtUser->execute();
+            $userId = (int)$this->conn->lastInsertId();
+
+            $this->conn->commit();
+
+            // Inicia sessão
             if (session_status() === PHP_SESSION_NONE) {
                 session_start();
             }
 
-            // Define as variáveis de sessão
             $_SESSION['id_usuario'] = $userId;
             $_SESSION['nome_usuario'] = $this->nome;
 
-            return true; // Cadastro e login automático bem-sucedidos
-        }
+            return true;
 
-        return false; // Falha no cadastro
+        } catch (PDOException $e) {
+            $this->conn->rollBack();
+            return false;
+        }
     }
 
-    // Login do usuário e criação da sessão
+    // Login do usuário
     public function login() {
-        $query = "SELECT id, nome, senha FROM usuarios WHERE email = :email LIMIT 1";
-        $stmt = $this->conn->prepare($query);
+        $stmt = $this->conn->prepare("SELECT id_usuario, nome, senha FROM usuario WHERE email = :email LIMIT 1");
         $stmt->bindParam(':email', $this->email);
         $stmt->execute();
 
         if ($stmt->rowCount() > 0) {
             $user = $stmt->fetch(PDO::FETCH_ASSOC);
-
             if (password_verify($this->senha, $user['senha'])) {
-                if (session_status() == PHP_SESSION_NONE) {
+                if (session_status() === PHP_SESSION_NONE) {
                     session_start();
                 }
-
-                $_SESSION['id_usuario'] = $user['id'];
+                $_SESSION['id_usuario'] = $user['id_usuario'];
                 $_SESSION['nome_usuario'] = $user['nome'];
-
                 return true;
             }
         }
