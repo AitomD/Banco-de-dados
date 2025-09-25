@@ -47,158 +47,114 @@
 </main>
 
 <script>
-    const API_KEY = "d2b2038bd7bc5db74623478537729164";
-    const IMG_URL = "https://image.tmdb.org/t/p/w500";
+const API_KEY = "d2b2038bd7bc5db74623478537729164";
+const IMG_URL = "https://image.tmdb.org/t/p/w500";
+const BASE    = document.querySelector('meta[name="base-url"]')?.content || '/banco/';
 
-    const urlParams = new URLSearchParams(window.location.search);
-    const id = urlParams.get('id');
-    const type = urlParams.get('type') || 'movie';
+const urlParams = new URLSearchParams(window.location.search);
+const id = urlParams.get('id');
+const type = urlParams.get('type') || 'movie';
 
-    // -------------------- Carregar detalhes do filme --------------------
-    async function carregarFilmeSerie() {
-        if (!id) return;
+let tituloFilme = '';
+let posterFilme = '';
+let sinopseFilme = '';
 
-        try {
-            const res = await fetch(`https://api.themoviedb.org/3/${type}/${id}?api_key=${API_KEY}&language=pt-BR`);
-            const data = await res.json();
+// -------------------- Carregar detalhes do filme --------------------
+async function carregarFilmeSerie() {
+    if (!id) return;
 
-            document.querySelector('.poster').src = data.poster_path ? IMG_URL + data.poster_path : 'https://via.placeholder.com/250x375';
-            document.querySelector('.poster').alt = data.title || data.name;
-            document.getElementById('titulo-filme').textContent = data.title || data.name;
-            document.getElementById('sinopse').textContent = data.overview || 'Sem descrição disponível.';
+    try {
+        const res = await fetch(`https://api.themoviedb.org/3/${type}/${id}?api_key=${API_KEY}&language=pt-BR`);
+        const data = await res.json();
 
-            // Carrega trailer
-            const videosRes = await fetch(`https://api.themoviedb.org/3/${type}/${id}/videos?api_key=${API_KEY}&language=pt-BR`);
-            const videosData = await videosRes.json();
+        posterFilme = data.poster_path ? IMG_URL + data.poster_path : 'https://via.placeholder.com/250x375';
+        tituloFilme = data.title || data.name;
+        sinopseFilme = data.overview || 'Sem descrição disponível.';
 
-            const trailer = videosData.results.find(video => video.site === 'YouTube' && video.type === 'Trailer');
-            const trailerIframe = document.getElementById('trailer-video');
-            const trailerContainer = document.querySelector('.trailer-container');
+        document.querySelector('.poster').src = posterFilme;
+        document.querySelector('.poster').alt = tituloFilme;
+        document.getElementById('titulo-filme').textContent = tituloFilme;
+        document.getElementById('sinopse').textContent = sinopseFilme;
 
-            if (trailer) {
-                trailerIframe.src = `https://www.youtube.com/embed/${trailer.key}?autoplay=1&rel=0`;
-                trailerContainer.style.display = 'block';
-            } else {
-                trailerContainer.style.display = 'none';
-            }
+        // Carrega trailer
+        const videosRes = await fetch(`https://api.themoviedb.org/3/${type}/${id}/videos?api_key=${API_KEY}&language=pt-BR`);
+        const videosData = await videosRes.json();
+        const trailer = videosData.results.find(video => video.site === 'YouTube' && video.type === 'Trailer');
+        const trailerIframe = document.getElementById('trailer-video');
+        const trailerContainer = document.querySelector('.trailer-container');
 
-            verificarFavorito(data);
-
-        } catch (err) {
-            console.error('Erro ao carregar detalhes:', err);
-            document.querySelector('.avaliar-container').style.display = 'none';
+        if (trailer) {
+            trailerIframe.src = `https://www.youtube.com/embed/${trailer.key}?autoplay=1&rel=0`;
+            trailerContainer.style.display = 'block';
+        } else {
+            trailerContainer.style.display = 'none';
         }
+
+        verificarFavorito();
+
+    } catch (err) {
+        console.error('Erro ao carregar detalhes:', err);
+        document.querySelector('.avaliar-container').style.display = 'none';
     }
+}
 
-    // -------------------- Avaliações --------------------
-    const estrelas = document.querySelectorAll('.estrela');
-    let notaSelecionada = 0;
+// -------------------- Favoritos --------------------
+const btnCoracao = document.getElementById("btn-coracao");
+const iconeCoracao = document.getElementById("icone-coracao");
 
-    estrelas.forEach(estrela => {
-        estrela.addEventListener('click', () => {
-            notaSelecionada = parseInt(estrela.dataset.valor);
-            atualizarEstrelas();
-        });
-    });
+btnCoracao.addEventListener("click", () => {
+    fetch(`${BASE}pages/favoritar.php`, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/x-www-form-urlencoded"
+        },
+        body: `id_filme=${encodeURIComponent(id)}&type=${encodeURIComponent(type)}&titulo=${encodeURIComponent(tituloFilme)}&poster=${encodeURIComponent(posterFilme)}&sinopse=${encodeURIComponent(sinopseFilme)}`
+    })
+    .then(res => res.json())
+    .then(data => {
+        // Atualiza localStorage
+        let favoritosAtual = JSON.parse(localStorage.getItem('favoritos')) || [];
 
-    function atualizarEstrelas() {
-        estrelas.forEach(estrela => {
-            if (parseInt(estrela.dataset.valor) <= notaSelecionada) {
-                estrela.classList.add('selecionada');
-            } else {
-                estrela.classList.remove('selecionada');
+        if(data.acao === "adicionado") {
+            // adiciona se não existir
+            if(!favoritosAtual.find(f => f.id == id && f.type == type)){
+                favoritosAtual.push({
+                    id: id,
+                    type: type,
+                    titulo: tituloFilme,
+                    poster: posterFilme,
+                    sinopse: sinopseFilme
+                });
             }
-        });
-    }
-
-    // -------------------- Favoritos --------------------
-    const btnCoracao = document.getElementById("btn-coracao");
-    const iconeCoracao = document.getElementById("icone-coracao");
-
-    btnCoracao.addEventListener("click", () => {
-        const titulo = document.getElementById("titulo-filme").textContent;
-        const sinopse = document.getElementById("sinopse").textContent;
-        const poster = document.querySelector(".poster").src;
-
-        const filme = { id: id, type: type, titulo: titulo, sinopse: sinopse, poster: poster };
-        let favoritos = JSON.parse(localStorage.getItem("favoritos")) || [];
-        const jaExiste = favoritos.some(f => f.id == filme.id && f.type == filme.type);
-
-        if (!jaExiste) {
-            favoritos.push(filme);
-            localStorage.setItem("favoritos", JSON.stringify(favoritos));
-            alert("Adicionado aos favoritos!");
             iconeCoracao.classList.add("fa-solid");
             iconeCoracao.classList.remove("fa-regular");
-        } else {
-            favoritos = favoritos.filter(f => !(f.id == filme.id && f.type == filme.type));
-            localStorage.setItem("favoritos", JSON.stringify(favoritos));
-            alert("Removido dos favoritos!");
+        } else if(data.acao === "removido") {
+            favoritosAtual = favoritosAtual.filter(f => f.id != id || f.type != type);
             iconeCoracao.classList.remove("fa-solid");
             iconeCoracao.classList.add("fa-regular");
         }
-    });
 
-    function verificarFavorito(data) {
-        const favoritos = JSON.parse(localStorage.getItem("favoritos")) || [];
-        const jaExiste = favoritos.some(f => f.id == id && f.type == type);
+        localStorage.setItem('favoritos', JSON.stringify(favoritosAtual));
+    })
+    .catch(err => console.error(err));
+});
 
-        if (jaExiste) {
-            iconeCoracao.classList.add("fa-solid");
-            iconeCoracao.classList.remove("fa-regular");
-        }
+function verificarFavorito() {
+    const favoritosAtual = JSON.parse(localStorage.getItem('favoritos')) || [];
+    const existe = favoritosAtual.find(f => f.id == id && f.type == type);
+    if(existe) {
+        iconeCoracao.classList.add("fa-solid");
+        iconeCoracao.classList.remove("fa-regular");
+    } else {
+        iconeCoracao.classList.remove("fa-solid");
+        iconeCoracao.classList.add("fa-regular");
     }
+}
 
-    // -------------------- Carregar avaliações --------------------
-    async function carregarAvaliacoes() {
-        const lista = document.getElementById('lista-comentarios'); // <-- corrigido
-        try {
-            const res = await fetch(`pages/buscar_avaliacoes.php?id_filmeserie=${id}`);
-            lista.innerHTML = await res.text();
-        } catch (err) {
-            lista.innerHTML = "<p class='text-light'>Erro ao carregar avaliações.</p>";
-            console.error(err);
-        }
-    }
-
-    // -------------------- Enviar avaliação --------------------
-    document.getElementById('enviar').addEventListener('click', () => {
-        const comentario = document.getElementById('comentario').value;
-        const id_filmeserie = id;
-
-        if (!notaSelecionada || !comentario.trim()) {
-            alert("Escolha uma nota e escreva um comentário!");
-            return;
-        }
-
-        fetch('pages/salvar_avaliacao.php', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-            body: `id_filmeserie=${id_filmeserie}&nota=${notaSelecionada}&comentario=${encodeURIComponent(comentario)}`
-        })
-            .then(res => res.text())
-            .then(resposta => {
-                if (resposta.includes("logado")) {
-                    alert("Você precisa estar logado para avaliar!");
-                    window.location.href = "pages/login.php";
-                    return;
-                }
-
-                alert(resposta);
-
-                if (!resposta.includes("Você já avaliou")) {
-                    document.getElementById('comentario').value = "";
-                    notaSelecionada = 0;
-                    atualizarEstrelas();
-                    carregarAvaliacoes(); // atualiza imediatamente
-                }
-            })
-            .catch(err => console.error(err));
-    });
-
-    // -------------------- DOMContentLoaded --------------------
-    document.addEventListener('DOMContentLoaded', () => {
-        carregarFilmeSerie();
-        carregarAvaliacoes(); // carrega comentários dos outros usuários ao abrir
-    });
+// -------------------- Inicialização --------------------
+document.addEventListener('DOMContentLoaded', () => {
+    carregarFilmeSerie();
+});
 </script>
+
+
