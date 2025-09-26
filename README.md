@@ -10,7 +10,7 @@ Uma plataforma web interativa onde os usuários podem explorar filmes, assistir 
 - **🔑 Sistema de Login**: Criação de contas e autenticação de usuários para gerenciar avaliações.
 - **⭐ Avaliações de Filmes**: Notas de 1 a 10 e comentários, com feedback visível para outros usuários.
 - **📝 Exibição de Avaliações**: Grid responsiva de cards mostrando notas, comentários e data da avaliação.
-- **💖 Favoritos**: Marque filmes como favoritos utilizando armazenamento local (localStorage).
+- **💖 Favoritos**: Marque filmes como favoritos utilizando armazenamento em banco de dados.
 
 ---
 
