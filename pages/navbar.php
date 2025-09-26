@@ -9,7 +9,63 @@ $usuario_logado = $_SESSION['nome_usuario'] ?? null;
 ?>
 
 <style>
-/* ... seu CSS atual ... */
+    /* Em telas menores que 992px (breakpoint lg do Bootstrap) */
+    @media (max-width: 991.98px) {
+
+        /* Esconde os botões fora do collapse */
+        .navbar>.container-fluid>.auth-links {
+            display: none !important;
+        }
+
+        /* Dentro do collapse, mostrar links e botões centralizados */
+        #navbarSupportedContent .a-btn,
+        #navbarSupportedContent .neon-btn {
+            display: inline-block !important;
+            width: 100%;
+            text-align: center;
+            margin: 5px 0;
+        }
+
+        /* Auth-links aparecem dentro do collapse */
+        #navbarSupportedContent .auth-links {
+            display: flex !important;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        /* Estilização do collapse */
+        #navbarSupportedContent {
+            background-color: #021526;
+            padding: 15px;
+            border-radius: 8px;
+        }
+
+        .navbar .container-fluid {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .navbar-brand {
+            margin: 0;
+        }
+
+        .navbar-toggler {
+            margin-left: auto;
+            color: white;
+        }
+
+
+            .navbar-collapse {
+                margin-top: 15px;
+            }
+
+            .navbar {
+                height: auto;
+            }
+        }
 </style>
 
 <nav class="navbar navbar-expand-lg  position-relative mb-5">
@@ -41,25 +97,27 @@ $usuario_logado = $_SESSION['nome_usuario'] ?? null;
             </ul>
 
             <!-- Auth Links - MOBILE -->
-            <div class="auth-links-mobile d-lg-none">
+            <div class="auth-links-mobile d-lg-none d-flex flex-column align-items-center gap-2 w-100 mt-3">
                 <?php if ($usuario_logado): ?>
-                    <div class="dropdown text-center">
-                        <a class="a-btn dropdown-toggle w-100" href="#" role="button"
-                           id="dropdownMenuButtonMobile" data-bs-toggle="dropdown" aria-expanded="false">
+                    <div class="dropdown w-100 text-center">
+                        <h5 class="a-btn  w-100" href="#">
                             <?= htmlspecialchars($usuario_logado) ?>
-                        </a>
-                        <ul class="dropdown-menu w-100 text-center" aria-labelledby="dropdownMenuButtonMobile">
-                            <li><a class="dropdown-item" href="fav">Favoritos</a></li>
-                            <li><a class="dropdown-item" href="index.php?logout=1">Sair</a></li>
-                        </ul>
+                        </h5>
+
+                        <div class="justify-content-center d-flex gap-2">
+                            <a class="a-btn mx-2" href="fav">Favoritos</a>
+                            <a class="a-btn mx-2" href="index.php?logout=1">Sair</a>
+                        </div>
+
                     </div>
                 <?php else: ?>
-                    <a href="pages/login.php" class="text-light a-btn text-center">LOGAR</a>
-                    <a href="pages/cadastro.php">
-                        <button type="button" class="neon-btn ">CADASTRAR</button>
+                    <a href="pages/login.php" class="text-light a-btn text-center w-100">LOGAR</a>
+                    <a href="pages/cadastro.php" class="w-100 text-center">
+                        <button type="button" class="neon-btn w-100">CADASTRAR</button>
                     </a>
                 <?php endif; ?>
             </div>
+
 
             <!-- Auth Links - DESKTOP -->
             <div class="auth-links-desktop d-none d-lg-flex align-items-center gap-2">

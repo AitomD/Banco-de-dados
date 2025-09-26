@@ -1,6 +1,7 @@
+
 <main class="container">
 
-    <div class="alto" style="height: 189px;"></div>
+    <div class="alto" style="height: 100px;"></div>
 
     <div class="avaliar-container">
         <img class="poster" src="https://via.placeholder.com/250x375" alt="Capa do filme">
@@ -124,7 +125,7 @@ btnCoracao.addEventListener("click", () => {
             alert(data.msg || "Erro ao favoritar.");
             return;
         }
-
+        
         let favoritosAtual = JSON.parse(localStorage.getItem('favoritos')) || [];
 
         if(data.acao === "adicionado") {
@@ -136,6 +137,7 @@ btnCoracao.addEventListener("click", () => {
                     poster: posterFilme,
                     sinopse: sinopseFilme
                 });
+                alert("Adicionado aos favoritos!");
             }
             iconeCoracao.classList.add("fa-solid");
             iconeCoracao.classList.remove("fa-regular");
@@ -172,5 +174,5 @@ document.addEventListener('DOMContentLoaded', () => {
     carregarFilmeSerie();
 });
 </script>
-
+<script src="js/avaliar.js"></script>
 
