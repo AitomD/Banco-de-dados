@@ -103,20 +103,31 @@ const btnCoracao = document.getElementById("btn-coracao");
 const iconeCoracao = document.getElementById("icone-coracao");
 
 btnCoracao.addEventListener("click", () => {
-    fetch(`${BASE}pages/favoritar.php`, {
+    fetch("pages/favoritar.php", {
         method: "POST",
         headers: {
             "Content-Type": "application/x-www-form-urlencoded"
         },
         body: `id_filme=${encodeURIComponent(id)}&type=${encodeURIComponent(type)}&titulo=${encodeURIComponent(tituloFilme)}&poster=${encodeURIComponent(posterFilme)}&sinopse=${encodeURIComponent(sinopseFilme)}`
     })
-    .then(res => res.json())
+    .then(async res => {
+        const contentType = res.headers.get("content-type");
+        if (contentType && contentType.includes("application/json")) {
+            return res.json();
+        } else {
+            const text = await res.text();
+            throw new Error("Resposta não é JSON. Recebido:\n" + text);
+        }
+    })
     .then(data => {
-        // Atualiza localStorage
+        if (data.status !== "ok") {
+            alert(data.msg || "Erro ao favoritar.");
+            return;
+        }
+
         let favoritosAtual = JSON.parse(localStorage.getItem('favoritos')) || [];
 
         if(data.acao === "adicionado") {
-            // adiciona se não existir
             if(!favoritosAtual.find(f => f.id == id && f.type == type)){
                 favoritosAtual.push({
                     id: id,
@@ -136,7 +147,10 @@ btnCoracao.addEventListener("click", () => {
 
         localStorage.setItem('favoritos', JSON.stringify(favoritosAtual));
     })
-    .catch(err => console.error(err));
+    .catch(err => {
+        console.error("Erro ao favoritar:", err);
+        alert("Erro inesperado. Verifique a conexão ou tente novamente.");
+    });
 });
 
 function verificarFavorito() {
@@ -150,6 +164,8 @@ function verificarFavorito() {
         iconeCoracao.classList.add("fa-regular");
     }
 }
+
+
 
 // -------------------- Inicialização --------------------
 document.addEventListener('DOMContentLoaded', () => {

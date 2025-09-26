@@ -75,7 +75,7 @@ if (!is_file($file_path)) {
         'home'    => ['js/home.js','js/filmes.js','js/series.js'],
         'filmes'  => ['js/filmes.js'],
         'series'  => ['js/series.js'],
-        'avaliar' => ['js/avaliar.js','js/avaliarcard.js'],
+        'avaliar' => ['js/avaliar.js'],
         // 'login' => ['js/login.js'],
         // 'perfil' => ['js/perfil.js'],
     ];

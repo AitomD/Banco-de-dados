@@ -54,9 +54,9 @@ $usuario_logado = $_SESSION['nome_usuario'] ?? null;
                         </ul>
                     </div>
                 <?php else: ?>
-                    <a href="pages/login.php" class="text-light a-btn">LOGAR</a>
+                    <a href="pages/login.php" class="text-light a-btn text-center">LOGAR</a>
                     <a href="pages/cadastro.php">
-                        <button type="button" class="neon-btn">CADASTRAR</button>
+                        <button type="button" class="neon-btn ">CADASTRAR</button>
                     </a>
                 <?php endif; ?>
             </div>

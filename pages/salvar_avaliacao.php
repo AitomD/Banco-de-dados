@@ -1,14 +1,18 @@
 <?php
 session_start();
+header('Content-Type: application/json');
 
 // Verifica se o usuário está logado
 if (!isset($_SESSION['id_usuario'])) {
-    echo "Você precisa estar logado para avaliar!";
+    echo json_encode([
+        "logado" => false,
+        "mensagem" => "Você precisa estar logado para avaliar!"
+    ]);
     exit;
 }
-// Caminho seguro para o db.php
+
 require_once __DIR__ . '/../includes/db.php';
-// Cria a instância e abre a conexão
+
 $database = new DB();
 $conn = $database->getConnection();
 
@@ -21,7 +25,7 @@ $comentario    = trim($_POST['comentario'] ?? "");
 // Validação básica
 if ($id_usuario && $id_filmeserie && $nota && !empty($comentario)) {
     try {
-        // Verifica se o usuário já avaliou este filme
+        // Verifica se já existe avaliação
         $checkSql = "SELECT COUNT(*) FROM avaliacao WHERE id_usuario = :id_usuario AND id_filmeserie = :id_filmeserie";
         $checkStmt = $conn->prepare($checkSql);
         $checkStmt->bindParam(':id_usuario', $id_usuario, PDO::PARAM_INT);
@@ -29,14 +33,17 @@ if ($id_usuario && $id_filmeserie && $nota && !empty($comentario)) {
         $checkStmt->execute();
 
         if ($checkStmt->fetchColumn() > 0) {
-            echo "Você já avaliou esse filme!";
+            echo json_encode([
+                "logado" => true,
+                "sucesso" => false,
+                "mensagem" => "Você já avaliou esse filme!"
+            ]);
             exit;
         }
 
-        // Insere a avaliação
+        // Insere avaliação
         $sql = "INSERT INTO avaliacao (id_usuario, id_filmeserie, nota, comentario, dt_avaliacao) 
                 VALUES (:id_usuario, :id_filmeserie, :nota, :comentario, NOW())";
-
         $stmt = $conn->prepare($sql);
         $stmt->bindParam(':id_usuario', $id_usuario, PDO::PARAM_INT);
         $stmt->bindParam(':id_filmeserie', $id_filmeserie, PDO::PARAM_INT);
@@ -44,13 +51,29 @@ if ($id_usuario && $id_filmeserie && $nota && !empty($comentario)) {
         $stmt->bindParam(':comentario', $comentario, PDO::PARAM_STR);
 
         if ($stmt->execute()) {
-            echo "Avaliação enviada com sucesso!";
+            echo json_encode([
+                "logado" => true,
+                "sucesso" => true,
+                "mensagem" => "Avaliação enviada com sucesso!"
+            ]);
         } else {
-            echo "Erro ao enviar avaliação!";
+            echo json_encode([
+                "logado" => true,
+                "sucesso" => false,
+                "mensagem" => "Erro ao enviar avaliação!"
+            ]);
         }
     } catch (PDOException $e) {
-        echo "Erro no banco: " . $e->getMessage();
+        echo json_encode([
+            "logado" => true,
+            "sucesso" => false,
+            "mensagem" => "Erro no banco: " . $e->getMessage()
+        ]);
     }
 } else {
-    echo "Preencha todos os campos antes de enviar!";
+    echo json_encode([
+        "logado" => true,
+        "sucesso" => false,
+        "mensagem" => "Preencha todos os campos antes de enviar!"
+    ]);
 }

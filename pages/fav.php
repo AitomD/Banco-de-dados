@@ -4,10 +4,6 @@ if (session_status() === PHP_SESSION_NONE) session_start();
 require_once __DIR__ . '/../includes/db.php';
 require_once __DIR__ . '/../includes/fav.php';
 
-if (!isset($_SESSION['id_usuario'])) {
-    echo "<p>Você precisa estar logado para ver seus favoritos!</p>";
-    exit;
-}
 
 $id_usuario = $_SESSION['id_usuario'];
 

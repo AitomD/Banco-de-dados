@@ -41,7 +41,7 @@ try {
                 <h5 style='margin:0 0 5px 0;'>{$row['nome']}</h5>
                 <p style='margin:0 0 5px 0; color:#FFD700; font-size:1.5rem;'>{$estrelas}</p>
                 <p style='margin:0 0 5px 0;'>{$row['comentario']}</p>
-                <small>" . date("d/m/Y H:i", strtotime($row['dt_avaliacao'])) . "</small>
+                <small>" . date("d/m/Y", strtotime($row['dt_avaliacao'])) . "</small>
             </div>
             ";
         }
