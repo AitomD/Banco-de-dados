@@ -50,3 +50,4 @@ Criar uma experiência completa de avaliação de filmes, integrando informaçõ
 ---
 
 Desfrute da experiência de avaliar filmes e compartilhar suas opiniões com outros usuários! 🍿
+
