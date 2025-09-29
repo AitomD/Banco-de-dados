@@ -48,6 +48,10 @@ Criar uma experiência completa de avaliação de filmes, integrando informaçõ
 - Comentários e avaliações centralizados e organizados.
 
 ---
+Este projeto foi desenvolvido por:  
+
+- [**Aitom Henrique Donatoni**](https://github.com/AitomD)  
+- [**Fernando Consolin Rosa**](https://github.com/FernandoConsolinRosa11)
 
 Desfrute da experiência de avaliar filmes e compartilhar suas opiniões com outros usuários! 🍿
 
